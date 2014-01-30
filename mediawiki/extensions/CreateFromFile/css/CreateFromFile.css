@@ -1,0 +1,10 @@
+.createfromfile-link, .createfromSpread-link, .createspread-link {
+	text-decoration: underline;
+	cursor: pointer;
+}
+
+.createspread-show {
+	overflow: scroll;
+}
+
+
