@@ -121,7 +121,7 @@ $('.createspread-link').live('click', function() {
 
 $( "#sfile .createspread-show" ).handsontable('getInstance').addHook('afterChange', function( changes, source ) {
 
-	if ( source === "edit" ) {
+	if ( source === "edit" || source === "autofill" ) {
 
 		var $parent = $(this.rootElement).parent();
 
@@ -142,7 +142,7 @@ $( "#sfile .createspread-show" ).handsontable('getInstance').addHook('afterChang
 
 $( "#lfile .createspread-show" ).handsontable('getInstance').addHook('afterChange', function( changes, source ) {
 
-	if ( source === "edit" ) {
+	if ( source === "edit" || source === "autofill" ) {
 
 		var $parent = $(this.rootElement).parent();
 
@@ -164,7 +164,7 @@ $( "#lfile .createspread-show" ).handsontable('getInstance').addHook('afterChang
 
 $( "#mfile .createspread-show" ).handsontable('getInstance').addHook('afterChange', function( changes, source ) {
 
-	if ( source === "edit" ) {
+	if ( source === "edit" || source === "autofill" ) {
 
 		var $parent = $(this.rootElement).parent();
 
@@ -185,7 +185,7 @@ $( "#mfile .createspread-show" ).handsontable('getInstance').addHook('afterChang
 
 $( "#qfile .createspread-show" ).handsontable('getInstance').addHook('afterChange', function( changes, source ) {
 
-	if ( source === "edit" ) {
+	if ( source === "edit" || source === "autofill" ) {
 
 		var $parent = $(this.rootElement).parent();
 
@@ -206,7 +206,7 @@ $( "#qfile .createspread-show" ).handsontable('getInstance').addHook('afterChang
 
 $( "#cfile .createspread-show" ).handsontable('getInstance').addHook('afterChange', function( changes, source ) {
 
-	if ( source === "edit" ) {
+	if ( source === "edit" || source === "autofill" ) {
 
 		var $parent = $(this.rootElement).parent();
 
@@ -224,7 +224,6 @@ $( "#cfile .createspread-show" ).handsontable('getInstance').addHook('afterChang
 		}
 	}
 });
-
 
 
 
