@@ -114,117 +114,31 @@ $('.createspread-link').live('click', function() {
 
 });
 
-/** afterChange **/
-// $( ".createspread-show" ).handsontable({
-//   'myPlugin': false
-// });
 
-$( "#sfile .createspread-show" ).handsontable('getInstance').addHook('afterChange', function( changes, source ) {
+$( ".createspread-show" ).each(function(){
 
-	if ( source === "edit" || source === "autofill" ) {
+	$(this).handsontable('getInstance').addHook('afterChange', function( changes, source ) {
 
-		var $parent = $(this.rootElement).parent();
+		if ( source === "edit" || source === "autofill" ) {
 
-		$parent.children( ".createspread-saved" ).remove();
-		$parent.append( "<p class='createspread-saved'>Data saved.</p>" );
-		var target = $parent.children( ".createspread-link" ).attr( 'data-target' );
+			var $parent = $(this.rootElement).parent();
 
-		if ( target ) {
+			$parent.children( ".createspread-saved" ).remove();
+			$parent.append( "<p class='createspread-saved'>Data saved.</p>" );
+			var target = $parent.children( ".createspread-link" ).attr( 'data-target' );
+
+			if ( target ) {
 	
-			var $container = $(this.rootElement);
+				var $container = $(this.rootElement);
 	
-			// We process everything at one for avoiding async problem;
-			$( "."+target+" > input" ).val( convertData2str( $container.handsontable( 'getData' ) ) );
+				// We process everything at one for avoiding async problem;
+				$( "."+target+" > input" ).val( convertData2str( $container.handsontable( 'getData' ) ) );
 
+			}
 		}
-	}
+	});
+
 });
-
-$( "#lfile .createspread-show" ).handsontable('getInstance').addHook('afterChange', function( changes, source ) {
-
-	if ( source === "edit" || source === "autofill" ) {
-
-		var $parent = $(this.rootElement).parent();
-
-		$parent.children( ".createspread-saved" ).remove();
-		$parent.append( "<p class='createspread-saved'>Data saved.</p>" );
-		var target = $parent.children( ".createspread-link" ).attr( 'data-target' );
-
-		if ( target ) {
-	
-			var $container = $(this.rootElement);
-	
-			// We process everything at one for avoiding async problem;
-			$( "."+target+" > input" ).val( convertData2str( $container.handsontable( 'getData' ) ) );
-
-		}
-	}
-});
-
-
-$( "#mfile .createspread-show" ).handsontable('getInstance').addHook('afterChange', function( changes, source ) {
-
-	if ( source === "edit" || source === "autofill" ) {
-
-		var $parent = $(this.rootElement).parent();
-
-		$parent.children( ".createspread-saved" ).remove();
-		$parent.append( "<p class='createspread-saved'>Data saved.</p>" );
-		var target = $parent.children( ".createspread-link" ).attr( 'data-target' );
-
-		if ( target ) {
-	
-			var $container = $(this.rootElement);
-	
-			// We process everything at one for avoiding async problem;
-			$( "."+target+" > input" ).val( convertData2str( $container.handsontable( 'getData' ) ) );
-
-		}
-	}
-});
-
-$( "#qfile .createspread-show" ).handsontable('getInstance').addHook('afterChange', function( changes, source ) {
-
-	if ( source === "edit" || source === "autofill" ) {
-
-		var $parent = $(this.rootElement).parent();
-
-		$parent.children( ".createspread-saved" ).remove();
-		$parent.append( "<p class='createspread-saved'>Data saved.</p>" );
-		var target = $parent.children( ".createspread-link" ).attr( 'data-target' );
-
-		if ( target ) {
-	
-			var $container = $(this.rootElement);
-	
-			// We process everything at one for avoiding async problem;
-			$( "."+target+" > input" ).val( convertData2str( $container.handsontable( 'getData' ) ) );
-
-		}
-	}
-});
-
-$( "#cfile .createspread-show" ).handsontable('getInstance').addHook('afterChange', function( changes, source ) {
-
-	if ( source === "edit" || source === "autofill" ) {
-
-		var $parent = $(this.rootElement).parent();
-
-		$parent.children( ".createspread-saved" ).remove();
-		$parent.append( "<p class='createspread-saved'>Data saved.</p>" );
-		var target = $parent.children( ".createspread-link" ).attr( 'data-target' );
-
-		if ( target ) {
-	
-			var $container = $(this.rootElement);
-	
-			// We process everything at one for avoiding async problem;
-			$( "."+target+" > input" ).val( convertData2str( $container.handsontable( 'getData' ) ) );
-
-		}
-	}
-});
-
 
 
 /** @param Array
