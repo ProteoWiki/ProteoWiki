@@ -113,7 +113,13 @@ class CreateFromFile {
 			$start = trim($frame->expand($args[6]));
 			$extra.= "data-start='".$start."'";
 		}
-		
+
+		#Username used for sending emails
+		if (isset($args[7])) {
+			$username = trim($frame->expand($args[7]));
+			$extra.= "data-username='".$username."'";
+		}
+				
 		$output = "<p class='createfromfile-link' ".$extra.">Create</p>";
 		return $parser->insertStripItem( $output, $parser->mStripState );
 
@@ -154,7 +160,13 @@ class CreateFromFile {
 			$start = trim($frame->expand($args[6]));
 			$extra.= "data-start='".$start."'";
 		}
-
+		
+		#Username used for sending emails
+		if (isset($args[7])) {
+			$username = trim($frame->expand($args[7]));
+			$extra.= "data-username='".$username."'";
+		}
+		
 		$output = "<p class='createfromSpread-link' ".$extra.">Create</p>";
 		return $parser->insertStripItem( $output, $parser->mStripState );
 
@@ -251,7 +263,7 @@ class CreateFromFile {
 
 		#Check if file exists
 		if (file_exists($path_file)) {
-			return(self::filecheck($path_file, $templateText, $titlePage, $delimiter, $enclosure, $userparam));
+			return(self::filecheck($path_file, $templateText, $titlePage, $delimiter, $enclosure, $userparam, $username));
 		}
 		
 		else {
@@ -261,7 +273,7 @@ class CreateFromFile {
 	}
 
 
-	public static function createfromfileJS ( $param1="", $param2="", $param3="", $delimiter="\t", $enclosure='"', $userparam="", $start=0 ) {
+	public static function createfromfileJS ( $param1="", $param2="", $param3="", $delimiter="\t", $enclosure='"', $userparam="", $start=0, $username="" ) {
 
 		global $wgCFAllowedGroups;
 		global $wgUploadDirectory;
@@ -327,7 +339,7 @@ class CreateFromFile {
 		
 		#Check if file exists
 		if (file_exists($path_file)) {
-			$success = self::filecheck($path_file, $templateText, $titlePage, $delimiter, $enclosure, $userparam, $start);
+			$success = self::filecheck($path_file, $templateText, $titlePage, $delimiter, $enclosure, $userparam, $start, $username);
 
 			return '{"status":"ok", "msg": "'.$success.'"}';
 		}
@@ -338,7 +350,7 @@ class CreateFromFile {
 	
 	}
 
-	public static function createfromSpreadJS ( $param1="", $param2="", $param3="", $delimiter="\t", $enclosure='"', $userparam="", $start=0 ) {
+	public static function createfromSpreadJS ( $param1="", $param2="", $param3="", $delimiter="\t", $enclosure='"', $userparam="", $start=0, $username="" ) {
 
 		global $wgCFAllowedGroups;
 		global $wgUploadDirectory;
@@ -397,7 +409,7 @@ class CreateFromFile {
 
 		#Check if file exists
 		if ( !empty( $str ) ) {
-			$success = self::textcheck($str, $templateText, $titlePage, $delimiter, $enclosure, $userparam, $start);
+			$success = self::textcheck($str, $templateText, $titlePage, $delimiter, $enclosure, $userparam, $start, $username);
 
 			return '{"status":"ok", "msg": "'.$success.'"}';
 		}
@@ -408,7 +420,7 @@ class CreateFromFile {
 
 	}
 
-	private static function filecheck($path_file, $templateText, $titlePage, $delimiter, $enclosure, $userparam, $start) {
+	private static function filecheck($path_file, $templateText, $titlePage, $delimiter, $enclosure, $userparam, $start, $username) {
 		
 		$pages = array();
 		$encoding = "UTF-8";
@@ -420,7 +432,7 @@ class CreateFromFile {
 			return;
 		}
 	
-		$text = self::modifyPages( $pages, "Adding pages from CreateFromFile" );
+		$text = self::modifyPages( $pages, "Adding pages from CreateFromFile", $username );
 
 		# Should we trigger runJobs here?
 		$descriptorspec = array(
@@ -437,7 +449,7 @@ class CreateFromFile {
 		return($text);
 	}
 
-	private static function textcheck($JStext, $templateText, $titlePage, $delimiter, $enclosure, $userparam, $start) {
+	private static function textcheck($JStext, $templateText, $titlePage, $delimiter, $enclosure, $userparam, $start, $username) {
 
 		$pages = array();
 		$encoding = "UTF-8";
@@ -449,7 +461,7 @@ class CreateFromFile {
 			return;
 		}
 
-		$text = self::modifyPages( $pages, "Adding pages from CreateFromFile" );
+		$text = self::modifyPages( $pages, "Adding pages from CreateFromFile", $username );
 
 		# Should we trigger runJobs here?
 		$descriptorspec = array(
@@ -467,7 +479,7 @@ class CreateFromFile {
 
 	}
 	
-	private static function getCSVData( $path_file, $encoding, &$pages, $templateText, $titlePage, $delimiter="\t", $enclosure='"', $userparam, $start=0 ) {
+	private static function getCSVData( $path_file, $encoding, &$pages, $templateText, $titlePage, $delimiter="\t", $enclosure='"', $userparam, $start=0, $username="" ) {
 		
 		
 		$csv_file = ImportStreamSource::newFromFile($path_file)->value->mHandle;
@@ -590,7 +602,7 @@ class CreateFromFile {
 		}
 	}
 
-	private static function getCSVDataJS( $JStext, $encoding, &$pages, $templateText, $titlePage, $delimiter="\t", $enclosure='"', $userparam, $start=0 ) {
+	private static function getCSVDataJS( $JStext, $encoding, &$pages, $templateText, $titlePage, $delimiter="\t", $enclosure='"', $userparam, $start=0, $username="" ) {
 		
 		
 		if ( empty( $JStext ) )
@@ -672,8 +684,10 @@ class CreateFromFile {
 	}
 	
 
+	/** Here we add new pages **/
+	/** There is a chance to add email here **/
 	
-	private static function modifyPages( $pages, $editSummary ) {
+	private static function modifyPages( $pages, $editSummary, $username="" ) {
 		
 		global $wgUser, $wgLang, $wgSkipCreateFromFile;
 		
@@ -697,28 +711,94 @@ class CreateFromFile {
 		Job::batchInsert( $jobs );
 		$text.=implode(",",$titles);
 
+		self::sendEmailBatch( $pages, $username );
+
 		return $text;
 	}
 	
-		private static function putZeroes($code, $zeroes=0) {
-		
-			if (isset($code)) {
-				$str = "";
-				if (is_numeric($code)) {
-						$length = strlen($code);
-						$diff = $zeroes - $length;
-						$str = $code;
-						if ($diff > 0) {
-								for ($i=0; $i<$diff; $i++) {
-										$str = "0".$str;	
-								}
-						}
+	private static function putZeroes( $code, $zeroes=0 ) {
 	
-						return $str;
-				}
-				else { return $str; }
+		if (isset($code)) {
+			$str = "";
+			if (is_numeric($code)) {
+					$length = strlen($code);
+					$diff = $zeroes - $length;
+					$str = $code;
+					if ($diff > 0) {
+							for ($i=0; $i<$diff; $i++) {
+									$str = "0".$str;	
+							}
+					}
+
+					return $str;
 			}
-			else { return ""; }
+			else { return $str; }
 		}
+		else { return ""; }
+	}
+	
+	/** Function for sending email **/
+	private static function sendEmailBatch( $pages, $username="" ) {
+	
+		if ( !empty( $username ) ) {
+		
+			#global $wgPasswordSender; # We use this for now
+			global $CADefaultEmail;
+			global $wgSitename;
+	
+			/** We should get user from another place **/
+			/** Let's add in HTML rather than SMW **/
+			$to_addresses = array();
+			$userobj = User::newfromName( $username );
+	
+			array_push( $to_addresses, new MailAddress( $userobj->getEmail(), $userobj->getName() ) );
+	
+			# From:
+			$senderMail = new MailAddress( $CADefaultEmail, $wgSitename );
+	
+			$user_mailer = new UserMailer();
+		
+			// We should work on $subject and $body
+			$subject = "[".$wgSitename."] Samples";
+			$body = "stuff! to send\n\n";
+			
+			foreach ( $pages as $page ) {
+
+				$body.= self::processPage( $page )."\n";
+			}
+			
+			// Write the contents back to the file
+			$user_mailer->send( $to_addresses, $senderMail , $subject, $body );
+
+		}
+	
+		return true;
+	}
+	
+	/** Process pages **/
+	private static function processPage ( $page ) {
+	
+		global $wgCFParamsMailing;
+		$content = "";
+		$title = Title::newFromText( $page->getName() );
+		$content = $page->getEntry();
+
+		$contentArray = array();
+		array_push( $contentArray, $title );
+
+		foreach ( $wgCFParamsMailing as $param ) {
+			
+			preg_match_all( "/$param\=(\S.*?)\|/", $content, $out );
+			array_push( $contentArray, $out[1][0] );
+		
+		}
+		$content = implode( " - ", $contentArray );
+		
+		return $content;
+		
+	}
+	
+	
+	
 
 }

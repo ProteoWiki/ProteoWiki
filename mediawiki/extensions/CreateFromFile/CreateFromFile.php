@@ -29,6 +29,8 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 $wgSkipCreateFromFile = "skip";
 $wgCFAllowedGroups = array( 'sysop', 'manager' );
 
+$wgCFParamsMailing = array();
+
 $wgExtensionCredits['parserhook'][] = array(
 	'path' => __FILE__,
 	'name' => 'CreateFromFile',
