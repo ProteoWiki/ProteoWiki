@@ -119,6 +119,12 @@ class CreateFromFile {
 			$username = trim($frame->expand($args[7]));
 			$extra.= "data-username='".$username."'";
 		}
+		
+		#·Extrainfo
+		if (isset($args[8])) {
+			$extrainfo = trim($frame->expand($args[8]));
+			$extra.= "data-extrainfo='".$extrainfo."'";
+		}
 				
 		$output = "<p class='createfromfile-link' ".$extra.">Create</p>";
 		return $parser->insertStripItem( $output, $parser->mStripState );
@@ -165,6 +171,12 @@ class CreateFromFile {
 		if (isset($args[7])) {
 			$username = trim($frame->expand($args[7]));
 			$extra.= "data-username='".$username."'";
+		}
+
+		#·Extrainfo
+		if (isset($args[8])) {
+			$extrainfo = trim($frame->expand($args[8]));
+			$extra.= "data-extrainfo='".$extrainfo."'";
 		}
 		
 		$output = "<p class='createfromSpread-link' ".$extra.">Create</p>";
@@ -214,6 +226,12 @@ class CreateFromFile {
 			$userparam = trim($frame->expand($args[5]));
 		}
 		
+		// Extrainfo
+		if (empty($args[6])) {
+			$extrainfo = "";
+		} else {
+			$extrainfo = trim($frame->expand($args[6]));
+		}
 
 		global $wgUser;
 		$user = $wgUser;
@@ -263,7 +281,7 @@ class CreateFromFile {
 
 		#Check if file exists
 		if (file_exists($path_file)) {
-			return(self::filecheck($path_file, $templateText, $titlePage, $delimiter, $enclosure, $userparam, $username));
+			return(self::filecheck($path_file, $templateText, $titlePage, $delimiter, $enclosure, $userparam, $username, $extrainfo));
 		}
 		
 		else {
@@ -273,7 +291,7 @@ class CreateFromFile {
 	}
 
 
-	public static function createfromfileJS ( $param1="", $param2="", $param3="", $delimiter="\t", $enclosure='"', $userparam="", $start=0, $username="" ) {
+	public static function createfromfileJS ( $param1="", $param2="", $param3="", $delimiter="\t", $enclosure='"', $userparam="", $start=0, $username="", $extrainfo="" ) {
 
 		global $wgCFAllowedGroups;
 		global $wgUploadDirectory;
@@ -339,7 +357,7 @@ class CreateFromFile {
 		
 		#Check if file exists
 		if (file_exists($path_file)) {
-			$success = self::filecheck($path_file, $templateText, $titlePage, $delimiter, $enclosure, $userparam, $start, $username);
+			$success = self::filecheck($path_file, $templateText, $titlePage, $delimiter, $enclosure, $userparam, $start, $username, $userparam, $extrainfo);
 
 			return '{"status":"ok", "msg": "'.$success.'"}';
 		}
@@ -350,7 +368,7 @@ class CreateFromFile {
 	
 	}
 
-	public static function createfromSpreadJS ( $param1="", $param2="", $param3="", $delimiter="\t", $enclosure='"', $userparam="", $start=0, $username="" ) {
+	public static function createfromSpreadJS ( $param1="", $param2="", $param3="", $delimiter="\t", $enclosure='"', $userparam="", $start=0, $username="", $extrainfo="" ) {
 
 		global $wgCFAllowedGroups;
 		global $wgUploadDirectory;
@@ -409,7 +427,7 @@ class CreateFromFile {
 
 		#Check if file exists
 		if ( !empty( $str ) ) {
-			$success = self::textcheck($str, $templateText, $titlePage, $delimiter, $enclosure, $userparam, $start, $username);
+			$success = self::textcheck($str, $templateText, $titlePage, $delimiter, $enclosure, $userparam, $start, $username, $userparam, $extrainfo );
 
 			return '{"status":"ok", "msg": "'.$success.'"}';
 		}
@@ -420,7 +438,7 @@ class CreateFromFile {
 
 	}
 
-	private static function filecheck($path_file, $templateText, $titlePage, $delimiter, $enclosure, $userparam, $start, $username) {
+	private static function filecheck($path_file, $templateText, $titlePage, $delimiter, $enclosure, $userparam, $start, $username, $userparam, $extrainfo ) {
 		
 		$pages = array();
 		$encoding = "UTF-8";
@@ -432,7 +450,7 @@ class CreateFromFile {
 			return;
 		}
 	
-		$text = self::modifyPages( $pages, "Adding pages from CreateFromFile", $username );
+		$text = self::modifyPages( $pages, "Adding pages from CreateFromFile", $username, $userparam, $extrainfo );
 
 		# Should we trigger runJobs here?
 		$descriptorspec = array(
@@ -449,7 +467,7 @@ class CreateFromFile {
 		return($text);
 	}
 
-	private static function textcheck($JStext, $templateText, $titlePage, $delimiter, $enclosure, $userparam, $start, $username) {
+	private static function textcheck($JStext, $templateText, $titlePage, $delimiter, $enclosure, $userparam, $start, $username, $userparam, $extrainfo ) {
 
 		$pages = array();
 		$encoding = "UTF-8";
@@ -461,7 +479,7 @@ class CreateFromFile {
 			return;
 		}
 
-		$text = self::modifyPages( $pages, "Adding pages from CreateFromFile", $username );
+		$text = self::modifyPages( $pages, "Adding pages from CreateFromFile", $username, $userparam, $extrainfo );
 
 		# Should we trigger runJobs here?
 		$descriptorspec = array(
@@ -687,7 +705,7 @@ class CreateFromFile {
 	/** Here we add new pages **/
 	/** There is a chance to add email here **/
 	
-	private static function modifyPages( $pages, $editSummary, $username="" ) {
+	private static function modifyPages( $pages, $editSummary, $username="", $userparam="", $extrainfo="" ) {
 		
 		global $wgUser, $wgLang, $wgSkipCreateFromFile;
 		
@@ -711,7 +729,7 @@ class CreateFromFile {
 		Job::batchInsert( $jobs );
 		$text.=implode(",",$titles);
 
-		self::sendEmailBatch( $pages, $username );
+		self::sendEmailBatch( $pages, $username, $userparam, $extrainfo );
 
 		return $text;
 	}
@@ -738,7 +756,7 @@ class CreateFromFile {
 	}
 	
 	/** Function for sending email **/
-	private static function sendEmailBatch( $pages, $username="" ) {
+	private static function sendEmailBatch( $pages, $username="", $userparam, $extrainfo ) {
 	
 		if ( !empty( $username ) ) {
 		
@@ -760,12 +778,14 @@ class CreateFromFile {
 		
 			// We should work on $subject and $body
 			$subject = "[".$wgSitename."] Samples";
-			$body = "stuff! to send\n\n";
+			$body = wfMessage( 'CreateFromFile-Email_pre' )->params( $userparam, $extrainfo )->plain()."\n";
 			
 			foreach ( $pages as $page ) {
 
 				$body.= self::processPage( $page )."\n";
 			}
+			
+			$body.= "\n".wfMessage( 'CreateFromFile-Email_post' )->plain();
 			
 			// Write the contents back to the file
 			$user_mailer->send( $to_addresses, $senderMail , $subject, $body );
@@ -792,7 +812,7 @@ class CreateFromFile {
 			array_push( $contentArray, $out[1][0] );
 		
 		}
-		$content = implode( " - ", $contentArray );
+		$content = implode( "\t", $contentArray );
 		
 		return $content;
 		

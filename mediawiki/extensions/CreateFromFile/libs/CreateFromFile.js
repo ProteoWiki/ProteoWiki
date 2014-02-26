@@ -11,12 +11,14 @@ $('.createfromfile-link').live('click', function() {
 	param.delimiter="\t";
 	param.enclosure='"';
 	param.start = $(this).attr('data-start');
-
+	param.username = $(this).attr('data-username');
+	param.extrainfo = $(this).attr('data-extrainfo');
+	
 	$.get( mw.util.wikiScript(), {
 		format: 'json',
 		action: 'ajax',
 		rs: 'CreateFromFile::createfromfileJS',
-		rsargs: [param.file, param.template, param.title, param.delimiter, param.enclosure, param.userparam, param.start] // becomes &rsargs[]=arg1&rsargs[]=arg2...
+		rsargs: [param.file, param.template, param.title, param.delimiter, param.enclosure, param.userparam, param.start, param.username, param.extrainfo] // becomes &rsargs[]=arg1&rsargs[]=arg2...
 	}, function(data) {
 		var jsonobj = jQuery.parseJSON(data);
 		alert("Samples are being created");
@@ -35,7 +37,9 @@ $('.createfromSpread-link').live('click', function() {
 	param.delimiter="\t";
 	param.enclosure='"';
 	param.start = $(this).attr('data-start');
-
+	param.username = $(this).attr('data-username');
+	param.extrainfo = $(this).attr('data-extrainfo');
+	
 	//Let's get data from selector
 	var textstr = convertData2str( $( param.selector ).handsontable( 'getData' ) );
 
@@ -43,7 +47,7 @@ $('.createfromSpread-link').live('click', function() {
 		format: 'json',
 		action: 'ajax',
 		rs: 'CreateFromFile::createfromSpreadJS',
-		rsargs: [textstr, param.template, param.title, param.delimiter, param.enclosure, param.userparam, param.start] // becomes &rsargs[]=arg1&rsargs[]=arg2...
+		rsargs: [textstr, param.template, param.title, param.delimiter, param.enclosure, param.userparam, param.start, param.username, param.extrainfo] // becomes &rsargs[]=arg1&rsargs[]=arg2...
 	}, function(data) {
 		// console.log(data);
 		var jsonobj = jQuery.parseJSON(data);
