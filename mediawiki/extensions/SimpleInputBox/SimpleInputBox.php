@@ -33,9 +33,13 @@ function sinputfunc( $input, $argv, $parser, $frame ) {
 	if ( isset( $argv['size'] ) ) {
 		$extra .=" size='".$parser->recursiveTagParse( $argv['size'], $frame )."'";
 	}
-	
+
 	if ( isset( $argv['class'] ) ) {
 		$extra .=" class='".$parser->recursiveTagParse( $argv['class'], $frame )."'";
+	}
+	
+	if ( isset( $argv['name'] ) ) {
+		$extra .=" name='".$parser->recursiveTagParse( $argv['name'], $frame )."'";
 	}
 	
 	if ( isset( $argv['template'] ) ) {
@@ -57,14 +61,17 @@ function sselectfunc( $input, $argv, $parser, $frame ) {
 		$defaultval = trim($parser->recursiveTagParse( $argv['default'], $frame ));
 	}
 	
-
-	$class = "";
+	$extra = "";
 	if ( isset( $argv['class'] ) ) {
-		$class .=" class='".$parser->recursiveTagParse( $argv['class'], $frame )."'";
+		$extra .=" class='".$parser->recursiveTagParse( $argv['class'], $frame )."'";
+	}
+
+	if ( isset( $argv['name'] ) ) {
+		$extra .=" name='".$parser->recursiveTagParse( $argv['name'], $frame )."'";
 	}
 	
 	$valuearr = explode(",", $value);	
-	$out = "<select id='".$id."' $class>";
+	$out = "<select id='".$id."' $extra>";
 
 	if ( isset( $argv['empty'] ) ) {
 
