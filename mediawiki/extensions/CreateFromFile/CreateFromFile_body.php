@@ -758,6 +758,8 @@ class CreateFromFile {
 	/** Function for sending email **/
 	private static function sendEmailBatch( $pages, $username="", $userparam, $extrainfo ) {
 	
+		$infos = explode( ";", $extrainfo );
+	
 		if ( !empty( $username ) ) {
 		
 			#global $wgPasswordSender; # We use this for now
@@ -776,16 +778,24 @@ class CreateFromFile {
 	
 			$user_mailer = new UserMailer();
 		
+			$emailMsgpre = "CreateFromFile-Email_pre";
+			$emailMsgpost = "CreateFromFile-Email_post";
+			
+			if ( array_key_exists( 1, $infos ) ) {
+				$emailsMsgpre = $emailMsgpre."-".$infos[1];
+				$emailsMsgpost = $emailMsgpost."-".$infos[1];
+			}
+		
 			// We should work on $subject and $body
 			$subject = "[".$wgSitename."] Samples";
-			$body = wfMessage( 'CreateFromFile-Email_pre' )->params( $userparam, $extrainfo )->plain()."\n";
+			$body = wfMessage( $emailMsgpre )->params( $userparam, $infos[0] )->plain()."\n";
 			
 			foreach ( $pages as $page ) {
 
 				$body.= self::processPage( $page )."\n";
 			}
 			
-			$body.= "\n".wfMessage( 'CreateFromFile-Email_post' )->plain();
+			$body.= "\n".wfMessage( $emailMsgpost )->plain();
 			
 			// Write the contents back to the file
 			$user_mailer->send( $to_addresses, $senderMail , $subject, $body );
