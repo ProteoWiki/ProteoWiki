@@ -122,8 +122,7 @@ $('.createspread-link').live('click', function() {
 $( ".createspread-show" ).each(function(){
 
 	$(this).handsontable('getInstance').addHook('afterChange', function( changes, source ) {
-
-		if ( source === "edit" || source === "autofill" ) {
+		if ( source === "edit" || source === "autofill" || source === "paste" ) {
 
 			var $parent = $(this.rootElement).parent();
 
