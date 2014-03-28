@@ -5,3 +5,6 @@
 *.swp
 *.out
 
+##Avoid .svn from SVN repos
+.svn/
+
