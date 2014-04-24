@@ -62,10 +62,12 @@ $wgHooks['LanguageGetMagic'][] = 'wfSetupCreateFromFileLanguageGetMagic';
 $wgAjaxExportList[] = 'CreateFromFile::createfromfileJS';
 $wgAjaxExportList[] = 'CreateFromFile::createfromSpreadJS';
 
+# SpecialPage referencing
+$wgAutoloadClasses['SpecialCreateFromFile'] = dirname( __FILE__ ) . '/CreateFromFile.form.php';
+$wgSpecialPages['CreateFromFile'] = 'SpecialCreateFromFile';
 
 #RunJobs
 $wgRunJobsPath = dirname(__FILE__) . '/../../maintenance/runJobs.php';
-
 
 function wfRegisterCreateFromFile() {
 	
