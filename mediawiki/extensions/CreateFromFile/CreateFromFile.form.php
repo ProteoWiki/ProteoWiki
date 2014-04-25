@@ -46,7 +46,7 @@ class SpecialCreateFromFile extends SpecialPage {
 				'type' => 'select',
 				'label' => 'Delimiter',
 				'default' => "\t",
-				'options' => array( "\t" => "\t", ";" => ";", "," => ",")
+				'options' => array( "\\t" => "\\t", ";" => ";", "," => ",")
 			),
 			'enclosure' => array(
 				'section' => 'createfromfile',
@@ -60,7 +60,7 @@ class SpecialCreateFromFile extends SpecialPage {
 
 		$htmlForm = new HTMLForm( $formDescriptorUpload, 'CreateFromFile' );
 
-		$htmlForm->setSubmitText( 'Impiort' ); # What text does the submit button display
+		$htmlForm->setSubmitText( 'Import' ); # What text does the submit button display
 		$htmlForm->setTitle( $this->getTitle() ); # You must call setTitle() on an HTMLForm
 
 		/* We set a callback function */
