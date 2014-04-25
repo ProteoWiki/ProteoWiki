@@ -31,6 +31,16 @@ $wgCFAllowedGroups = array( 'sysop', 'manager' );
 
 $wgCFParamsMailing = array();
 
+$wgCreateFromFileTmpDir = "/tmp";
+# Example group
+$wgCreateFromFileftypes = array(
+								"AQUA" => array(
+									"title" => "AQUA:",
+									"category" => "AQUAs"
+								)
+							);
+
+
 $wgExtensionCredits['parserhook'][] = array(
 	'path' => __FILE__,
 	'name' => 'CreateFromFile',
