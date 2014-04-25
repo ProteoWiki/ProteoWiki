@@ -103,6 +103,7 @@ class SpecialCreateFromFile extends SpecialPage {
 
 			//TODO Read file and show as spreadsheet there with link to trigger creation
 
+			return $htmlout;
 
 		} else {
 			return "Empty or no file!";
