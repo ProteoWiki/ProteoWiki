@@ -116,12 +116,12 @@ class SpecialCreateFromFile extends SpecialPage {
 			$htmllink = '<p class="createfromSpread-link" data-selector=".createspread-show" data-template="'.$groupselect.'" data-title="'.$title.'" data-delimiter="'.$delimiter.'" data-enclosure="'.$enclosure.'" data-userparam="" data-start="'.$start.'" data-username="WikiSysop">Create</p>';
 
 			//TODO Read file and show as spreadsheet there with link to trigger creation
-			$htmldiv = '<div class="createspread"><div class="createspread-data" style="display: none;">
+			$htmldiv = '<div class="createspread"><div class="createspread-data" style="display: none;"><pre>
 # Sample Name 	# Species	# Volume (ul)	# Concentration (ng/ul)	# Index sequence (i.e. Truseq index 1 or ATCACG)	# Comments
 # Example 1	# Mus musculus	# 10	#	# Truseq index 1, 2 and 3	# This sample is a pool of three libraries
 # Write information of samples below. Do not use # symbol
 Ex1	Mus	10	424	3	Hola
-</div></div>';
+</pre></div></div>';
 			
 			$htmlout = $htmldiv."\n".$htmllink;
 
