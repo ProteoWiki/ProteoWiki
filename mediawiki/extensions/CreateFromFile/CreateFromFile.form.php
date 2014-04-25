@@ -111,6 +111,8 @@ class SpecialCreateFromFile extends SpecialPage {
 				return "No assigned group!";
 			}
 
+			$title = $wgCreateFromFileftypes[$groupselect]['title'];
+
 			$htmlout = "";
 
 			$htmllink = '<p class="createfromSpread-link" data-selector=".createspread-show" data-template="'.$groupselect.'" data-title="'.$title.'" data-delimiter="'.$delimiter.'" data-enclosure="'.$enclosure.'" data-userparam="" data-start="'.$start.'" data-username="WikiSysop">Create</p>';
@@ -121,7 +123,7 @@ class SpecialCreateFromFile extends SpecialPage {
 # Example 1	# Mus musculus	# 10	#	# Truseq index 1, 2 and 3	# This sample is a pool of three libraries
 # Write information of samples below. Do not use # symbol
 Ex1	Mus	10	424	3	Hola
-</pre></div></div>';
+</pre></div><div class="createspread-show"></div></div>';
 			
 			$htmlout = $htmldiv."\n".$htmllink;
 

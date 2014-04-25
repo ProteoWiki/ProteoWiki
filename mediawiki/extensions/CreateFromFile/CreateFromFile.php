@@ -35,7 +35,8 @@ $wgCreateFromFileTmpDir = "/tmp";
 # Example group
 $wgCreateFromFileftypes = array(
 								"AQUA" => array(
-									"title" => "AQUA:",
+									"name" => "AQUA",
+									"title" => "AQUA:#I4",
 									"category" => "AQUAs"
 								)
 							);
