@@ -5,6 +5,16 @@ if (!defined('MEDIAWIKI')) { die(-1); }
 class SpecialCreateFromFile extends SpecialPage {
 
 	/**
+	 * Constructor : initialise object
+	 * Get data POSTed through the form and assign them to the object
+	 * @param $request WebRequest : data posted.
+	 */
+	public function __construct($request = null) {
+		parent::__construct('CreateFromFile');   #The first argument must be the name of your special page
+							 #A second argument "right" can be added to restrict access to the SpecialPage.
+	}
+
+	/**
 	 * Special page entry point
 	 */
 	public function execute($par) {
