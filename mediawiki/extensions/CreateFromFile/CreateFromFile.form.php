@@ -22,6 +22,8 @@ class SpecialCreateFromFile extends SpecialPage {
 		global $wgCreateFromFileftypes;
 
 		global $wgOut;
+		$wgOut->addModules( 'ext.CreateFromFile' );
+
 		$this->setHeaders();
 
 		# A formDescriptor Array to tell HTMLForm what to build
@@ -44,14 +46,14 @@ class SpecialCreateFromFile extends SpecialPage {
 				'type' => 'select',
 				'label' => 'Delimiter',
 				'default' => "\t",
-				'options' => array( "\t", ";", ",")
+				'options' => array( "\t" => "\t", ";" => ";", "," => ",")
 			),
 			'enclosure' => array(
 				'section' => 'createfromfile',
 				'type' => 'select',
 				'label' => 'Enclosure',
 				'default' => '',
-				'options' => array("", '"', "'")
+				'options' => array("" => "", '"' => '"', "'" => "'")
 			)
 		);
 
@@ -76,9 +78,6 @@ class SpecialCreateFromFile extends SpecialPage {
 
 		global $wgCreateFromFileTmpDir;
 		global $wgUser;
-
-		global $wgOut;
-		$wgOut->addModules( 'ext.CreateFromFile' );
 
 		$userID = $wgUser->getID();
 
