@@ -29,7 +29,7 @@ class SpecialCreateFromFile extends SpecialPage {
 			'fileupload' => array(
 			 'section' => 'createfromfile',
 				'label' => 'Upload', # What's the label of the field
-				'class' => 'uploadfield', # What's the input type
+				'class' => 'HTMLTextField', # What's the input type
 				'type' => 'file'
 			),
 			'groupselect' => array(
@@ -43,14 +43,14 @@ class SpecialCreateFromFile extends SpecialPage {
 				'section' => 'createfromfile',
 				'type' => 'select',
 				'label' => 'Delimiter',
-				#'default' => '',
+				'default' => "\t",
 				'options' => array( "\t", ";", ",")
 			),
 			'enclosure' => array(
 				'section' => 'createfromfile',
 				'type' => 'select',
 				'label' => 'Enclosure',
-				#'default' => '',
+				'default' => '',
 				'options' => array("", '"', "'")
 			)
 		);
@@ -76,6 +76,9 @@ class SpecialCreateFromFile extends SpecialPage {
 
 		global $wgCreateFromFileTmpDir;
 		global $wgUser;
+
+		global $wgOut;
+		$wgOut->addModules( 'ext.CreateFromFile' );
 
 		$userID = $wgUser->getID();
 
@@ -109,9 +112,19 @@ class SpecialCreateFromFile extends SpecialPage {
 				return "No assigned group!";
 			}
 
-			$htmlout = '<p class="createfromSpread-link" data-selector=".createspread-show" data-template="'.$groupselect.'" data-title="'.$title.'" data-delimiter="'.$delimiter.'" data-enclosure="'.$enclosure.'" data-userparam="" data-start="'.$start.'" data-username="WikiSysop">Create</p>';
+			$htmlout = "";
+
+			$htmllink = '<p class="createfromSpread-link" data-selector=".createspread-show" data-template="'.$groupselect.'" data-title="'.$title.'" data-delimiter="'.$delimiter.'" data-enclosure="'.$enclosure.'" data-userparam="" data-start="'.$start.'" data-username="WikiSysop">Create</p>';
 
 			//TODO Read file and show as spreadsheet there with link to trigger creation
+			$htmldiv = '<div class="createspread"><div class="createspread-data" style="display: none;">
+# Sample Name 	# Species	# Volume (ul)	# Concentration (ng/ul)	# Index sequence (i.e. Truseq index 1 or ATCACG)	# Comments
+# Example 1	# Mus musculus	# 10	#	# Truseq index 1, 2 and 3	# This sample is a pool of three libraries
+# Write information of samples below. Do not use # symbol
+Ex1	Mus	10	424	3	Hola
+</div></div>';
+			
+			$htmlout = $htmldiv."\n".$htmllink;
 
 			return $htmlout;
 
