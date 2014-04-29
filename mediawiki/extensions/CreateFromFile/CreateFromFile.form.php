@@ -121,7 +121,7 @@ class SpecialCreateFromFile extends SpecialPage {
 
 			$htmllink = '<p class="createfromSpread-link" data-selector=".createspread-show" data-template="'.$groupselect.'" data-title="'.$title.'" data-delimiter="'.$delimiter.'" data-enclosure="'.$enclosure.'" data-userparam="" data-start="'.$start.'" data-username="WikiSysop">Create</p>';
 
-			$htmldiv = self::readSpreafFile( $pathtempfile, $delimiter, $enclosure );
+			$htmldiv = self::readSpreadFile( $pathtempfile, $delimiter, $enclosure );
 			
 			$htmlout = $htmldiv."\n".$htmllink;
 
