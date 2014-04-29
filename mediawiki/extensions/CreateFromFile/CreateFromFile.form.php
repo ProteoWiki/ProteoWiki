@@ -47,12 +47,6 @@ class SpecialCreateFromFile extends SpecialPage {
 				'label' => 'Delimiter',
 				'default' => "\t",
 				'options' => array( "\\t" => "\\t", ";" => ";", "," => ",")
-			),
-			'enclosure' => array(
-				'section' => 'createfromfile',
-				'type' => 'select',
-				'label' => 'Enclosure',
-				'options' => array( "\"" => "\"", "'" => "'")
 			)
 		);
 
@@ -91,7 +85,7 @@ class SpecialCreateFromFile extends SpecialPage {
 
 			$groupselect = "";
 			$delimiter = "\t";
-			$enclosure = "\"";
+			$enclosure = "";
 
 			if ( $formData['groupselect'] ) {
 				$groupselect =  $formData['groupselect'];
@@ -99,10 +93,6 @@ class SpecialCreateFromFile extends SpecialPage {
 
 			if ( $formData['delimiter'] ) {
 				$delimiter =  $formData['delimiter'];
-			}
-
-			if ( $formData['enclosure'] ) {
-				$enclosure =  $formData['enclosure'];
 			}
 
 			if ( empty( $groupselect ) ) {
@@ -145,7 +135,7 @@ class SpecialCreateFromFile extends SpecialPage {
 			$delimiter = "\t";
 		}
 
-		$csvarray = fgetcsv ( $handle, 0, $delimiter, $enclosure );
+		$csvarray = fgetcsv ( $handle, 0, $delimiter );
 	
 		$rows = array();
 
