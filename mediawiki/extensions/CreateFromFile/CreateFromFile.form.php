@@ -141,7 +141,12 @@ class SpecialCreateFromFile extends SpecialPage {
 	static function readSpreadFile ( $file, $delimiter, $enclosure ) {
 	
 		$handle = fopen( $file, "r" );
-		$csvarray = fgetcsv ( $handle, $delimiter, $enclosure );
+
+		if ( $delimiter == "\\t" ) {
+			$delimiter = "\t";
+		}
+
+		$csvarray = fgetcsv ( $handle, 0, $delimiter, $enclosure );
 	
 		$rows = array();
 
