@@ -52,7 +52,7 @@ class SpecialCreateFromFile extends SpecialPage {
 				'section' => 'createfromfile',
 				'type' => 'select',
 				'label' => 'Enclosure',
-				'options' => array( '"' => '"', "'" => "'")
+				'options' => array( "\"" => "\"", "'" => "'")
 			)
 		);
 
@@ -91,7 +91,7 @@ class SpecialCreateFromFile extends SpecialPage {
 
 			$groupselect = "";
 			$delimiter = "\t";
-			$enclosure = '"';
+			$enclosure = "\"";
 
 			if ( $formData['groupselect'] ) {
 				$groupselect =  $formData['groupselect'];
