@@ -136,13 +136,11 @@ class SpecialCreateFromFile extends SpecialPage {
 		}
 
 		$csvarray = fgetcsv ( $handle, 0, $delimiter );
-	
+
 		$rows = array();
 
-		foreach ( $csvarray as $row ) {
-			
-			array_push( $rows, join( "\t", $row ) );
-
+		while ( ( $data = fgetcsv( $handle, 0, $delimiter) ) !== FALSE ) {
+			array_push( $rows, join( "\t", $data ) );
 		}
 
 		return join( "\n", $rows );
