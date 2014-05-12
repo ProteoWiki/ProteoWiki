@@ -39,7 +39,7 @@ class SpecialCreateFromFile extends SpecialPage {
 				'type' => 'select',
 				'label' => 'Type',
 				#'default' => '',
-				'options' => array_keys( $wgCreateFromFileftypes )
+				'options' => doubleKeyValueOptions( $wgCreateFromFileftypes )
 			),
 			'delimiter' => array(
 				'section' => 'createfromfile',
@@ -62,6 +62,17 @@ class SpecialCreateFromFile extends SpecialPage {
 		$htmlForm->suppressReset(false); # Get back reset button 
 		$htmlForm->show(); # Displaying the form
 
+	}
+
+	private static function doubleKeyValueOptions( $listkeys ) {
+
+		$options = array();
+
+		foreach ( array_keys( $wgCreateFromFileftypes ) as $keyv ) {
+			$options[$keyv] = $keyv;
+		}
+
+		return $options;
 	}
 
 
@@ -124,6 +135,11 @@ class SpecialCreateFromFile extends SpecialPage {
 	static function getLastinCategory ( $category ) {
 		// TODO Retrieve all pages in a category, get last page (title, otherwise, modification)
 		
+		$catContainer = Category::newFromName( $category );
+		$listTitles = $catContainer->getMembers();
+
+		var_dump( $listTitles );
+
 		return 0;
 	}
 
