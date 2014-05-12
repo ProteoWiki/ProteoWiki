@@ -68,7 +68,7 @@ class SpecialCreateFromFile extends SpecialPage {
 
 		$options = array();
 
-		foreach ( array_keys( $wgCreateFromFileftypes ) as $keyv ) {
+		foreach ( array_keys( $listkeys ) as $keyv ) {
 			$options[$keyv] = $keyv;
 		}
 
