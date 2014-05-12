@@ -33,6 +33,7 @@ $wgCFParamsMailing = array();
 
 $wgCreateFromFileTmpDir = "/tmp";
 # Example group
+// TODO: Add columns and unique key checks!
 $wgCreateFromFileftypes = array(
 								"AQUA" => array(
 									"name" => "AQUA",
