@@ -39,7 +39,7 @@ class SpecialCreateFromFile extends SpecialPage {
 				'type' => 'select',
 				'label' => 'Type',
 				#'default' => '',
-				'options' => doubleKeyValueOptions( $wgCreateFromFileftypes )
+				'options' => self::doubleKeyValueOptions( $wgCreateFromFileftypes )
 			),
 			'delimiter' => array(
 				'section' => 'createfromfile',
