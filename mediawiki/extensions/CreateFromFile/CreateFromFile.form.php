@@ -114,9 +114,7 @@ class SpecialCreateFromFile extends SpecialPage {
 			$category = $wgCreateFromFileftypes[$groupselect]['category'];
 			$prefixtitle = $wgCreateFromFileftypes[$groupselect]['name'];
 
-			//TODO Retrieve last page title from a category type
 			$start = self::getLastinCategory( $category, $prefixtitle );
-
 
 			$htmlout = "";
 
@@ -134,7 +132,6 @@ class SpecialCreateFromFile extends SpecialPage {
 	}
 
 	static function getLastinCategory ( $category, $prefixtitle ) {
-		// TODO Retrieve all pages in a category, get last page (title, otherwise, modification)
 		
 		$catContainer = Category::newFromName( $category );
 		$listTitles = $catContainer->getMembers();
@@ -143,7 +140,8 @@ class SpecialCreateFromFile extends SpecialPage {
 
 		foreach ( $listTitles as $entryTitle ) {
 			$titleText = $entryTitle->getText();
-			$titleText = str_replace( $prefixtitle, "", $titleText );
+			// Supposing is not working as namespace, otherwise it would already work
+			$titleText = str_replace( $prefixtitle.":", "", $titleText );
 			array_push( $listwords, (int)$titleText );
 		}
 
@@ -152,7 +150,7 @@ class SpecialCreateFromFile extends SpecialPage {
 		if ( empty( $listwords ) ) {
 			return 0;
 		} else {
-			return( $listwords[0] + 1 );
+			return( $listwords[0] );
 		}
 	}
 
