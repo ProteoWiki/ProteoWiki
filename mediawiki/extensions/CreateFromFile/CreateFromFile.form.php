@@ -112,9 +112,10 @@ class SpecialCreateFromFile extends SpecialPage {
 
 			$title = $wgCreateFromFileftypes[$groupselect]['title'];
 			$category = $wgCreateFromFileftypes[$groupselect]['category'];
+			$prefixtitle = $wgCreateFromFileftypes[$groupselect]['name'];
 
 			//TODO Retrieve last page title from a category type
-			$start = self::getLastinCategory( $category );
+			$start = self::getLastinCategory( $category, $prefixtitle );
 
 
 			$htmlout = "";
@@ -132,15 +133,27 @@ class SpecialCreateFromFile extends SpecialPage {
 		}
 	}
 
-	static function getLastinCategory ( $category ) {
+	static function getLastinCategory ( $category, $prefixtitle ) {
 		// TODO Retrieve all pages in a category, get last page (title, otherwise, modification)
 		
 		$catContainer = Category::newFromName( $category );
 		$listTitles = $catContainer->getMembers();
 
-		var_dump( $listTitles );
+		$listwords = array();
 
-		return 0;
+		foreach ( $listTitles as $entryTitle ) {
+			$titleText = $entryTitle->getText();
+			$titleText = str_replace( $prefixtitle, "", $titleText );
+			array_push( $listwords, (int)$titleText );
+		}
+
+		rsort( $listwords, SORT_NUMERIC); 
+
+		if ( empty( $listwords ) ) {
+			return 0;
+		} else {
+			return( $listwords[0] + 1 );
+		}
 	}
 
 	static function readSpreadFile ( $file, $delimiter, $enclosure ) {
