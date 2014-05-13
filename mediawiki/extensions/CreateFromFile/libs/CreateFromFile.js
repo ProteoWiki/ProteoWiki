@@ -107,7 +107,6 @@ $(document).ready( function() {
 
 				for ( var c = 0; c < cols.length; c++ ) {
 					if ( uniqcols[u] === cols[c] ) {
-						correspuniq.uniqcols[u] = c;
 						valsuniq.uniqcols[u] = getDataCol( data, c );
 					}
 				}
