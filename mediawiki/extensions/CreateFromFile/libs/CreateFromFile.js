@@ -96,27 +96,25 @@ $(document).ready( function() {
 		if ( typeof colstr !== 'undefined' && colstr !== false ) {
 			cols = colstr.split(";");
 		}
+
 		if (  Object.prototype.toString.call( cols ) === '[object Array]' && cols.length < 1 ) {
 			cols = true;
-		} 
+		}
+ 
 		if ( Object.prototype.toString.call( cols ) === '[object Array]' && cols.length > 0 ) {
-
 			var valsuniq = {};
 
 			for ( var u = 0; u < uniqcols.length; u++ ) {
 
 				for ( var c = 0; c < cols.length; c++ ) {
 					if ( uniqcols[u] === cols[c] ) {
-						valsuniq.uniqcols[u] = getDataCol( data, c );
+						valsuniq[uniqcols[u]] = getDataCol( data, c );
 					}
 				}
 			}
 
-			console.log( valsuniq );
 		}
 
-		// var header = data.shift();
-		
 		$(this).parent().children('.createspread-show').handsontable({
 			data: data,
 			colHeaders: cols,
