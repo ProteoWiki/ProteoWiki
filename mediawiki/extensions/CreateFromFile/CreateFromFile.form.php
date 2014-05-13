@@ -113,12 +113,13 @@ class SpecialCreateFromFile extends SpecialPage {
 			$title = $wgCreateFromFileftypes[$groupselect]['title'];
 			$category = $wgCreateFromFileftypes[$groupselect]['category'];
 			$prefixtitle = $wgCreateFromFileftypes[$groupselect]['name'];
+			$cols = implode( ";", $wgCreateFromFileftypes[$groupselect]['cols'] );
 
 			$start = self::getLastinCategory( $category, $prefixtitle );
 
 			$htmlout = "";
 
-			$htmllink = '<p class="createfromSpread-link" data-selector=".createspread-show" data-template="'.$groupselect.'" data-title="'.$title.'" data-delimiter="'.$delimiter.'" data-enclosure="'.$enclosure.'" data-userparam="" data-start="'.$start.'" data-username="WikiSysop">Create</p>';
+			$htmllink = '<p class="createfromSpread-link" data-selector=".createspread-show" data-template="'.$groupselect.'" data-title="'.$title.'" data-delimiter="'.$delimiter.'" data-enclosure="'.$enclosure.'" data-userparam="" data-start="'.$start.'" data-username="WikiSysop" data-cols="'.$cols.'">Create</p>';
 
 			$htmldiv = '<div class="createspread"><div class="createspread-data" style="display: none;"><pre>'.self::readSpreadFile( $pathtempfile, $delimiter, $enclosure ).'</pre></div><div class="createspread-show"></div></div>';
 

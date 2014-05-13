@@ -82,11 +82,18 @@ $(document).ready( function() {
 			data.push( row );
 		}
 
+		// We put custom cols
+		var colstr = $(this).attr("data-cols");
+		var cols = colstr.split(";");
+		if ( cols.length < 1 ) {
+			cols = true;
+		}
+
 		// var header = data.shift();
 		
 		$(this).parent().children('.createspread-show').handsontable({
 			data: data,
-			colHeaders: true,
+			colHeaders: cols,
 			contextMenu: true,
 			minSpareRows: extrarows,
 			autoWrapRow: true,

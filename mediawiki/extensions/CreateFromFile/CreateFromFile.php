@@ -38,7 +38,9 @@ $wgCreateFromFileftypes = array(
 								"AQUA" => array(
 									"name" => "AQUA",
 									"title" => "AQUA:#I4",
-									"category" => "AQUAs"
+									"category" => "AQUAs",
+									"cols" => array("Has SequencePeptide", "Has NakedSequencePeptide", "Has Protein", "Has Label", "Has Species", "Has Purity", "Has Company", "Has Responsible", "Has User", "Has Rack", "Has Box", "Has Comments"),
+									"uniqcols" => array("Has SequencePeptide", "Has Protein", "Has User")
 								)
 							);
 
