@@ -85,12 +85,35 @@ $(document).ready( function() {
 		// We put custom cols
 		var cols = true;
 		var colstr = $(this).attr("data-cols");
+		var uniqcolstr = $(this).attr("data-uniqcols");
+
+		// Unique columns restriction
+		var uniqcols = [];
+		if ( typeof uniqcolstr !== 'undefined' && uniqcolstr !== false ) {
+			uniqcols = uniqcolstr.split(";");
+		}
 
 		if ( typeof colstr !== 'undefined' && colstr !== false ) {
 			cols = colstr.split(";");
 		}
 		if (  Object.prototype.toString.call( cols ) === '[object Array]' && cols.length < 1 ) {
 			cols = true;
+		} 
+		if ( Object.prototype.toString.call( cols ) === '[object Array]' && cols.length > 0 ) {
+
+			var valsuniq = {};
+
+			for ( var u = 0; u < uniqcols.length; u++ ) {
+
+				for ( var c = 0; c < cols.length; c++ ) {
+					if ( uniqcols[u] === cols[c] ) {
+						correspuniq.uniqcols[u] = c;
+						valsuniq.uniqcols[u] = getDataCol( data, c );
+					}
+				}
+			}
+
+			console.log( valsuniq );
 		}
 
 		// var header = data.shift();
@@ -173,4 +196,18 @@ function convertData2str ( data ) {
 	}
 
 	return str;
+}
+
+
+/** @matrix Array
+  * @col int
+  * return Array
+**/
+
+function getDataCol(matrix, col){
+	var column = [];
+	for(var i=0; i<matrix.length; i++){
+		column.push(matrix[i][col]);
+	}
+	return column;
 }

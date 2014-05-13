@@ -114,6 +114,7 @@ class SpecialCreateFromFile extends SpecialPage {
 			$category = $wgCreateFromFileftypes[$groupselect]['category'];
 			$prefixtitle = $wgCreateFromFileftypes[$groupselect]['name'];
 			$cols = implode( ";", $wgCreateFromFileftypes[$groupselect]['cols'] );
+			$uniqcols = implode( ";", $wgCreateFromFileftypes[$groupselect]['uniqcols'] );
 
 			$start = self::getLastinCategory( $category, $prefixtitle );
 
@@ -121,7 +122,7 @@ class SpecialCreateFromFile extends SpecialPage {
 
 			$htmllink = '<p class="createfromSpread-link" data-selector=".createspread-show" data-template="'.$groupselect.'" data-title="'.$title.'" data-delimiter="'.$delimiter.'" data-enclosure="'.$enclosure.'" data-userparam="" data-start="'.$start.'" data-username="WikiSysop">Create</p>';
 
-			$htmldiv = '<div class="createspread"><div data-cols="'.$cols.'" class="createspread-data" style="display: none;"><pre>'.self::readSpreadFile( $pathtempfile, $delimiter, $enclosure ).'</pre></div><div class="createspread-show"></div></div>';
+			$htmldiv = '<div class="createspread"><div data-uniqcols="'.$uniqcols.'" data-cols="'.$cols.'" class="createspread-data" style="display: none;"><pre>'.self::readSpreadFile( $pathtempfile, $delimiter, $enclosure ).'</pre></div><div class="createspread-show"></div></div>';
 
 			// TODO: Setup for avoiding stuff to be repeated
 			$htmlcheck = '<div class="createspread-view"></div>';
