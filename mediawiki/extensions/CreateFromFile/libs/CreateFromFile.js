@@ -83,9 +83,13 @@ $(document).ready( function() {
 		}
 
 		// We put custom cols
+		var cols = true;
 		var colstr = $(this).attr("data-cols");
-		var cols = colstr.split(";");
-		if ( cols.length < 1 ) {
+
+		if ( typeof colstr !== 'undefined' && colstr !== false ) {
+			cols = colstr.split(";");
+		}
+		if (  Object.prototype.toString.call( cols ) === '[object Array]' && cols.length < 1 ) {
 			cols = true;
 		}
 
