@@ -240,5 +240,14 @@ function getDataCol(matrix, col){
 function semanticSearchJS( rows ) {
 
 	console.log( rows );
+
+	$.get( mw.util.wikiScript(), {
+		format: 'json',
+		action: 'ajax',
+		rs: 'CreateFromFileSMW::searchJS',
+		rsargs: [rows] // becomes &rsargs[]=arg1&rsargs[]=arg2...
+	}, function(data) {
+		console.log( data );
+	});
 }
 

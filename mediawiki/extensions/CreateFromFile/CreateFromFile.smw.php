@@ -12,6 +12,28 @@ if ( !defined( 'SMW_VERSION' ) ) {
  */
 class CreateFromFileSMW {
 
+
+	public static function searchJS( $rows ) {
+
+		$properties = array();
+
+		$results = "";
+
+		foreach ( $rows as $row ) {
+
+			$query = array();
+			foreach ( $row as $key => $value ) {
+				array_push( $query, "[[$key::$value]]" );
+			}
+
+			$results = self::getQueryResults( implode("", $query), $properties, false );
+		}
+
+		return $results;
+
+	}
+
+
 	/**
 	* This function returns to results of a certain query
 	* Thank you Yaron Koren for advices concerning this code
