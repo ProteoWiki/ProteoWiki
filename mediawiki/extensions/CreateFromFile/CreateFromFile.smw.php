@@ -16,7 +16,7 @@ class CreateFromFileSMW {
 	public static function searchJS( $rows ) {
 
 		$properties = array();
-
+		$existing = 0;
 		$results = "";
 
 		foreach ( $rows as $row ) {
@@ -27,9 +27,13 @@ class CreateFromFileSMW {
 			}
 
 			$results = self::getQueryResults( implode("", $query), $properties, false );
+
+			while ( $row = $results->getNext() ) {
+				$existing ++;
+			}
 		}
 
-		return $results;
+		return $existing;
 
 	}
 
