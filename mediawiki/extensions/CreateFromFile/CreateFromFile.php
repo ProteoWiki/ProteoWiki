@@ -62,6 +62,8 @@ $wgResourceModules['ext.CreateFromFile'] = array(
 );
 
 $wgAutoloadClasses['CreateFromFile'] = dirname(__FILE__) . '/CreateFromFile_body.php';
+$wgAutoloadClasses['CreateFromFileSMW'] = dirname( __FILE__ ) . '/CreateFromFile.smw.php';
+
 $wgExtensionMessagesFiles['CreateFromFile'] = dirname( __FILE__ ) . '/CreateFromFile.i18n.php';
 #$wgExtensionMessagesFiles['CreateFromFileMagic'] = dirname(__FILE__) . '/CreateFromFile.i18n.magic.php';
 $wgJobClasses['dtImport'] = 'DTImportJob';
@@ -75,9 +77,12 @@ $wgHooks['LanguageGetMagic'][] = 'wfSetupCreateFromFileLanguageGetMagic';
 #Ajax
 $wgAjaxExportList[] = 'CreateFromFile::createfromfileJS';
 $wgAjaxExportList[] = 'CreateFromFile::createfromSpreadJS';
+$wgAjaxExportList[] = 'CreateFromFileSMW::searchJS';
+
 
 # SpecialPage referencing
 $wgAutoloadClasses['SpecialCreateFromFile'] = dirname( __FILE__ ) . '/CreateFromFile.form.php';
+
 $wgSpecialPages['CreateFromFile'] = 'SpecialCreateFromFile';
 
 #RunJobs

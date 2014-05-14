@@ -121,14 +121,12 @@ $(document).ready( function() {
 		if ( lenguniq > 0 ) {
 
 			var queryRows = [];
-			console.log( lenguniq );
 
 			for ( var l = 0; l < lenguniq; l++ ) {
 				var queryRow = {};
 
 				for ( var key in valsuniq ) {
 					if ( valsuniq.hasOwnProperty(key) ) {
-						console.log( key );
 						queryRow[key] = valsuniq[key][l];
 					}
 				}
@@ -136,6 +134,7 @@ $(document).ready( function() {
 				queryRows.push( queryRow );
 			}
 
+			// We send restriction to be search
 			semanticSearchJS( queryRows );
 		}
 
