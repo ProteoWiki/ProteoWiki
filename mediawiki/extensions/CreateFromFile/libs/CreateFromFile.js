@@ -101,19 +101,40 @@ $(document).ready( function() {
 			cols = true;
 		}
  
+		// We'll iterate over here
+		var valsuniq = {};
+		var lenguniq = 0;
+
 		if ( Object.prototype.toString.call( cols ) === '[object Array]' && cols.length > 0 ) {
-			var valsuniq = {};
 
 			for ( var u = 0; u < uniqcols.length; u++ ) {
 
 				for ( var c = 0; c < cols.length; c++ ) {
 					if ( uniqcols[u] === cols[c] ) {
 						valsuniq[uniqcols[u]] = getDataCol( data, c );
+						lenguniq = valsuniq[uniqcols[u]].length;
 					}
 				}
 			}
-
 		}
+
+		if ( lenguniq > 0 ) {
+			
+			var keysuniq = Object.keys(uniqcols);
+			var queryRows = [];
+
+			for ( var l = 0; l < lenguniq; l++ ) {
+				var queryRow = {};
+			
+				for ( var k = 0; k < keysuniq.length; k++ ) {
+					queryRow[valsuniq[keysuniq[k]]]= valsuniq[keysuniq[k]][l];
+					queryRows.push( queryRow );
+				}
+
+			}
+			console.log( querRows );
+		}
+
 
 		$(this).parent().children('.createspread-show').handsontable({
 			data: data,
