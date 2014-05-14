@@ -119,21 +119,26 @@ $(document).ready( function() {
 		}
 
 		if ( lenguniq > 0 ) {
-			
-			var keysuniq = Object.keys(uniqcols);
+
 			var queryRows = [];
+			console.log( lenguniq );
 
 			for ( var l = 0; l < lenguniq; l++ ) {
 				var queryRow = {};
-			
-				for ( var k = 0; k < keysuniq.length; k++ ) {
-					queryRow[valsuniq[keysuniq[k]]]= valsuniq[keysuniq[k]][l];
-					queryRows.push( queryRow );
+
+				for ( var key in valsuniq ) {
+					if ( valsuniq.hasOwnProperty(key) ) {
+						console.log( key );
+						queryRow[key] = valsuniq[key][l];
+					}
 				}
 
+				queryRows.push( queryRow );
 			}
-			console.log( querRows );
+
+			semanticSearchJS( queryRows );
 		}
+
 
 
 		$(this).parent().children('.createspread-show').handsontable({
@@ -229,3 +234,12 @@ function getDataCol(matrix, col){
 	}
 	return column;
 }
+
+/** @matrix Array
+  * return ...
+**/
+function semanticSearchJS( rows ) {
+
+	console.log( rows );
+}
+
