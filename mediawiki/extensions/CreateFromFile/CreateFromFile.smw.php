@@ -29,10 +29,12 @@ class CreateFromFileSMW {
 			$results = self::getQueryResults( implode("", $query), $properties, false );
 
 			while ( $row = $results->getNext() ) {
-				$existing ++;
+				$existing++;
+				// TODO: Here we should inform which value already exists! -> Ideally even modifying somewhere in the spreadsheet
 			}
 		}
 
+		// TODO: return a JSON from previous comments
 		return $existing;
 
 	}
