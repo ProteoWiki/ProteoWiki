@@ -249,6 +249,7 @@ function semanticSearchJS( rows ) {
 		if ( jsonobj.length > 0 ) {
 
 			$(".createfromSpread-link").hide();
+			$(".createspread-view").append("<h3>Already exisiting entries</h3>");
 
 			$.each( jsonobj, function( index, container ) {
 
