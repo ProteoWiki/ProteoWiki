@@ -16,26 +16,29 @@ class CreateFromFileSMW {
 	public static function searchJS( $rows ) {
 
 		$properties = array();
-		$existing = 0;
 		$results = "";
 
+		$existingArr = array();
+
 		foreach ( $rows as $row ) {
+
+			$host = array();
 
 			$query = array();
 			foreach ( $row as $key => $value ) {
 				array_push( $query, "[[$key::$value]]" );
+				$host[$key] = $value;
 			}
 
 			$results = self::getQueryResults( implode("", $query), $properties, false );
 
-			while ( $row = $results->getNext() ) {
-				$existing++;
+			while ( $result = $results->getNext() ) {
 				// TODO: Here we should inform which value already exists! -> Ideally even modifying somewhere in the spreadsheet
+				array_push( $existingArr, $host );
 			}
 		}
 
-		// TODO: return a JSON from previous comments
-		return $existing;
+		return json_encode( $existingArr );
 
 	}
 
