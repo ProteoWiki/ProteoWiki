@@ -255,7 +255,7 @@ function semanticSearchJS( rows ) {
 				var strArr = [];
 				for ( var key in container ) {
 					if ( container.hasOwnProperty(key) ) {
-						strArr.push( "<span><strong>"+key+"</strong>: "+container.key+"</span>");
+						strArr.push( "<span><strong>"+key+"</strong>: "+container[key]+"</span>");
 					}
 				}
 				$(".createspread-view").append("<p class='duplicated'>"+strArr.join("&nbsp;")+"</p>");
