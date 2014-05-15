@@ -239,15 +239,30 @@ function getDataCol(matrix, col){
 **/
 function semanticSearchJS( rows ) {
 
-	console.log( rows );
-
 	$.get( mw.util.wikiScript(), {
 		format: 'json',
 		action: 'ajax',
 		rs: 'CreateFromFileSMW::searchJS',
 		rsargs: [rows] // becomes &rsargs[]=arg1&rsargs[]=arg2...
 	}, function(data) {
-		console.log( data );
+		var jsonobj = jQuery.parseJSON(data);
+		if ( jsonobj.length > 0 ) {
+
+			$(".createfromSpread-link").hide();
+
+			$.each( jsonobj, function( index, container ) {
+
+				var strArr = [];
+				for ( var key in container ) {
+					if ( container.hasOwnProperty(key) ) {
+						strArr.push( "<span><strong>"+key+"</strong>: "+container.key+"</span>");
+					}
+				}
+				$(".createspread-view").append("<p class='duplicated'>"+strArr.join("&nbsp;")+"</p>");
+			});
+			
+		}
+
 	});
 }
 
