@@ -20,7 +20,7 @@ $('.createfromfile-link').live('click', function() {
 		rs: 'CreateFromFile::createfromfileJS',
 		rsargs: [param.file, param.template, param.title, param.delimiter, param.enclosure, param.userparam, param.start, param.username, param.extrainfo] // becomes &rsargs[]=arg1&rsargs[]=arg2...
 	}, function(data) {
-		var jsonobj = jQuery.parseJSON(data);
+		// var jsonobj = jQuery.parseJSON(data);
 		alert("Samples are being created");
 		window.setTimeout('location.reload()', 1500);
 	});
@@ -50,7 +50,7 @@ $('.createfromSpread-link').live('click', function() {
 		rsargs: [textstr, param.template, param.title, param.delimiter, param.enclosure, param.userparam, param.start, param.username, param.extrainfo] // becomes &rsargs[]=arg1&rsargs[]=arg2...
 	}, function(data) {
 		// console.log(data);
-		var jsonobj = jQuery.parseJSON(data);
+		// var jsonobj = jQuery.parseJSON(data);
 		alert("Samples are being created");
 		window.setTimeout('location.reload()', 1500);
 	});
