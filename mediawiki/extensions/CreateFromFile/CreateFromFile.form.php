@@ -61,6 +61,8 @@ class SpecialCreateFromFile extends SpecialPage {
 
 		$htmlForm->suppressReset(false); # Get back reset button 
 		$htmlForm->show(); # Displaying the form
+		// TODO: Change AQUA for something default and enable JS
+		$wgOut->addHTML("<h4>Columns to use:</h4><p class='list'>".implode( "&nbsp;-&nbsp;", $wgCreateFromFileftypes["AQUA"]["cols"] )."</p>");
 
 	}
 
