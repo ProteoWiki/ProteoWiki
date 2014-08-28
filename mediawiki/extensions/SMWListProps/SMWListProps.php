@@ -44,8 +44,8 @@ $wgHooks['ParserFirstCallInit'][] = 'wfRegisterSMWListProps';
 
 function wfRegisterSMWListProps( $parser ) {
 
-        $parser->setFunctionHook( 'SMWListProps', 'SMWListProps::executeGetListProps', SFH_OBJECT_ARGS );
-        return true;
+	$parser->setFunctionHook( 'SMWListProps', 'SMWListProps::executeGetListProps', SFH_OBJECT_ARGS );
+	return true;
 
 }
 
