@@ -13,7 +13,8 @@ $('.createfromfile-link').live('click', function() {
 	param.start = $(this).attr('data-start');
 	param.username = $(this).attr('data-username');
 	param.extrainfo = $(this).attr('data-extrainfo');
-	
+
+	// TODO: This should be changed rather to POST
 	$.get( mw.util.wikiScript(), {
 		format: 'json',
 		action: 'ajax',
@@ -43,6 +44,7 @@ $('.createfromSpread-link').live('click', function() {
 	//Let's get data from selector
 	var textstr = convertData2str( $( param.selector ).handsontable( 'getData' ) );
 
+	// TODO: This definetily should be changed to POST
 	$.get( mw.util.wikiScript(), {
 		format: 'json',
 		action: 'ajax',
