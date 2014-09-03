@@ -1,3 +1,5 @@
+/*global $ document jQuery console mw window */
+
 $('.createfromfile-link').live('click', function() {
 			
 	console.log("Create from File");
@@ -30,7 +32,7 @@ $('.createfromfile-link').live('click', function() {
 $('.createfromSpread-link').live('click', function() {
 				
 	var param = {};
-			
+
 	param.selector = $(this).attr('data-selector');
 	param.template = $(this).attr('data-template');
 	param.title = $(this).attr('data-title');
@@ -45,17 +47,50 @@ $('.createfromSpread-link').live('click', function() {
 	var textstr = convertData2str( $( param.selector ).handsontable( 'getData' ) );
 
 	// TODO: This definetily should be changed to POST
-	$.get( mw.util.wikiScript(), {
-		format: 'json',
-		action: 'ajax',
-		rs: 'CreateFromFile::createfromSpreadJS',
-		rsargs: [textstr, param.template, param.title, param.delimiter, param.enclosure, param.userparam, param.start, param.username, param.extrainfo] // becomes &rsargs[]=arg1&rsargs[]=arg2...
-	}, function(data) {
-		// console.log(data);
-		// var jsonobj = jQuery.parseJSON(data);
-		alert("Samples are being created");
-		window.setTimeout('location.reload()', 1500);
+	//$.get( mw.util.wikiScript(), {
+	//	format: 'json',
+	//	action: 'ajax',
+	//	rs: 'CreateFromFile::createfromSpreadJS',
+	//	rsargs: [textstr, param.template, param.title, param.delimiter, param.enclosure, param.userparam, param.start, param.username, param.extrainfo] // becomes &rsargs[]=arg1&rsargs[]=arg2...
+	//}, function(data) {
+	//	// console.log(data);
+	//	// var jsonobj = jQuery.parseJSON(data);
+	//	alert("Samples are being created");
+	//	window.setTimeout('location.reload()', 1500);
+	//});
+	param.textstr = textstr;
+
+	$.ajax({
+			// request type ( GET or POST )
+		type: "POST",
+	 
+			// the URL to which the request is sent
+		url: mw.util.wikiScript('CreateFromFile::createfromSpreadJS2'),
+	 
+			// data to be sent to the server
+		data: param,
+	 
+			// The type of data that you're expecting back from the server
+		dataType: 'json',
+	 
+			// Function to be called if the request succeeds
+		success: function( jsondata ){
+			console.log( jsondata );
+		}
 	});
+
+	//$.post( mw.util.wikiScript(), {
+	//	format: 'json',
+	//	action: 'ajax',
+	//	rs: 'CreateFromFile::createfromSpreadJS',
+	//	rsargs: [textstr, param.template, param.title, param.delimiter, param.enclosure, param.userparam, param.start, param.username, param.extrainfo] // becomes &rsargs[]=arg1&rsargs[]=arg2...
+	//}, function(data) {
+	//	// console.log(data);
+	//	// var jsonobj = jQuery.parseJSON(data);
+	//	alert("Samples are being created");
+	//	window.setTimeout('location.reload()', 1500);
+	//});
+
 });
 
 

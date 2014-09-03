@@ -77,6 +77,7 @@ $wgHooks['LanguageGetMagic'][] = 'wfSetupCreateFromFileLanguageGetMagic';
 #Ajax
 $wgAjaxExportList[] = 'CreateFromFile::createfromfileJS';
 $wgAjaxExportList[] = 'CreateFromFile::createfromSpreadJS';
+$wgAjaxExportList[] = 'CreateFromFile::createfromSpreadJS2';
 $wgAjaxExportList[] = 'CreateFromFileSMW::searchJS';
 
 

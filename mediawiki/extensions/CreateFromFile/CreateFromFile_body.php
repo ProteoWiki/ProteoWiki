@@ -438,6 +438,12 @@ class CreateFromFile {
 
 	}
 
+	public static function createfromSpreadJS2( $params ) {
+
+		var_dump( $params );
+		return '';
+	}
+
 	private static function filecheck($path_file, $templateText, $titlePage, $delimiter, $enclosure, $userparam, $start, $username, $userparam, $extrainfo ) {
 		
 		$pages = array();
