@@ -79,18 +79,6 @@ $('.createfromSpread-link').live('click', function() {
 		}
 	});
 
-	$.post( mw.util.wikiScript(), {
-		format: 'json',
-		action: 'ajax',
-		rs: 'CreateFromFile::createfromSpreadJS2',
-		rsargs:  // becomes &rsargs[]=arg1&rsargs[]=arg2...
-	//}, function(data) {
-	//	// console.log(data);
-	//	// var jsonobj = jQuery.parseJSON(data);
-	//	alert("Samples are being created");
-	//	window.setTimeout('location.reload()', 1500);
-	//});
-
 });
 
 
