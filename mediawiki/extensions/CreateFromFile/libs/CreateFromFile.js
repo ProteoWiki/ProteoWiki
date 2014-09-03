@@ -65,7 +65,7 @@ $('.createfromSpread-link').live('click', function() {
 		type: "POST",
 	 
 			// the URL to which the request is sent
-		url: mw.util.wikiScript('CreateFromFile::createfromSpreadJS2'),
+		url: "/w/index.php?format=json&action=ajax&rs=CreateFromFile%3A%3AcreatefromSpreadJS2",
 	 
 			// data to be sent to the server
 		data: param,
@@ -79,11 +79,11 @@ $('.createfromSpread-link').live('click', function() {
 		}
 	});
 
-	//$.post( mw.util.wikiScript(), {
-	//	format: 'json',
-	//	action: 'ajax',
-	//	rs: 'CreateFromFile::createfromSpreadJS',
-	//	rsargs: [textstr, param.template, param.title, param.delimiter, param.enclosure, param.userparam, param.start, param.username, param.extrainfo] // becomes &rsargs[]=arg1&rsargs[]=arg2...
+	$.post( mw.util.wikiScript(), {
+		format: 'json',
+		action: 'ajax',
+		rs: 'CreateFromFile::createfromSpreadJS2',
+		rsargs:  // becomes &rsargs[]=arg1&rsargs[]=arg2...
 	//}, function(data) {
 	//	// console.log(data);
 	//	// var jsonobj = jQuery.parseJSON(data);
