@@ -46,37 +46,17 @@ $('.createfromSpread-link').live('click', function() {
 	//Let's get data from selector
 	var textstr = convertData2str( $( param.selector ).handsontable( 'getData' ) );
 
-	// TODO: This definetily should be changed to POST
-	//$.get( mw.util.wikiScript(), {
-	//	format: 'json',
-	//	action: 'ajax',
-	//	rs: 'CreateFromFile::createfromSpreadJS',
-	//	rsargs: [textstr, param.template, param.title, param.delimiter, param.enclosure, param.userparam, param.start, param.username, param.extrainfo] // becomes &rsargs[]=arg1&rsargs[]=arg2...
-	//}, function(data) {
-	//	// console.log(data);
-	//	// var jsonobj = jQuery.parseJSON(data);
-	//	alert("Samples are being created");
-	//	window.setTimeout('location.reload()', 1500);
-	//});
-	param.textstr = textstr;
-
-	$.ajax({
-			// request type ( GET or POST )
-		type: "POST",
-	 
-			// the URL to which the request is sent
-		url: "/w/index.php?format=json&action=ajax&rs=CreateFromFile%3A%3AcreatefromSpreadJS2",
-	 
-			// data to be sent to the server
-		data: param,
-	 
-			// The type of data that you're expecting back from the server
-		dataType: 'json',
-	 
-			// Function to be called if the request succeeds
-		success: function( jsondata ){
-			console.log( jsondata );
-		}
+	// TODO: This should be changed for API maybe :O
+	$.get( mw.util.wikiScript(), {
+		format: 'json',
+		action: 'ajax',
+		rs: 'CreateFromFile::createfromSpreadJS',
+		rsargs: [textstr, param.template, param.title, param.delimiter, param.enclosure, param.userparam, param.start, param.username, param.extrainfo] // becomes &rsargs[]=arg1&rsargs[]=arg2...
+	}, function(data) {
+		// console.log(data);
+		// var jsonobj = jQuery.parseJSON(data);
+		alert("Samples are being created");
+		window.setTimeout('location.reload()', 1500);
 	});
 
 });
