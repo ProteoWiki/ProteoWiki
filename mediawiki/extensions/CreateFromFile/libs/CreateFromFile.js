@@ -78,7 +78,8 @@ $('.createfromSpread-post').live('click', function() {
 	
 	//Let's get data from selector
 	param.text = convertData2str( $( selector ).handsontable( 'getData' ) );
-
+	param.action = "createfromfile";
+	param.format = "json";
 
 	var posting = $.post( wgScriptPath + "/api.php", param );
 	posting.done(function( data ) {
