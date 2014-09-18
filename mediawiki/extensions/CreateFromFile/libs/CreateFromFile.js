@@ -1,4 +1,4 @@
-/*global $ document jQuery console mw window */
+/*global $ document jQuery console mw window wgScriptPath alert */
 
 $('.createfromfile-link').live('click', function() {
 			
@@ -60,6 +60,36 @@ $('.createfromSpread-link').live('click', function() {
 	});
 
 });
+
+// Modification to work with API post
+$('.createfromSpread-post').live('click', function() {
+
+	var param = {};
+
+	var selector = $(this).attr('data-selector');
+	param.template = $(this).attr('data-template');
+	param.title = $(this).attr('data-title');
+	param.userparam = $(this).attr('data-userparam');
+	param.delimiter="\t";
+	param.enclosure='"';
+	param.start = $(this).attr('data-start');
+	param.username = $(this).attr('data-username');
+	param.extrainfo = $(this).attr('data-extrainfo');
+	
+	//Let's get data from selector
+	param.text = convertData2str( $( selector ).handsontable( 'getData' ) );
+
+
+	var posting = $.post( wgScriptPath + "/api.php", param );
+	posting.done(function( data ) {
+		alert("Samples are being created");
+		window.setTimeout('location.reload()', 1500);
+	})
+	.fail( function( data ) {
+		alert("Error!");
+	});
+});
+
 
 
 /** Load SpreadSheet **/
