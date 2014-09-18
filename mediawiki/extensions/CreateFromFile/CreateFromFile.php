@@ -63,6 +63,10 @@ $wgResourceModules['ext.CreateFromFile'] = array(
 
 $wgAutoloadClasses['CreateFromFile'] = dirname(__FILE__) . '/CreateFromFile_body.php';
 $wgAutoloadClasses['CreateFromFileSMW'] = dirname( __FILE__ ) . '/CreateFromFile.smw.php';
+$wgAutoloadClasses['ApiCreateFromFile'] = dirname( __FILE__ ). '/CreateFromFile.api.php';
+
+// api modules
+$wgAPIModules['createfromfile'] = 'ApiCreateFromFile';
 
 $wgExtensionMessagesFiles['CreateFromFile'] = dirname( __FILE__ ) . '/CreateFromFile.i18n.php';
 #$wgExtensionMessagesFiles['CreateFromFileMagic'] = dirname(__FILE__) . '/CreateFromFile.i18n.magic.php';
@@ -77,7 +81,6 @@ $wgHooks['LanguageGetMagic'][] = 'wfSetupCreateFromFileLanguageGetMagic';
 #Ajax
 $wgAjaxExportList[] = 'CreateFromFile::createfromfileJS';
 $wgAjaxExportList[] = 'CreateFromFile::createfromSpreadJS';
-$wgAjaxExportList[] = 'CreateFromFile::createfromSpreadJS2';
 $wgAjaxExportList[] = 'CreateFromFileSMW::searchJS';
 
 
