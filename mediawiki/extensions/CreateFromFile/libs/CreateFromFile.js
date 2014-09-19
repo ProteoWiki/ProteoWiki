@@ -1,4 +1,4 @@
-/*global $ document jQuery console mw window wgScriptPath alert */
+/*global $ document jQuery console mw window wgScriptPath alert location */
 
 $('.createfromfile-link').live('click', function() {
 			
@@ -84,7 +84,9 @@ $('.createfromSpread-post').live('click', function() {
 	var posting = $.post( wgScriptPath + "/api.php", param );
 	posting.done(function( data ) {
 		alert("Samples are being created");
-		window.setTimeout('location.reload()', 1500);
+		var newlocation = location.protocol + '//' + location.host + location.pathname;
+		// Go to page with no reloading (with no reload)
+		window.setTimeout( window.location.href = newlocation, 1500);
 	})
 	.fail( function( data ) {
 		alert("Error!");
