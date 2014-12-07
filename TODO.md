@@ -7,4 +7,4 @@
   * Specific Namespace
   * Extension should take care about any template or forms involved
   * Logic in pages but styling in extension code
-
+* Offer installation as Vagrant or Docker machine.
