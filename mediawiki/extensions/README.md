@@ -1,3 +1,11 @@
+# Extensions for ProteoWiki
+
+## Main extension
+
+* ProteoWiki
+
+## Additional extensions
+
 * CreateFromFile: https://github.com/ProteoWiki/CreateFromFile
 * SMWFileProtect: https://github.com/ProteoWiki/SMWFileProtect
 * SMWListProps: https://github.com/ProteoWiki/SMWListProps
