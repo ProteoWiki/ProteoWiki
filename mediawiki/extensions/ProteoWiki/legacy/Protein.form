@@ -1,0 +1,40 @@
+<div id="wikiPreview" style="display: none; padding-bottom: 25px; margin-bottom: 25px; border-bottom: 1px solid #AAAAAA;"></div>
+{{{for template|Sample}}}
+{| class="formtable"
+! ID:
+| {{{field|ID}}}
+|-
+! Alias:
+| {{{field|Alias}}}
+|-
+! Entry Point:
+| {{{field|Entry Point}}}
+|-
+! Request:
+| {{{field|Request|input type=listbox|values from category=Requests}}}
+|-
+! Process:
+| {{{field|Process|input type=listbox|values from category=Processes}}}
+|}
+{{{end template}}}
+
+{{{for template|Protein}}}
+{| class="formtable"
+! Storage:
+| {{{field|Storage}}}
+|-
+! Type:
+| {{{field|Type}}}
+|}
+{{{end template}}}
+
+'''Free text:'''
+
+{{{standard input|free text|rows=10}}}
+
+
+{{{standard input|summary}}}
+
+{{{standard input|minor edit}}} {{{standard input|watch}}}
+
+{{{standard input|save}}} {{{standard input|preview}}} {{{standard input|changes}}} {{{standard input|cancel}}}

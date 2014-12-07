@@ -1,0 +1,24 @@
+<div id="basic-info">
+Here Basic Info
+* SAMPLE: {{#vardefineecho:sample|{{#urldecode:{{#urlget:sample}}}}|{{FULLPAGENAME}}}}
+* REQUEST: {{#SMWParent:{{#var:sample}}|Request|link}}
+* USER: {{#ask:[[{{#SMWParent:{{#var:sample|}}|Request}}]]|?Has User|mainlabel=-|format=list|headers=hide}}
+</div>
+<div id="entity-info">
+<div id="entity-list">
+=== ITERATE FUNCTION === 
+{{#SMWEntityIterate:parent|{{#var:sample|}}}}
+
+* CURRENT: {{#var:sample|}}
+
+=== ITERATE FUNCTION CHILDREN===
+{{#SMWEntityIterate:children|{{#var:sample|}}}}
+
+</div>
+<div id="property-list">
+LIST OF PROPERTIES 
+* {{#show:{{#var:sample|}}|?Is Type#}}
+* {{#invoke:View|EntityShowProps|{{#var:sample|}}|{{#SMWListProps::{{#var:sample|}}|wikionly}}}}
+
+</div>
+</div>

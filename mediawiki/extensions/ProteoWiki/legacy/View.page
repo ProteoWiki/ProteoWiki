@@ -1,0 +1,11 @@
+example of view
+{{#arraydefine:samples|Protein,Peptide}}
+{{#urldecode:{{#urlget:request}}}}
+
+{{#if:{{#urlget:request}}|{{#!:
+
+{{#arrayprint:samples||@@@@|{{View-Samples|@@@@|{{#urldecode:{{#urlget:request}}}}}}}}
+
+
+}} }}
+

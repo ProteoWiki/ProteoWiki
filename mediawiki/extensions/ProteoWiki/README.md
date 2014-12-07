@@ -12,3 +12,8 @@ Extension for providing the logic and UI of ProteoWiki system.
 * System for generating new properties, templates and forms on CSV modification via Jobs
 * Interfaces for experiments and users
 
+## Future
+* Export logic in CSV
+* Way to export and import experiment data
+
+
