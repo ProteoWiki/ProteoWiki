@@ -19,10 +19,13 @@ $dir = dirname(__FILE__) . '/';
 # i18n file referencing
 $GLOBALS['wgMessagesDirs']['ProteoWiki'] = $dir . 'i18n';
 $GLOBALS['wgExtensionMessagesFiles']['ProteoWiki'] = $dir . 'ProteoWiki.i18n.php';
+$GLOBALS['wgExtensionMessagesFiles']['ProteoWikiMagic'] = $dir . 'ProteoWiki.magic.php';
 
 $GLOBALS['wgAutoloadClasses']['SpecialProteowiki'] = $dir . 'includes/specials/ProteoWiki_Special.php';
 $GLOBALS['wgAutoloadClasses']['SpecialProteowikiCSV'] = $dir . 'includes/specials/ProteoWiki_SpecialCSV.php';
 $GLOBALS['wgAutoloadClasses']['SpecialProteowikiUpload'] = $dir . 'includes/specials/ProteoWiki.SpecialUpload.php';
+$GLOBALS['wgAutoloadClasses']['ProteoWikiParserFunctions'] = $dir . 'includes/ProteoWiki_ParserFunctions.php';
+
 
 # SpecialPage referencing
 $GLOBALS['wgSpecialPages']['ProteoWiki'] = 'SpecialProteowiki';
@@ -33,3 +36,5 @@ $GLOBALS['wgSpecialPageGroups']['ProteoWiki'] = 'other';
 $GLOBALS['wgSpecialPageGroups']['ProteoWikiCSV'] = 'other';
 $GLOBALS['wgSpecialPageGroups']['ProteoWikiUpload'] = 'other';
 
+# ParserFunctions
+$GLOBALS['wgHooks']['ParserFirstCallInit'][] = 'ProteoWikiParserFunctions::registerFunctions';
