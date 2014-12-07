@@ -38,3 +38,33 @@ $GLOBALS['wgSpecialPageGroups']['ProteoWikiUpload'] = 'other';
 
 # ParserFunctions
 $GLOBALS['wgHooks']['ParserFirstCallInit'][] = 'ProteoWikiParserFunctions::registerFunctions';
+
+// Variables
+// Namespace where to Configuration files ( e.g CSV files, and potentially others in the future )
+define("NS_PROTEOWIKICONF", 1000);
+$GLOBALS['wgExtraNamespaces'][NS_PROTEOWIKICONF] = "ProteoWikiConf";
+
+// Dynamic elements
+define("NS_REQUEST", 1002);
+$GLOBALS['wgExtraNamespaces'][NS_REQUEST] = "Request";
+define("NS_SAMPLE", 1004);
+$GLOBALS['wgExtraNamespaces'][NS_SAMPLE] = "Sample";
+define("NS_PROCESS", 1006);
+$GLOBALS['wgExtraNamespaces'][NS_PROCESS] = "Process";
+// Group associated to user -> Can be institution, for instance. Not central to workflow
+define("NS_GROUP", 1008);
+$GLOBALS['wgExtraNamespaces'][NS_GROUP] = "Group";
+
+// Static elements that can host views, actions and reports
+define("NS_DASHBOARD", 1010);
+$GLOBALS['wgExtraNamespaces'][NS_DASHBOARD] = "Dashboard";
+
+// SMW initialization
+$GLOBALS['smwgNamespacesWithSemanticLinks'] = array(
+	NS_REQUEST => true,
+	NS_SAMPLE => true,
+	NS_PROCESS => true,
+	NS_GROUP => true,
+	NS_DASHBOARD => true,
+);
+
