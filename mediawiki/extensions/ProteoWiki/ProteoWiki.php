@@ -65,6 +65,5 @@ $GLOBALS['smwgNamespacesWithSemanticLinks'] = array(
 	NS_SAMPLE => true,
 	NS_PROCESS => true,
 	NS_GROUP => true,
-	NS_DASHBOARD => true,
 );
 
