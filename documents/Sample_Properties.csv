@@ -1,0 +1,292 @@
+#Template,Parameter,Property,Label,Type,Mandatory,Default,Role
+Sample,ID,Has ID,ID,string,1,,Operator
+Sample,Alias,Has Alias,Alias,string,1,,Operator
+Sample,Request,Has Request,Request,string,1,,Operator
+Sample,Entry Point,Is Entry Point,Entry Point,boolean,1,,Operator
+Sample,Process,Comes from Process,Process,string,0,,Operator
+Sample,Valid,Is Valid,Valid,boolean,1,,Operator
+Sample,Operator,Has Operator,Operator,string,1,,Operator
+Sample,Type,Is Type,Type,string,1,,Operator
+Protein,Storage,Has Storage Place,Storage,string,1,,Operator
+Protein,Type,Is Protein Type,Type,string,1,,Operator
+Protein,Buffer,Has Buffer,Buffer,string,0,,Operator
+Protein,Volume,Has Volume,Volume,numeric,0,,Operator
+Protein,Volume Unit,Has Volume Unit,Volume Unit,string,0,ul; ml,Operator
+Protein,Concentration,Has Concentration,Concentration,numeric,0,,Operator
+Protein,Contentration Unit,Has Concentration Unit,Concentration Unit,string,0,ul/ug; ml/mg;,Operator
+Protein,Quantity,Has Quantity,Quantity,numeric,0,,Operator
+Protein,Quantity Unit,Has Quantity Unit,Quantity Unit,string,0,ug; mg; g,Operator
+Protein,MW,Has MW,MW,numeric,0,,Operator
+Result,Path,Has Path,Path,string,1,,Operator
+Result,Visible,Is visible,Visible,boolean,0,,Operator
+Fraction,Storage Place,Has Storage Place,Storage,string,0,,Operator
+Fraction,Buffer,Has Buffer,Buffer,string,0,,Operator
+Fraction,Volume,Has Volume,Volume,numeric,0,,Operator
+Fraction,Volume Unit,Has Volume Unit,Volume Unit,string,0,ul; ml,Operator
+Fraction,Concentration,Has Concentration,Concentration,numeric,0,,Operator
+Fraction,Concentration Unit,Has Concentration Unit,Concentration Unit,string,0,ul/ug; ml/mg;,Operator
+File,Path,Has Path,Path,string,0,,Operator
+File,Visible,Is visible,Visible,boolean,0,,Operator
+Peptide,Storage,Has Storage Place,Storage Place,string,1,,Operator
+Peptide,Buffer,Has Buffer,Buffer,string,0,,Operator
+Peptide,Volume,Has Volume,Volume,numeric,0,,Operator
+Peptide,Volume Unit,Has Volume Unit,Volume Unit,string,0,ul; ml,Operator
+Peptide,Concentration,Has Concentration,Concentration,numeric,0,,Operator
+Peptide,Concentration Unit,Has Concentration Unit,Concentration Unit,string,0,ul/ug; ml/mg;,Operator
+Vial,Storage Place,Has Storage Place,Storage,string,1,,Operator
+Vial,Buffer,Has Buffer,Buffer,string,0,,Operator
+Vial,Volume,Has Volume,Volume,numeric,0,,Operator
+Vial,Volume Unit,Has Volume Unit,Volume Unit,string,0,ul; ml,Operator
+Vial,Concentration,Has Concentration,Concentration,numeric,0,,Operator
+Vial,Concentration Unit,Has Concentration Unit,Concentration Unit,string,0,ul/ug; ml/mg;,Operator
+#Process properties below,,,,,,,Operator
+#Template,Parameter,Property,Label,Type,,,Operator
+Process,ID,Has ID,ID,string,1,,Operator
+Process,Sample,Comes from Sample,Comes from Sample,string,1,,Operator
+Process,Operator,Has Operator,Operator,string,1,,Operator
+Process,Comment,Has Comment,Comment,text,0,,Operator
+Process,SOP,Has SOP,SOP,string,0,,Operator
+DataAnalysis,Input Data Type,Has Input Data Type,InputDataType,string,0,,Operator
+DataAnalysis,Identification Type,Has Identification Type,IdentificationType,string,0,,Operator
+DataAnalysis,Search Engine,Has Search Engine,SearchEngine,string,0,,Operator
+DataAnalysis,Database,Has Database,Database,string,0,,Operator
+DataAnalysis,Database Version,Has Database Version,DatabaseVersion,string,0,,Operator
+DataAnalysis,Number of Miscleavage,Has Miscleavage,Miscleavage,numeric,0,,Operator
+DataAnalysis,MS Tolerance,Has MS Tolerance,MSTolerance,numeric,0,,Operator
+DataAnalysis,MS Tolerance Unit,Has MS Tolerance Unit,MSToleranceUnit,string,0,ppm; Da,Operator
+DataAnalysis,MS2 Tolerance,Has MS2 Tolerance,MS2Tolerance,numeric,0,,Operator
+DataAnalysis,MS2 Tolerance Unit,Has MS2 Tolerance Unit,MS2ToleranceUnit,string,0,ppm; Da; mmu,Operator
+DataAnalysis,Fixed Modifications,Has Fixed Mods,FixedMods,string,0,,Operator
+DataAnalysis,Variable Modifications,Has Variable Mods,VariableMods,string,0,,Operator
+DataAnalysis,Peptide Filter,Has Peptide Filter,PeptideFilter,numeric,0,,Operator
+DataAnalysis,Peptide Filter Type,Has Peptide Filter Unit,PeptideFilterUnit,string,0,,Operator
+DataAnalysis,Protein Filter,Has Protein Filter,ProteinFilter,numeric,0,,Operator
+DataAnalysis,Protein Filter Type,Has Protein Filter Unit,ProteinFilterUnit,string,0,,Operator
+DataAnalysis,Normalization Type,Has Normalization Type,NormalizationType,string,0,,Operator
+DataAnalysis,Quantification Method ,Has Quantification Method,QuantificationMethod,string,0,,Operator
+Depletion,Type,Has Depletion Type,Type,string,0,,Operator
+Depletion,Depletion Buffer,Has Depletion Buffer,Depletion Buffer,string,0,,Operator
+Digestion,Amount Digested,Has Amount Digested,Amount Digested,numeric,0,,Operator
+Digestion,Amount Digested Unit,Has Amount Digested Unit,Amount Digested Unit,string,0,ug; mg; g,Operator
+Digestion,Reduced,Is Reduced,Reduced,boolean,0,,Operator
+Digestion,Reduction Reagent,Has Reduction Reagent,Reduction Reagent,string,0,,Operator
+Digestion,Reduction Buffer,Has Reduction Buffer,Reduction Buffer,string,0,,Operator
+Digestion,Reduction Buffer Volume,Has Reduction Buffer Volume,Reduction Buffer Volume,numeric,0,,Operator
+Digestion,Reduction Buffer Volume Unit,Has Reduction Buffer Volume Unit,Reduction Buffer Volume Unit,string,0,ul; ml,Operator
+Digestion,Reduction Time,Has Reduction Time,Reduction Time,numeric,0,,Operator
+Digestion,Reduction Time Unit,Has Reduction Time Unit,Reduction Time Unit,string,0,min; h,Operator
+Digestion,Reduction Temperature,Has Reduction Temperature,Reduction Temperature,numeric,0,,Operator
+Digestion,Reduction Temperature Unit,Has Reduction Temperature Unit,Reduction Temperature Unit,string,0,C; K; F,Operator
+Digestion,Alkylated,Is Alkylated,Alkylated,boolean,0,,Operator
+Digestion,Alkylation Reagent,Has Alkylation Reagent,Alkylation Reagent,string,0,,Operator
+Digestion,Alkylation Buffer,Has Alkylation Buffer,Alkylation Buffer,string,0,,Operator
+Digestion,Alkylation Buffer Volume,Has Alkylation Buffer Volume,Alkylation Buffer Volume,numeric,0,,Operator
+Digestion,Alkylation Buffer Volume Unit,Has Alkylation Buffer Volume Unit,Alkylation Buffer Volume Unit,string,0,ul; ml,Operator
+Digestion,Alkylation Time,Has Alkylation Time,Alkylation Time,numeric,0,,Operator
+Digestion,Alkylation Time Unit,Has Alkylation Time Unit,Alkylation Time Unit,string,0,min; h,Operator
+Digestion,Alkylation Temperature,Has Alkylation Temperature,Alkylation Temperature,numeric,0,,Operator
+Digestion,Alkylation Temperature Unit,Has Alkylation Temperature Unit,Alkylation Temperature Unit,string,0,C; K; F,Operator
+Digestion,Enzyme,Has Digestion Enzyme,Enzyme,string,0,,Operator
+Electrophoresis,Type,Has Type,Type,string,0,,Operator
+Electrophoresis,Quantity Loaded,Has Quantity Loaded,Quantity Loaded,numeric,0,,Operator
+Electrophoresis,Quantity Loaded Unit,Has Quantity Loaded Unit,Quantity Loaded Unit,string,0,pg; ug; mg ,Operator
+Electrophoresis,Gradient,Has Gradient,Gradient,string,0,,Operator
+Electrophoresis,Loading Buffer,Has Loading Buffer,Loading Buffer,string,0,,Operator
+Electrophoresis,Gel Image,Has Gel Image,Gel Image,page,0,,Operator
+Enrichment,Type,Has Type,Type,string,0,,Operator
+Enrichment,Amount Enriched,Has Amount Enriched,Amount Enriched,numeric,0,,Operator
+Enrichment,Amount Enriched Unit,Has Amount Enriched Unit,Amount Enriched Unit,string,0,,Operator
+Enrichment,Enrichment Buffer,Has Enrichment Buffer,Enrichment Buffer,string,0,,Operator
+Fractionation,Type,Has Fractionation Type,FractionationType,string,0,,Operator
+Fractionation,Column,Has Column,Column,string,0,,Operator
+Fractionation,Column Dimension,Has Column Dimension,ColumnDimension,string,0,,Operator
+Fractionation,Column Stationary Phase,Has Column Stationary Phase,ColumnStationaryPhase,string,0,,Operator
+Fractionation,Additional Accessories,Has Additional Accessories,AdditionalAccessories,string,0,,Operator
+Fractionation,Amount Fractionated,Has Amount Fractionated,AmountFractionated,numeric,0,,Operator
+Fractionation,Amount Fractionated Unit,Has Amount Fractionated Unit,AmountFractionatedUnit,string,0,,Operator
+Fractionation,Loading Buffer,Has Loading Buffer,LoadingBuffer,string,0,,Operator
+Fractionation,Elution Buffer,Has Elution Buffer,ElutionBuffer,string,0,,Operator
+Fractionation,Flow,Has Flow,Flow,numeric,0,,Operator
+Fractionation,Flow Unit,Has Flow Unit,FlowUnit,string,0,,Operator
+Fractionation,Temperature,Has Temperature,Temperature,numeric,0,,Operator
+Fractionation,Has Temperature Unit,Has Temperature Unit,TemperatureUnit,string,0,C; K; F,Operator
+Fractionation,Gradient,Has Gradient,Gradient,string,0,,Operator
+Fractionation,Fraction Number,Has Fraction Number,FractionNumber,numeric,0,,Operator
+Fractionation,Fraction Size,Has Fraction Size,FractionSize,numeric,0,,Operator
+Fractionation,Fraction Size Unit,Has Fraction Size Unit,FractionSizeUnit,string,0,,Operator
+Injection,LC method,Has LC method,LCmethod,string,0,,Operator
+Injection,MS method,Has MS method,MSmethod,string,0,,Operator
+Injection,Instrument,Has Instrument,Instrument,string,0,,Operator
+Injection,Fractionation Type,Has Fractionation Type,FractionationType,string,0,,Operator
+Injection,Collision Energy,Has Collision Energy,CollisionEnergy,string,0,,Operator
+Injection,Column,Has Column,Column,string,0,,Operator
+Injection,Column Dimension,Has Column Dimension,ColumnDimension,string,0,,Operator
+Injection,Column Stationary Phase,Has Column Stationary Phase,ColumnStationaryPhase,string,0,,Operator
+Injection,Additional Accessories,Has Additional Accessories,AdditionalAccessories,string,0,,Operator
+Injection,Amount Injected,Has Amount Injected,AmountInjected,numeric,0,,Operator
+Injection,Amount Injected Unit,Has Amount Injected Unit,AmountInjectedUnit,string,0,,Operator
+Injection,Loading Buffer,Has Loading Buffer,LoadingBuffer,string,0,,Operator
+Injection,Elution Buffer,Has Elution Buffer,ElutionBuffer,string,0,,Operator
+Injection,Flow,Has Flow,Flow,numeric,0,,Operator
+Injection,Flow Unit,Has Flow Unit,FlowUnit,string,0,,Operator
+Injection,Temperature,Has Temperature,Temperature,numeric,0,,Operator
+Injection,Temperature Unit,Has Temperature Unit,TemperatureUnit,string,0,C; K; F,Operator
+Injection,Gradient,Has Gradient,Gradient,string,0,,Operator
+Injection,AQUA,Has AQUA,AQUA,string,0,,Operator
+# Properties of associated tables below,,,,,,,
+#Template,Parameter,Property,Label,Type,,,
+Intervention,ID,Has ID,ID,string,1,,Operator
+Intervention,Instrument,Has Instrument,Instrument,string,1,,Operator
+Intervention,Type,Has Type,Type,string,1,,Operator
+Intervention,Intervention Date,Has Intervention Date,InterventionDate,date,1,,Operator
+Intervention,Operator,Has Operator,Operator,string,1,,Operator
+Intervention,Comment,Has Comment,Comment,string,0,,Operator
+IsobaricLabelling,ID,Has ID,ID,string,1,,Operator
+IsobaricLabelling,Type,Has Type,Type,string,1,,Operator
+IsobaricLabelling,Number of State,Has Number State,StateNumber,numeric,1,,Operator
+IsobaricLabelling,Tags,Has Tags,Tags,string,1,,Operator
+IsobaricLabelling,Isotopic Correction Coefficients,Has Isotopic Correction Coefficients,IsotopicCorrectionCoefficients,string,0,,Operator
+Labelling,Type,Has Type,Type,string,1,,Operator
+Labelling,Labelling Buffer,Has Labelling Buffer,Labelling Buffer,string,0,,Operator
+Labelling,Per Sample Amount Labelled,Has Per Sample Amount Labelled,Per Sample Amount Labelled,numeric,0,,Operator
+Labelling,Per Sample Amount Labelled Unit,Has Per Sample Amount Labelled Unit,Per Sample Amount Labelled Unit,string,0,,Operator
+Labelling,Total Amount Labelled,Has Total Amount Labelled,Total Amount Labelled,numeric,0,,Operator
+Labelling,Total Amount Labelled Unit,Has Total Amount Labelled Unit,Total Amount Labelled Unit,string,0,,Operator
+Labelling,Ratio,Has Ratio,Ratio,string,0,,Operator
+MetabolicLabelling,ID,Has ID,ID,string,1,,Operator
+MetabolicLabelling,Type,Has Type,Type,string,1,,Operator
+MetabolicLabelling,Number of State,Has Number State,StateNumber,numeric,1,,Operator
+MetabolicLabelling,Tags,Has Tags,Tags,string,1,,Operator
+Enzyme,ID,Has ID,ID,string,1,,Operator
+Enzyme,SOP,Has SOP,SOP,string,1,,Operator
+Enzyme,Digestion Buffer,Has Digestion Buffer,DigestionBuffer,string,0,,Operator
+Enzyme,Digestion Buffer Volume,Has Digestion Buffer Volume,DigestionBufferVolume,numeric,0,,Operator
+Enzyme,Digestion Buffer Volume Unit,Has Digestion Buffer Volume Unit,DigestionBufferVolumeUnit,string,0,ul; ml,Operator
+Enzyme,Enzyme,Has Enzyme,Enzyme,string,1,,Operator
+Enzyme,Ratio,Has Ratio,Ratio,string,0,,Operator
+Enzyme,Digestion Time,Has Digestion Time,DigestionTime,numeric,0,,Operator
+Enzyme,Digestion Time Unit,Has Digestion Time Unit,DigestionTimeUnit,string,0,min; h,Operator
+Enzyme,Digestion Temperature,Has Digestion Temperature,DigestionTemperature,numeric,0,,Operator
+Enzyme,Digestion Temperature Unit,Has Digestion Temperature Unit,DigestionTemperatureUnit,string,0,C; K; F,Operator
+Instrument,ID,Has ID,ID,string,1,,Operator
+Instrument,Type,Has Type,Type,string,1,,Operator
+Instrument,Supply Type,Has Supply Type,SupplyType,string,0,,Operator
+Instrument,Interface,Has Interface,Interface,string,0,,Operator
+Instrument,Sprayer,Has Sprayer,Sprayer,string,0,,Operator
+Instrument,Analyser Ion Optics,Has Analyser Ion Optics,AnalyserIonOptics,string,0,,Operator
+Instrument,Activation Type,Has Activation Type,ActivationType,string,0,,Operator
+Instrument,Acquisition Software,Has Acquisition Software,AcquisitionSoftware,string,0,,Operator
+Instrument,Intervention,Has Intervention,Intervention,string,0,,Operator
+SinteticPeptide,ID,Has ID,ID,string,1,,Operator
+SinteticPeptide,Peptide Sequence,Has Peptide Seq,PeptideSeq,string,1,,Operator
+SinteticPeptide,Protein,Has Protein,Protein,string,1,,Operator
+SinteticPeptide,Species,Has Species,Species,string,1,,Operator
+SinteticPeptide,Purity,Has Purity,Purity,string,0,,Operator
+SinteticPeptide,Number Of Aliquotes,Has Number Of Aliquotes,AliquotesNumber,numeric,1,,Operator
+SinteticPeptide,Present,Is Present,Present,boolean,1,,Operator
+SinteticPeptide,Lot Number,Has Lot Number,LotNumber,string,0,,Operator
+SinteticPeptide,Company,Has Company,Company,string,1,,Operator
+SinteticPeptide,Storage Place,Has Storage Place,StoragePlace,string,1,,Operator
+SinteticPeptide,Arrived On,Is Arrived On,Arrived,date,1,,Operator
+SinteticPeptide,Bought by User,Is Bought By User,BoughtByUser,string,0,,Operator
+Institute,ID,Has ID,ID,string,1,,SuperAdministrator
+Institute,Name,Has Name,Name,string,1,,SuperAdministrator
+Institute,Address,Has Address,Address,text,1,,SuperAdministrator
+Institute,NIF,Has NIF,NIF,string,0,,SuperAdministrator
+Institute,Type,Has Type,Type,string,0,,SuperAdministrator
+User,ID,Has ID,ID,string,1,,SuperAdministrator
+User,Name,Has Name,Name,string,1,,SuperAdministrator
+User,Surname,Has Surname,Surname,string,1,,SuperAdministrator
+User,Usercode,Has Usercode,Usercode,string,1,,SuperAdministrator
+User,Username,Has Username,Username,string,1,,SuperAdministrator
+User,Is Head,Is Head,IsHead,boolean,1,,SuperAdministrator
+User,Head,Has Head,Head,string,1,,SuperAdministrator
+User,Phone,Has Phone,Phone,string,1,,SuperAdministrator
+User,Email,Has Email,Email,string,1,,SuperAdministrator
+User,Active,Is Active,Active,boolean,1,,SuperAdministrator
+User,Institute,Has Institute,Institute,string,1,,SuperAdministrator
+Request,ID,Has ID,ID,string,1,,User
+Request,Project Number,Has Project Number,ProjectNumber,string,1,,User
+Request,User,Has User,User,string,1,,User
+Request,Sample Type,Has Sample Type,SampleType,string,1,,User
+Request,Taxonomy,Has Taxonomy,Taxonomy,string,1,,User
+Request,Sample Number,Has Sample Number,SampleNumber,numeric,1,,User
+Request,Sample Matrix,Has Sample Matrix,SampleMatrix,string,0,,User
+Request,Solution Buffer,Has Solution Buffer,SolutionBuffer,string,0,,User
+Request,Solution Concentration,HasSolutionConcentration,SolutionConcentration,string,0,,User
+Request,Quantitation Method,HasQuantitationMethod,QuantitationMethod,string,0,,User
+Request,Detergent,HasDetergent,Detergent,string,0,,User
+Request,Detergent Name,HasDetergentName,DetergentName,string,0,,User
+Request,Starting Amount,HasStartingAmount,StartingAmount,string,0,,User
+Request,Gel Type,HasGelType,GelType,string,0,,User
+Request,Gel Image,HasGelImage,GelImage,page,0,,User
+Request,Gel Staining Type,HasGelStainingType,GelStainingType,string,0,,User
+Request,Electrophoresis,HasElectrophoresis,Electrophoresis,boolean,0,,User
+Request,Electrophoresis Sample Type,HasElectrophoresisSampleType,ElectrophoresisSampleType,string,0,,User
+Request,Electrophoresis Complexity,HasElectrophoresisComplexity,ElectrophoresisComplexity,string,0,,User
+Request,Electrophoresis Gel,HasElectrophoresisGel,ElectrophoresisGel,string,0,,User
+Request,Electrophoresis Gel Size,HasElectrophoresisGelSize,ElectrophoresisGelSize,string,0,,User
+Request,PH,HasPH,PH,numeric,0,,User
+Request,Electrophoresis Staining,HasElectrophoresisStaining,ElectrophoresisStaining,string,0,,User
+Request,Electrophoresis Info,HasElectrophoresisInfo,ElectrophoresisInfo,text,0,,User
+Request,Chromatography,HasChromatography,Chromatography,boolean,0,,User
+Request,MicroSAX,HasMicroSAX,MicroSAX,boolean,0,,User
+Request,MicroSCX,HasMicroSCX,MicroSCX,boolean,0,,User
+Request,ERLIC,HasERLIC,ERLIC,boolean,0,,User
+Request,SCX,HasSCX,SCX,boolean,0,,User
+Request,Reversed Phase,HasReversedPhase,ReversedPhase,boolean,0,,User
+Request,Chromatography Info,HasChromatographyInfo,ChromatographyInfo,text,0,,User
+Request,PTM,HasPTM,PTM,boolean,0,,User
+Request,PTM Enrichment Type,HasPTMenrichmentType,PTMenrichmentType,string,0,,User
+Request,Phospho Enrichment Type,HasPhosphoEnrichmentType,PhosphoEnrichmentType,string,0,,User
+Request,PTM Info,HasPTMInfo,PTMInfo,string,0,,User
+Request,Depletion,HasDepletion,Depletion,boolean,0,,User
+Request,Depletion Type,HasDepletionType,DepletionType,string,0,,User
+Request,Depletion Info,HasDepletionInfo,DepletionInfo,text,0,,User
+Request,Identification,HasIdentification,Identification,boolean,0,,User
+Request,Protein ID Complexity,HasProteinIDComplexity,ProteinIDComplexity,string,0,,User
+Request,Protein ID PTM,HasProteinIDPTM,ProteinIDPTM,string,0,,User
+Request,Protein Info,HasProteinInfo,ProteinInfo,string,0,,User
+Request,Quantification,HasQuantification,Quantification,boolean,0,,User
+Request,Protein Quan Complexity,HasProteinQuanComplexity,ProteinQuanComplexity,string,0,,User
+Request,Number Of State,HasNumberOfState,NumberOfState,numeric,0,,User
+Request,Quan Method,HasQuanMethod,QuanMethod,string,0,,User
+Request,Quan Technique,HasQuanTechnique,QuanTechnique,string,0,,User
+Request,SILAC,HasSILAC,SILAC,string,0,,User
+Request,ACQUA Seq,HasACQUASeq,ACQUASeq,text,0,,User
+Request,AQUA Amount,HasAQUAAmount,AQUAAmount,string,0,,User
+Request,Quan Info,HasQuanInfo,QuanInfo,text,0,,User
+Request,MW,HasMW,MW,boolean,0,,User
+Request,MW Type,HasMWType,MWType,string,0,,User
+Request,Expected MW,HasExpectedMW,ExpectedMW,numeric,0,,User
+Request,Expected MW Unit,HasExpectedMWUnit,ExpectedMWUnit,string,0,Da; Kda,User
+Request,Purity,HasPurity,Purity,string,0,,User
+Request,Sequence,HasSequence,Sequence,text,0,,User
+Request,Chemical Composition,HasChemicalComposition,ChemicalComposition,string,0,,User
+Request,Structure,HasStructure,Structure,string,0,,User
+Request,MW Info,HasMWInfo,MWInfo,text,0,,User
+Request,MRM,HasMRM,MRM,boolean,0,,User
+Request,MRM Type,HasMRMType,MRMType,string,0,,User
+Request,Pep Of Interest,HasPepOfInterest,PepOfInterest,string,0,,User
+Request,Prot Of Interest,HasProtOfInterest,ProtOfInterest,string,0,,User
+Request,MRM Quan Type,HasMRMQuanType,MRMQuanType,string,0,,User
+Request,Method Development,HasMethodDevelopment,MethodDevelopment,boolean,0,,User
+Request,MRM Info,HasMRMInfo,MRMInfo,text,0,,User
+Request,Advanced Data Analysis,HasAdvancedDataAnalysis,AdvancedDataAnalysis,boolean,0,,User
+Request,Advanced Data Analysis Info,HasAdvancedDataAnalysisInfo,AdvancedDataAnalysisInfo,text,0,,User
+Request,Other Experiment,HasOtherExperiment,OtherExperiment,boolean,0,,User
+Request,Other Experiment Info,HasOtherExperimentInfo,OtherExperimentInfo,text,0,,User
+Request,Sample Donation,HasSampleDonation,SampleDonation,boolean,0,,User
+Request,Type Of Request,HasTypeOfRequest,TypeOfRequest,string,0,,Administrator
+Request,Collaborator,HasCollaborator,Collaborator,string,0,,Administrator
+Request,Accepted By,IsAcceptedBy,AcceptedBy,string,0,,Administrator
+Request,Assigned To,IsAssignedTo,AssignedTo,string,0,,SuperAdministrator
+Request,Status,HasStatus,Status,string,0,,Administrator
+Request,Closure Date,HasClosureDate,ClosureDate,date,0,,Administrator
+Request,Quotation Number,HasQuotationNumber,QuotationNumber,string,0,,Operator
+Request,Budget Approved,IsBudgetApproved,IsBudgetApproved,boolean,0,,Operator
+Request,Request Comments,HasRequestComments,RequestComments,text,0,,Operator
+Request,Expected Delivery Time,Has Expected Delivery Time,ExpectedDeliveryTime,numeric,0,,Administrator
+Request,Extension,Has Extension,Extension,boolean,0,,Administrator
+Request,Extenxion Weeks,Has Extenxion Weeks,ExtenxionWeeks,numeric,0,,Administrator
+Request,Extension Comments,Has Extension Comments,ExtensionComments,text,0,,Administrator

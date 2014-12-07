@@ -1,0 +1,19 @@
+#Source Sample,Process,Resulting Sample
+Protein,Depletion,Protein
+Protein,Electrophoresis,Protein
+Protein,Labelling,Protein
+Protein,Enrichment,Protein
+Protein,Split,Protein
+Protein,Digestion,Peptide
+Protein,Analysis,Vial
+Peptide,Labelling,Peptide
+Peptide,Enrichment,Peptide
+Peptide,Split,Peptide
+Peptide,Fractionate,Fraction
+Peptide,Analysis,Vial
+Fraction,Enrichment,Fraction
+Fraction,Split,Fraction
+Fraction,Analysis,Vial
+Vial,Split,Vial
+Vial,Analysis,File
+File,DataAnalysis,Results

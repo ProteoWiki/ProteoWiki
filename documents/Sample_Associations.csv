@@ -1,0 +1,14 @@
+#Source,Source Property,Resulting,Resulting Property
+Request,Has ID,Protein,Has Request
+Request,Has ID,Peptide,Has Request
+Request,Has ID,Fraction,Has Request
+Request,Has ID,Vial,Has Request
+Request,Has ID,File,Has Request
+Institute,Has ID,User,Has Institute
+User,Has ID,Request,Has User
+User,Has ID,SinteticPeptides,Is Bought By User
+IsobaricLabelling,Has ID,Labelling,Has Labelling Type
+MetabolicLabelling,Has ID,Labelling,Has Labelling Type
+Intervention,Has ID,Instrument,Has Intervention
+SinteticPeptides,Has ID,Injection,Has AQUA
+Enzyme,Has ID,Digestion,Has Enzyme
