@@ -36,14 +36,17 @@ class ProteoWikiUpload extends SpecialPage {
 				'class' => 'HTMLTextField', # What's the input type
 				'type' => 'file'
 			),
-
 			'groupselect' => array(
 				'section' => 'uploadfile',
 				'type' => 'select',
 				'label' => 'Content',
 				'options' => array('Request Properties', 'Sample Properties', 'Process Properties', 'Associations', 'Generators')
+			),
+			'overwrite' => array(
+				'section' => 'uploadfile',
+				'type' => 'checkbox',
+				'label' => 'Overwrite'
 			)
-
 		);
 		
 		$htmlForm = new HTMLForm( $formDescriptorUpload, 'proteowikiupload_form' );
@@ -68,9 +71,16 @@ class ProteoWikiUpload extends SpecialPage {
 	
 		global $wgOut;
 		global $wgUser;
-
+		
+		$overwrite = false;
+		$groupselect = "";
+		
 		if ( $formData['groupselect'] ) {
 			$groupselect =  $formData['groupselect'];
+		}
+		
+		if ( $formData['overwrite'] ) {
+			$overwrite = false;
 		}
 		
 		if ( $_FILES['wpfileupload']['size'] > LIMITSIZE ) {
@@ -78,6 +88,25 @@ class ProteoWikiUpload extends SpecialPage {
 			$kb = LIMITZE/(1024*1024);
 		
 			return ("Sorry. Files larger than ".$kb." are not allowed." );
+		}
+		
+		if ( $_FILES['wpfileupload']['error'] == 0 ) {
+		
+			// TODO: Detect if exists file
+			if ( !  empty( $groupselect ) ) {
+				
+				if ( ! $overwrite ) {
+					
+					$title = Title::newFromText( $groupselect, NS_PROTEOWIKICONF );
+					if ( $title->exists() ) {
+						// TODO: Stop. Forward to another Special page for editing
+					} else {
+						
+						self::processFile( $_FILES['wpfileupload'], $groupselect ); 
+					}
+				}
+			}
+		
 		}
 		
 	}
