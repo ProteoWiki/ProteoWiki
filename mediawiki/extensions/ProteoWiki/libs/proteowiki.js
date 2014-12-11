@@ -1,4 +1,4 @@
-/*global $ document jQuery console mw window wgScriptPath alert location */
+/*global $ document jQuery console mw window wgScriptPath alert location mw.config */
 
 /** Load SpreadSheet **/
 $(document).ready( function() {
@@ -27,12 +27,18 @@ $(document).ready( function() {
 
 		$(this).hide();
 
-		$('#'+divval).handsontable({
+		var params = {
 			data: celldata,
 			readOnly: readonly,
 			minSpareRows: extrarows,
 			contextMenu: true
-		});
+		}
+
+		if ( "sysop" in mw.config.wgUserGroups ) {
+			delete( params.readOnly );
+		}
+
+		$('#'+divval).handsontable( params );
 
 		numdata = numdata +1 ;
 
