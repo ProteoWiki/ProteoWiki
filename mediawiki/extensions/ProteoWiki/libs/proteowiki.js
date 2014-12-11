@@ -1,4 +1,4 @@
-/*global $ document jQuery console mw window wgScriptPath alert location mw.config */
+wgUserGroups/*global $ document jQuery console mw window wgScriptPath alert location wgUserGroups*/
 
 /** Load SpreadSheet **/
 $(document).ready( function() {
@@ -34,7 +34,7 @@ $(document).ready( function() {
 			contextMenu: true
 		}
 
-		if ( "sysop" in mw.config.wgUserGroups ) {
+		if ( wgUserGroups.indexOf("sysop") ) {
 			delete( params.readOnly );
 		}
 
