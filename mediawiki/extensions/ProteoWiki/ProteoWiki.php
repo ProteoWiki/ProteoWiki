@@ -67,3 +67,9 @@ $GLOBALS['smwgNamespacesWithSemanticLinks'] = array(
 	NS_GROUP => true
 );
 
+$GLOBALS['wgResourceModules']['ext.ProteoWiki'] = array(
+	'localBasePath' => dirname( __FILE__ ),
+	'scripts' => array( 'libs/jquery-handsontable/jquery.handsontable.full.js', 'libs/proteowiki.js' ),
+	'styles' => array( 'libs/jquery-handsontable/jquery.handsontable.full.css', 'css/proteowiki.less' ),
+	'remoteExtPath' => 'ProteoWiki'
+);
