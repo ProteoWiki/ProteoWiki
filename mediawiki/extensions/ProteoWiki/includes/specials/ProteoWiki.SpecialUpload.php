@@ -78,6 +78,8 @@ class SpecialProteoWikiUpload extends SpecialPage {
 		global $wgOut;
 		global $wgUser;
 		
+		$limitsize = 10000000;
+		
 		$overwrite = false;
 		$groupselect = "";
 		
@@ -89,9 +91,9 @@ class SpecialProteoWikiUpload extends SpecialPage {
 			$overwrite = false;
 		}
 		
-		if ( $_FILES['wpfileupload']['size'] > LIMITSIZE ) {
+		if ( $_FILES['wpfileupload']['size'] > $limitsize ) {
 		
-			$kb = LIMITZE/(1024*1024);
+			$kb = $limitsize/(1024*1024);
 		
 			return ("Sorry. Files larger than ".$kb." are not allowed." );
 		}
