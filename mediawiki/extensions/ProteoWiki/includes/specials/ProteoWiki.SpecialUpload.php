@@ -41,8 +41,11 @@ class SpecialProteoWikiUpload extends SpecialPage {
 				'section' => 'uploadfile',
 				'class' => 'HTMLSelectField',
 				'label' => 'Content',
-				'options' => array('Request Properties' => 'Request Properties', 'Sample Properties', 'Process Properties', 'Associations', 'Generators'
-
+				'options' => array( 'Request Properties' => 'Request Properties',
+									'Sample Properties' => 'Sample Properties',
+									'Process Properties' => 'Process Properties',
+									'Associations' => 'Associations',
+									'Generators' => 'Generators'
 				)
 			),
 			'overwrite' => array(
