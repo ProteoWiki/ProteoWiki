@@ -40,6 +40,8 @@ $(document).ready( function() {
 
 		$('#'+divval).handsontable( params );
 
+		$('#'+divval).append("<p class='commit'>Commit</p>");
+
 		numdata = numdata +1 ;
 
 	});
