@@ -61,7 +61,7 @@ class SpecialProteoWikiUpload extends SpecialPage {
 		$htmlForm->setTitle( $this->getTitle() ); # You must call setTitle() on an HTMLForm
 
 		/* We set a callback function */
-		$htmlForm->setSubmitCallback( array( 'ProteoWikiUpload', 'processInput' ) );  # Call processInput() in SpecialBioParser on submit
+		$htmlForm->setSubmitCallback( array( 'SpecialProteoWikiUpload', 'processInput' ) );  # Call processInput() in SpecialBioParser on submit
 
 		$htmlForm->suppressReset(false); # Get back reset button
 
