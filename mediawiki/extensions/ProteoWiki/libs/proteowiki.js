@@ -40,14 +40,14 @@ $(document).ready( function() {
 
 		$('#'+divval).handsontable( params );
 
-		$('#'+divval).parent().append("<p class='commit' data-selector='#"+divval+"'>Commit</p>");
+		$('#'+divval).append("<p class='commit' data-selector='#"+divval+"'>Commit</p>");
 
 		numdata = numdata +1 ;
 
 	});
 });
 
-$( ".proteowikiconf" ).on( "click", ".commit", function() {
+$( document ).on( "click", ".commit", function() {
 
 	var param = {};
 	var selector = $(this).attr('data-selector');
@@ -57,8 +57,9 @@ $( ".proteowikiconf" ).on( "click", ".commit", function() {
 	//Let's get data from selector
 	param.text = convertData2str( $( selector ).handsontable( 'getData' ) );
 
-	console.log(wgCanonicalNamespace);
-	console.log(wgTitle);
+	param.title = wgCanonicalNamespace + ":" + wgTitle;
+
+	console.log(param);
 
 	param.action = "proteowikiconf";
 	param.format = "json";
