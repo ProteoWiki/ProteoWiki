@@ -37,7 +37,15 @@ $GLOBALS['wgSpecialPages']['ProteoWikiUpload'] = 'SpecialProteowikiUpload';
 $GLOBALS['wgSpecialPageGroups']['ProteoWikiUpload'] = 'other';
 
 # ParserFunctions
-$GLOBALS['wgHooks']['ParserFirstCallInit'][] = 'ProteoWikiParserFunctions::registerFunctions';
+$GLOBALS['wgHooks']['ParserFirstCallInit'][] = 'registerHook';
+
+function registerHook( &$parser ) {
+	
+	$parser->setHook( 'proteowikiconf', 'ProteoWikiParserFunctions::wfProteoWikiConf_Parser' );
+
+	return true;
+}
+
 
 // Variables
 // Namespace where to Configuration files ( e.g CSV files, and potentially others in the future )

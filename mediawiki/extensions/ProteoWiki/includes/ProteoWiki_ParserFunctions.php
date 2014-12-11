@@ -5,14 +5,6 @@
 
 class ProteoWikiParserFunctions {
 
-	static function registerFunctions( &$parser ) {
-		global $wgOut;
-		
-		$parser->setHook( 'proteowikiconf', 'wfProteoWikiConf_Parser' );
-
-		return true;
-	}
-
 	static function wfProteoWikiConf_Parser( $input, array $args, Parser $parser, PPFrame $frame ) {
 
 		$output = "";
