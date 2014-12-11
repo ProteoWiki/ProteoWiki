@@ -2,7 +2,7 @@
 if (!defined('MEDIAWIKI')) { die(-1); } 
  
 # Upload SpecialPage
-class ProteoWikiUpload extends SpecialPage {
+class SpecialProteoWikiUpload extends SpecialPage {
  
  	protected $input_form_fields =array();
  	
@@ -26,6 +26,7 @@ class ProteoWikiUpload extends SpecialPage {
 
 		$wgOut->addModules( 'ext.ProteoWiki.upload' );
 		$this->setHeaders();
+		$this->getOutput()->setPageTitle( 'ProteoWiki' );
 
 		# A formDescriptor Array to tell HTMLForm what to build
 		$formDescriptorUpload = array(
@@ -38,13 +39,13 @@ class ProteoWikiUpload extends SpecialPage {
 			),
 			'groupselect' => array(
 				'section' => 'uploadfile',
-				'type' => 'select',
+				'class' => 'HTMLSelectField',
 				'label' => 'Content',
 				'options' => array('Request Properties', 'Sample Properties', 'Process Properties', 'Associations', 'Generators')
 			),
 			'overwrite' => array(
 				'section' => 'uploadfile',
-				'type' => 'checkbox',
+				'class' => 'HTMLCheckField',
 				'label' => 'Overwrite'
 			)
 		);
