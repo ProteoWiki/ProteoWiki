@@ -107,7 +107,7 @@ class SpecialProteoWikiUpload extends SpecialPage {
 					$title = Title::newFromText( $groupselect, NS_PROTEOWIKICONF );
 					if ( $title->exists() ) {
 						
-						return 'File already exists. Overwrite or modify manually.';
+						return 'File already exists. Overwrite or [[ProteoWikiConf::$groupselect|modify manually]].';
 
 					} else {
 						
