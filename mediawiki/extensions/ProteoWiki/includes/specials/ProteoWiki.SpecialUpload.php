@@ -77,7 +77,7 @@ class SpecialProteoWikiUpload extends SpecialPage {
 	
 		global $wgOut;
 		global $wgUser;
-		
+	
 		$limitsize = 10000000;
 		
 		$overwrite = false;
@@ -97,8 +97,7 @@ class SpecialProteoWikiUpload extends SpecialPage {
 		
 			return ("Sorry. Files larger than ".$kb." are not allowed." );
 		}
-		
-		if ( $_FILES['wpfileupload']['error'] == 0 ) {
+			if ( $_FILES['wpfileupload']['error'] == 0 ) {
 		
 			// TODO: Detect if exists file
 			if ( !  empty( $groupselect ) ) {
@@ -107,7 +106,9 @@ class SpecialProteoWikiUpload extends SpecialPage {
 					
 					$title = Title::newFromText( $groupselect, NS_PROTEOWIKICONF );
 					if ( $title->exists() ) {
-						// TODO: Stop. Forward to another Special page for editing
+						
+						return 'File already exists. Overwrite or modify manually.';
+
 					} else {
 						
 						self::processFile( $_FILES['wpfileupload'], $groupselect ); 
