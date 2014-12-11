@@ -40,9 +40,14 @@ $(document).ready( function() {
 
 		$('#'+divval).handsontable( params );
 
-		$('#'+divval).append("<p class='commit'>Commit</p>");
+		$('#'+divval).parent().append("<p class='commit' data-selector='#"+divval+"'>Commit</p>");
 
 		numdata = numdata +1 ;
 
 	});
 });
+
+$( ".proteowikiconf" ).on( "click", ".commit", function() {
+	
+});
+
