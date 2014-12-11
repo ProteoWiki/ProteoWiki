@@ -5,9 +5,28 @@
 
 class ProteoWikiParserFunctions {
 
-        static function registerFunctions( &$parser ) {
-                global $wgOut;
+	static function registerFunctions( &$parser ) {
+		global $wgOut;
+		
+		$parser->setHook( 'proteowikiconf', 'wfProteoWikiConf_Parser' );
 
+		return true;
+	}
+
+	static function wfProteoWikiConf_Parser( $input, array $args, Parser $parser, PPFrame $frame ) {
+
+		$output = "";
+		$separator=",";
+		$delimiter='"';
+
+		if ( !empty( $input ) ) {
+			global $wgOut;
+			$wgOut->addModules( 'ext.ProteoWiki' );
+
+			$output = "<div class='proteowikiconf' data-delimiter='".$delimiter."' data-separator='".$separator."'>".$input."</div>";
+		}
+
+		return array( $output, 'noparse' => true, 'isHTML' => true );
 	}
 
 }
