@@ -48,6 +48,48 @@ $(document).ready( function() {
 });
 
 $( ".proteowikiconf" ).on( "click", ".commit", function() {
+
+	var param = {};
+	var selector = $(this).attr('data-selector');
+	param.delimiter=",";
+	param.enclosure='"';
 	
+	//Let's get data from selector
+	param.text = convertData2str( $( selector ).handsontable( 'getData' ) );
+
+	console.log(wgCanonicalNamespace);
+	console.log(wgTitle);
+
+	param.action = "proteowikiconf";
+	param.format = "json";
+
+	var posting = $.post( wgScriptPath + "/api.php", param );
+	posting.done(function( data ) {
+		var newlocation = location.protocol + '//' + location.host + location.pathname;
+		// Go to page with no reloading (with no reload)
+		window.setTimeout( window.location.href = newlocation, 1500);
+	})
+	.fail( function( data ) {
+		alert("Error!");
+	});
+
 });
 
+
+/** @param Array
+* return string
+**/
+function convertData2str ( data ) {
+	var str = "";
+	var newArr = [];
+	if ( data.length > 0 ) {
+		// We put \\n or \\t for ensuring proper conversion afterwards
+		for ( var i = 0; i < data.length; i++ ) {
+			var rowstr = data[i].join("\\t");
+			newArr.push( rowstr );
+		}
+		str = newArr.join("\\n");
+	}
+
+	return str;
+}
