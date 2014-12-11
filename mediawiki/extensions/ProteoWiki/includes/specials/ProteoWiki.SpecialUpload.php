@@ -104,11 +104,43 @@ class ProteoWikiUpload extends SpecialPage {
 						
 						self::processFile( $_FILES['wpfileupload'], $groupselect ); 
 					}
+				} else {
+					
+					self::processFile( $_FILES['wpfileupload'], $groupselect );
 				}
 			}
 		
 		}
 		
+		return "Problem. Try again!";
+	}
+	
+	static function processFile( $hashFile, $filegroup ) {
+		
+		// If no error
+		if ( $hashFile['error'] == 0 ) {
+			
+			$mimes = array('application/vnd.ms-excel','text/plain','text/csv','text/tsv');
+			if ( in_array( $hashFile['type'], $mimes) ) {
+				
+				$content = file_get_contents( $_FILES["wpfileupload"]["tmp_name"] );
+				$content = "<proteowikiconf>".$content."</proteowikiconf>";
+				$title = Title::newFromText( $filegroup, NS_PROTEOWIKICONF );
+				
+				$page = WikiPage::factory( $title );
+				$page->doEdit( $content, "Updating configuration from form" );
+				
+				return "Done!";
+				
+				
+			} else {
+				
+				return 'No CSV file!';
+			}
+			
+		}
+		
+		return 'Try again!';
 	}
 
 }
