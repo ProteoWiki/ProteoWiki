@@ -106,8 +106,10 @@ class SpecialProteoWikiUpload extends SpecialPage {
 					
 					$title = Title::newFromText( $groupselect, NS_PROTEOWIKICONF );
 					if ( $title->exists() ) {
-						
-						return 'File already exists. Overwrite or [[ProteoWikiConf::'.$groupselect.'|modify manually]].';
+						global $wgArticle;
+						$urlpage = str_replace( "$1", "ProteoWikiConf".$groupselect, $wgArticle );
+
+						return 'File already exists. Overwrite or <a href="'.$urlpage.'">modify manually</a>.';
 
 					} else {
 						
