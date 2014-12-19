@@ -21,23 +21,31 @@ $GLOBALS['wgMessagesDirs']['ProteoWiki'] = $dir . 'i18n';
 $GLOBALS['wgExtensionMessagesFiles']['ProteoWiki'] = $dir . 'ProteoWiki.i18n.php';
 $GLOBALS['wgExtensionMessagesFiles']['ProteoWikiMagic'] = $dir . 'ProteoWiki.magic.php';
 
-$GLOBALS['wgAutoloadClasses']['SpecialProteowiki'] = $dir . 'includes/specials/ProteoWiki_Special.php';
-$GLOBALS['wgAutoloadClasses']['SpecialProteowikiCSV'] = $dir . 'includes/specials/ProteoWiki_SpecialCSV.php';
+#$GLOBALS['wgAutoloadClasses']['SpecialProteowiki'] = $dir . 'includes/specials/ProteoWiki_Special.php';
+#$GLOBALS['wgAutoloadClasses']['SpecialProteowikiCSV'] = $dir . 'includes/specials/ProteoWiki_SpecialCSV.php';
 $GLOBALS['wgAutoloadClasses']['SpecialProteowikiUpload'] = $dir . 'includes/specials/ProteoWiki.SpecialUpload.php';
 $GLOBALS['wgAutoloadClasses']['ProteoWikiParserFunctions'] = $dir . 'includes/ProteoWiki_ParserFunctions.php';
 
 
 # SpecialPage referencing
-$GLOBALS['wgSpecialPages']['ProteoWiki'] = 'SpecialProteowiki';
-$GLOBALS['wgSpecialPages']['ProteoWikiCSV'] = 'SpecialProteowikiCSV';
+#$GLOBALS['wgSpecialPages']['ProteoWiki'] = 'SpecialProteowiki';
+#$GLOBALS['wgSpecialPages']['ProteoWikiCSV'] = 'SpecialProteowikiCSV';
 $GLOBALS['wgSpecialPages']['ProteoWikiUpload'] = 'SpecialProteowikiUpload';
 # SpecialPage category
-$GLOBALS['wgSpecialPageGroups']['ProteoWiki'] = 'other';
-$GLOBALS['wgSpecialPageGroups']['ProteoWikiCSV'] = 'other';
+#$GLOBALS['wgSpecialPageGroups']['ProteoWiki'] = 'other';
+#$GLOBALS['wgSpecialPageGroups']['ProteoWikiCSV'] = 'other';
 $GLOBALS['wgSpecialPageGroups']['ProteoWikiUpload'] = 'other';
 
 # ParserFunctions
-$GLOBALS['wgHooks']['ParserFirstCallInit'][] = 'ProteoWikiParserFunctions::registerFunctions';
+$GLOBALS['wgHooks']['ParserFirstCallInit'][] = 'registerHook';
+
+function registerHook( &$parser ) {
+	
+	$parser->setHook( 'proteowikiconf', 'ProteoWikiParserFunctions::wfProteoWikiConf_Parser' );
+
+	return true;
+}
+
 
 // Variables
 // Namespace where to Configuration files ( e.g CSV files, and potentially others in the future )
@@ -67,3 +75,9 @@ $GLOBALS['smwgNamespacesWithSemanticLinks'] = array(
 	NS_GROUP => true
 );
 
+$GLOBALS['wgResourceModules']['ext.ProteoWiki'] = array(
+	'localBasePath' => dirname( __FILE__ ),
+	'scripts' => array( 'libs/jquery-handsontable/jquery.handsontable.full.js', 'libs/proteowiki.js' ),
+	'styles' => array( 'libs/jquery-handsontable/jquery.handsontable.full.css', 'css/proteowiki.less' ),
+	'remoteExtPath' => 'ProteoWiki'
+);

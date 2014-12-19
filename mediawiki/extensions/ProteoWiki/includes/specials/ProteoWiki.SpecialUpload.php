@@ -2,7 +2,7 @@
 if (!defined('MEDIAWIKI')) { die(-1); } 
  
 # Upload SpecialPage
-class ProteoWikiUpload extends SpecialPage {
+class SpecialProteoWikiUpload extends SpecialPage {
  
  	protected $input_form_fields =array();
  	
@@ -26,6 +26,7 @@ class ProteoWikiUpload extends SpecialPage {
 
 		$wgOut->addModules( 'ext.ProteoWiki.upload' );
 		$this->setHeaders();
+		$this->getOutput()->setPageTitle( 'ProteoWiki' );
 
 		# A formDescriptor Array to tell HTMLForm what to build
 		$formDescriptorUpload = array(
@@ -38,13 +39,18 @@ class ProteoWikiUpload extends SpecialPage {
 			),
 			'groupselect' => array(
 				'section' => 'uploadfile',
-				'type' => 'select',
+				'class' => 'HTMLSelectField',
 				'label' => 'Content',
-				'options' => array('Request Properties', 'Sample Properties', 'Process Properties', 'Associations', 'Generators')
+				'options' => array( 'Request Properties' => 'Request Properties',
+									'Sample Properties' => 'Sample Properties',
+									'Process Properties' => 'Process Properties',
+									'Associations' => 'Associations',
+									'Generators' => 'Generators'
+				)
 			),
 			'overwrite' => array(
 				'section' => 'uploadfile',
-				'type' => 'checkbox',
+				'class' => 'HTMLCheckField',
 				'label' => 'Overwrite'
 			)
 		);
@@ -55,7 +61,7 @@ class ProteoWikiUpload extends SpecialPage {
 		$htmlForm->setTitle( $this->getTitle() ); # You must call setTitle() on an HTMLForm
 
 		/* We set a callback function */
-		$htmlForm->setSubmitCallback( array( 'ProteoWikiUpload', 'processInput' ) );  # Call processInput() in SpecialBioParser on submit
+		$htmlForm->setSubmitCallback( array( 'SpecialProteoWikiUpload', 'processInput' ) );  # Call processInput() in SpecialBioParser on submit
 
 		$htmlForm->suppressReset(false); # Get back reset button
 
@@ -71,6 +77,8 @@ class ProteoWikiUpload extends SpecialPage {
 	
 		global $wgOut;
 		global $wgUser;
+	
+		$limitsize = 10000000;
 		
 		$overwrite = false;
 		$groupselect = "";
@@ -83,14 +91,13 @@ class ProteoWikiUpload extends SpecialPage {
 			$overwrite = false;
 		}
 		
-		if ( $_FILES['wpfileupload']['size'] > LIMITSIZE ) {
+		if ( $_FILES['wpfileupload']['size'] > $limitsize ) {
 		
-			$kb = LIMITZE/(1024*1024);
+			$kb = $limitsize/(1024*1024);
 		
 			return ("Sorry. Files larger than ".$kb." are not allowed." );
 		}
-		
-		if ( $_FILES['wpfileupload']['error'] == 0 ) {
+			if ( $_FILES['wpfileupload']['error'] == 0 ) {
 		
 			// TODO: Detect if exists file
 			if ( !  empty( $groupselect ) ) {
@@ -99,7 +106,11 @@ class ProteoWikiUpload extends SpecialPage {
 					
 					$title = Title::newFromText( $groupselect, NS_PROTEOWIKICONF );
 					if ( $title->exists() ) {
-						// TODO: Stop. Forward to another Special page for editing
+						global $wgArticlePath;
+						$urlpage = str_replace( "$1", "ProteoWikiConf:".$groupselect, $wgArticlePath );
+
+						return 'File already exists. Overwrite or <a href="'.$urlpage.'">modify manually</a>.';
+
 					} else {
 						
 						self::processFile( $_FILES['wpfileupload'], $groupselect ); 
