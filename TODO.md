@@ -7,4 +7,5 @@
   * Specific Namespace
   * Extension should take care about any template or forms involved
   * Logic in pages but styling in extension code
+  * Extension should include different involved roles. Ideally, they might be modified as a spreadsheet.
 * Offer installation as Vagrant or Docker machine.
