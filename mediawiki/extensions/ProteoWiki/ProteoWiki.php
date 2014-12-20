@@ -2,7 +2,19 @@
  
 # Avoids illegal processing, doesn't cost much, but unnecessary on a correct installation
 if (!defined('MEDIAWIKI')) { die(-1); } 
- 
+
+
+if ( defined( 'PROTEOWIKI' ) ) {
+	// Do not load more than once.
+	return 1;
+}
+
+define( 'PROTEOWIKI', '0.1' );
+
+if ( !defined( 'SMW_VERSION' ) ) {
+	die( "ERROR: <a href=\"http://semantic-mediawiki.org\">Semantic MediaWiki</a> must be installed for this extension to run!" );
+}
+
 # Extension Declaration
 $GLOBALS['wgExtensionCredits']['specialpage'][] = array(
 	'path' => __FILE__,

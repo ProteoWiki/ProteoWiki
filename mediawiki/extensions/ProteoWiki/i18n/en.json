@@ -1,3 +1,5 @@
 {
-	"proteowiki-desc": "Extension for handling ProteoWiki interface"
+	"proteowiki-desc": "Extension for handling ProteoWiki interface",
+	"proteowikiupload_form-uploadfile": "Configuration Upload form",
+	"proteowikiupload-uploadfile-button": "Submit"
 }

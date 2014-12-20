@@ -1,0 +1,93 @@
+#Template,Parameter,Property,Label,Type,,,Operator
+Process,ID,Has ID,ID,text,1,,Operator
+Process,Sample,Comes from Sample,Comes from Sample,text,1,,Operator
+Process,Operator,Has Operator,Operator,text,1,,Operator
+Process,Comment,Has Comment,Comment,text,0,,Operator
+Process,SOP,Has SOP,SOP,text,0,,Operator
+DataAnalysis,Input Data Type,Has Input Data Type,InputDataType,text,0,,Operator
+DataAnalysis,Identification Type,Has Identification Type,IdentificationType,text,0,,Operator
+DataAnalysis,Search Engine,Has Search Engine,SearchEngine,text,0,,Operator
+DataAnalysis,Database,Has Database,Database,text,0,,Operator
+DataAnalysis,Database Version,Has Database Version,DatabaseVersion,text,0,,Operator
+DataAnalysis,Number of Miscleavage,Has Miscleavage,Miscleavage,number,0,,Operator
+DataAnalysis,MS Tolerance,Has MS Tolerance,MSTolerance,number,0,,Operator
+DataAnalysis,MS Tolerance Unit,Has MS Tolerance Unit,MSToleranceUnit,text,0,ppm; Da,Operator
+DataAnalysis,MS2 Tolerance,Has MS2 Tolerance,MS2Tolerance,number,0,,Operator
+DataAnalysis,MS2 Tolerance Unit,Has MS2 Tolerance Unit,MS2ToleranceUnit,text,0,ppm; Da; mmu,Operator
+DataAnalysis,Fixed Modifications,Has Fixed Mods,FixedMods,text,0,,Operator
+DataAnalysis,Variable Modifications,Has Variable Mods,VariableMods,text,0,,Operator
+DataAnalysis,Peptide Filter,Has Peptide Filter,PeptideFilter,number,0,,Operator
+DataAnalysis,Peptide Filter Type,Has Peptide Filter Unit,PeptideFilterUnit,text,0,,Operator
+DataAnalysis,Protein Filter,Has Protein Filter,ProteinFilter,number,0,,Operator
+DataAnalysis,Protein Filter Type,Has Protein Filter Unit,ProteinFilterUnit,text,0,,Operator
+DataAnalysis,Normalization Type,Has Normalization Type,NormalizationType,text,0,,Operator
+DataAnalysis,Quantification Method ,Has Quantification Method,QuantificationMethod,text,0,,Operator
+Depletion,Type,Has Depletion Type,Type,text,0,,Operator
+Depletion,Depletion Buffer,Has Depletion Buffer,Depletion Buffer,text,0,,Operator
+Digestion,Amount Digested,Has Amount Digested,Amount Digested,number,0,,Operator
+Digestion,Amount Digested Unit,Has Amount Digested Unit,Amount Digested Unit,text,0,ug; mg; g,Operator
+Digestion,Reduced,Is Reduced,Reduced,boolean,0,,Operator
+Digestion,Reduction Reagent,Has Reduction Reagent,Reduction Reagent,text,0,,Operator
+Digestion,Reduction Buffer,Has Reduction Buffer,Reduction Buffer,text,0,,Operator
+Digestion,Reduction Buffer Volume,Has Reduction Buffer Volume,Reduction Buffer Volume,number,0,,Operator
+Digestion,Reduction Buffer Volume Unit,Has Reduction Buffer Volume Unit,Reduction Buffer Volume Unit,text,0,ul; ml,Operator
+Digestion,Reduction Time,Has Reduction Time,Reduction Time,number,0,,Operator
+Digestion,Reduction Time Unit,Has Reduction Time Unit,Reduction Time Unit,text,0,min; h,Operator
+Digestion,Reduction Temperature,Has Reduction Temperature,Reduction Temperature,number,0,,Operator
+Digestion,Reduction Temperature Unit,Has Reduction Temperature Unit,Reduction Temperature Unit,text,0,C; K; F,Operator
+Digestion,Alkylated,Is Alkylated,Alkylated,boolean,0,,Operator
+Digestion,Alkylation Reagent,Has Alkylation Reagent,Alkylation Reagent,text,0,,Operator
+Digestion,Alkylation Buffer,Has Alkylation Buffer,Alkylation Buffer,text,0,,Operator
+Digestion,Alkylation Buffer Volume,Has Alkylation Buffer Volume,Alkylation Buffer Volume,number,0,,Operator
+Digestion,Alkylation Buffer Volume Unit,Has Alkylation Buffer Volume Unit,Alkylation Buffer Volume Unit,text,0,ul; ml,Operator
+Digestion,Alkylation Time,Has Alkylation Time,Alkylation Time,number,0,,Operator
+Digestion,Alkylation Time Unit,Has Alkylation Time Unit,Alkylation Time Unit,text,0,min; h,Operator
+Digestion,Alkylation Temperature,Has Alkylation Temperature,Alkylation Temperature,number,0,,Operator
+Digestion,Alkylation Temperature Unit,Has Alkylation Temperature Unit,Alkylation Temperature Unit,text,0,C; K; F,Operator
+Digestion,Enzyme,Has Digestion Enzyme,Enzyme,text,0,,Operator
+Electrophoresis,Type,Has Type,Type,text,0,,Operator
+Electrophoresis,Quantity Loaded,Has Quantity Loaded,Quantity Loaded,number,0,,Operator
+Electrophoresis,Quantity Loaded Unit,Has Quantity Loaded Unit,Quantity Loaded Unit,text,0,pg; ug; mg ,Operator
+Electrophoresis,Gradient,Has Gradient,Gradient,text,0,,Operator
+Electrophoresis,Loading Buffer,Has Loading Buffer,Loading Buffer,text,0,,Operator
+Electrophoresis,Gel Image,Has Gel Image,Gel Image,page,0,,Operator
+Enrichment,Type,Has Type,Type,text,0,,Operator
+Enrichment,Amount Enriched,Has Amount Enriched,Amount Enriched,number,0,,Operator
+Enrichment,Amount Enriched Unit,Has Amount Enriched Unit,Amount Enriched Unit,text,0,,Operator
+Enrichment,Enrichment Buffer,Has Enrichment Buffer,Enrichment Buffer,text,0,,Operator
+Fractionation,Type,Has Fractionation Type,FractionationType,text,0,,Operator
+Fractionation,Column,Has Column,Column,text,0,,Operator
+Fractionation,Column Dimension,Has Column Dimension,ColumnDimension,text,0,,Operator
+Fractionation,Column Stationary Phase,Has Column Stationary Phase,ColumnStationaryPhase,text,0,,Operator
+Fractionation,Additional Accessories,Has Additional Accessories,AdditionalAccessories,text,0,,Operator
+Fractionation,Amount Fractionated,Has Amount Fractionated,AmountFractionated,number,0,,Operator
+Fractionation,Amount Fractionated Unit,Has Amount Fractionated Unit,AmountFractionatedUnit,text,0,,Operator
+Fractionation,Loading Buffer,Has Loading Buffer,LoadingBuffer,text,0,,Operator
+Fractionation,Elution Buffer,Has Elution Buffer,ElutionBuffer,text,0,,Operator
+Fractionation,Flow,Has Flow,Flow,number,0,,Operator
+Fractionation,Flow Unit,Has Flow Unit,FlowUnit,text,0,,Operator
+Fractionation,Temperature,Has Temperature,Temperature,number,0,,Operator
+Fractionation,Has Temperature Unit,Has Temperature Unit,TemperatureUnit,text,0,C; K; F,Operator
+Fractionation,Gradient,Has Gradient,Gradient,text,0,,Operator
+Fractionation,Fraction Number,Has Fraction Number,FractionNumber,number,0,,Operator
+Fractionation,Fraction Size,Has Fraction Size,FractionSize,number,0,,Operator
+Fractionation,Fraction Size Unit,Has Fraction Size Unit,FractionSizeUnit,text,0,,Operator
+Injection,LC method,Has LC method,LCmethod,text,0,,Operator
+Injection,MS method,Has MS method,MSmethod,text,0,,Operator
+Injection,Instrument,Has Instrument,Instrument,text,0,,Operator
+Injection,Fractionation Type,Has Fractionation Type,FractionationType,text,0,,Operator
+Injection,Collision Energy,Has Collision Energy,CollisionEnergy,text,0,,Operator
+Injection,Column,Has Column,Column,text,0,,Operator
+Injection,Column Dimension,Has Column Dimension,ColumnDimension,text,0,,Operator
+Injection,Column Stationary Phase,Has Column Stationary Phase,ColumnStationaryPhase,text,0,,Operator
+Injection,Additional Accessories,Has Additional Accessories,AdditionalAccessories,text,0,,Operator
+Injection,Amount Injected,Has Amount Injected,AmountInjected,number,0,,Operator
+Injection,Amount Injected Unit,Has Amount Injected Unit,AmountInjectedUnit,text,0,,Operator
+Injection,Loading Buffer,Has Loading Buffer,LoadingBuffer,text,0,,Operator
+Injection,Elution Buffer,Has Elution Buffer,ElutionBuffer,text,0,,Operator
+Injection,Flow,Has Flow,Flow,number,0,,Operator
+Injection,Flow Unit,Has Flow Unit,FlowUnit,text,0,,Operator
+Injection,Temperature,Has Temperature,Temperature,number,0,,Operator
+Injection,Temperature Unit,Has Temperature Unit,TemperatureUnit,text,0,C; K; F,Operator
+Injection,Gradient,Has Gradient,Gradient,text,0,,Operator
+Injection,AQUA,Has AQUA,AQUA,text,0,,Operator
