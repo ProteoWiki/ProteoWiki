@@ -97,7 +97,8 @@ class SpecialProteoWikiUpload extends SpecialPage {
 		
 			return ("Sorry. Files larger than ".$kb." are not allowed." );
 		}
-			if ( $_FILES['wpfileupload']['error'] == 0 ) {
+		
+		if ( $_FILES['wpfileupload']['error'] == 0 ) {
 		
 			// TODO: Detect if exists file
 			if ( !  empty( $groupselect ) ) {
@@ -113,7 +114,7 @@ class SpecialProteoWikiUpload extends SpecialPage {
 
 					} else {
 						
-						self::processFile( $_FILES['wpfileupload'], $groupselect ); 
+						self::processFile( $_FILES['wpfileupload'], $groupselect );
 					}
 				} else {
 					

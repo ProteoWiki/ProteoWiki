@@ -15,7 +15,7 @@ class ProteoWikiParserFunctions {
 			global $wgOut;
 			$wgOut->addModules( 'ext.ProteoWiki' );
 
-			$output = "<div class='proteowikiconf' data-delimiter='".$delimiter."' data-separator='".$separator."'>".$input."</div>";
+			$output = "<div class='proteowikiconf' data-delimiter='".$delimiter."' data-separator='".$separator."'>".trim( $input )."</div>";
 		}
 
 		return array( $output, 'noparse' => true, 'isHTML' => true );
