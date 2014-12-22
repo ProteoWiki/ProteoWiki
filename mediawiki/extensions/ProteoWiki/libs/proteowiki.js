@@ -76,6 +76,18 @@ $( document ).on( "click", ".commit", function() {
 
 });
 
+/** Load Dashboard **/
+$(document).ready( function() {
+
+	if ( $("#dashboard .status").length > 0 ) {
+
+		// TODO: Proceed. We get info from API
+		// TODO: Show info about different pages from Conf. Compare to actual Conf
+		
+	}
+});
+
+
 
 /** @param Array
 * return string

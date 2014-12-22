@@ -36,6 +36,7 @@ $GLOBALS['wgExtensionMessagesFiles']['ProteoWikiMagic'] = $dir . 'ProteoWiki.mag
 $GLOBALS['wgAutoloadClasses']['SpecialProteowiki'] = $dir . 'includes/specials/ProteoWiki.SpecialDashboard.php';
 $GLOBALS['wgAutoloadClasses']['SpecialProteowikiUpload'] = $dir . 'includes/specials/ProteoWiki.SpecialUpload.php';
 $GLOBALS['wgAutoloadClasses']['ProteoWikiParserFunctions'] = $dir . 'includes/ProteoWiki_ParserFunctions.php';
+$GLOBALS['wgAutoloadClasses']['ProteoWikiGenerate'] = $dir . 'includes/ProteoWiki_Generate.php';
 
 
 # SpecialPage referencing
@@ -90,3 +91,9 @@ $GLOBALS['wgResourceModules']['ext.ProteoWiki'] = array(
 	'styles' => array( 'libs/jquery-handsontable/jquery.handsontable.full.css', 'css/proteowiki.less' ),
 	'remoteExtPath' => 'ProteoWiki'
 );
+
+$GLOBALS['wgProteoWikiPages'] = array();
+$GLOBALS['wgProteoWikiPages']['Properties'] = array('Request Properties', 'Sample Properties', 'Process Properties');
+$GLOBALS['wgProteoWikiPages']['Associations'] = array('Associations');
+$GLOBALS['wgProteoWikiPages']['Generators'] = array('Generators');
+

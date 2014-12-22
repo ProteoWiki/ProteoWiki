@@ -23,6 +23,7 @@ class SpecialProteoWiki extends SpecialPage {
 	 */
 	public function execute($par) {
 		global $wgOut;
+		global $wgProteoWikiPages;
 
 		$wgOut->addModules( 'ext.ProteoWiki' );
 		$this->setHeaders();
@@ -35,14 +36,7 @@ class SpecialProteoWiki extends SpecialPage {
 				'section' => 'process',
 				'class' => 'HTMLSelectField',
 				'label' => 'Content',
-				'options' => array(
-									'Request Properties' => 'Request Properties',
-									'Sample Properties' => 'Sample Properties',
-									'Process Properties' => 'Process Properties',
-									'Associations' => 'Associations',
-									'Generators' => 'Generators',
-									'All' => 'All'
-				)
+				'options' => $this->simpleArray( $wgProteoWikiPages )
 			)
 		);
 		
@@ -67,6 +61,19 @@ class SpecialProteoWiki extends SpecialPage {
 	# OnSubmit Callback, here we do all the logic we want to do...
 	static function processInput( $formData ) {
 
+	}
+
+	function simpleArray( $hash ) {
+
+		$array = array();
+		
+		foreach ( $hash as $key => $valuearr ) {
+			foreach ( $valuearr as $value ) {
+				$array[$value] = $value;
+			}
+		}
+		
+		return $array;
 	}
 
 }
