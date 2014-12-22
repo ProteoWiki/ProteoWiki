@@ -33,19 +33,16 @@ $GLOBALS['wgMessagesDirs']['ProteoWiki'] = $dir . 'i18n';
 $GLOBALS['wgExtensionMessagesFiles']['ProteoWiki'] = $dir . 'ProteoWiki.i18n.php';
 $GLOBALS['wgExtensionMessagesFiles']['ProteoWikiMagic'] = $dir . 'ProteoWiki.magic.php';
 
-#$GLOBALS['wgAutoloadClasses']['SpecialProteowiki'] = $dir . 'includes/specials/ProteoWiki_Special.php';
-#$GLOBALS['wgAutoloadClasses']['SpecialProteowikiCSV'] = $dir . 'includes/specials/ProteoWiki_SpecialCSV.php';
+$GLOBALS['wgAutoloadClasses']['SpecialProteowiki'] = $dir . 'includes/specials/ProteoWiki.SpecialDashboard.php';
 $GLOBALS['wgAutoloadClasses']['SpecialProteowikiUpload'] = $dir . 'includes/specials/ProteoWiki.SpecialUpload.php';
 $GLOBALS['wgAutoloadClasses']['ProteoWikiParserFunctions'] = $dir . 'includes/ProteoWiki_ParserFunctions.php';
 
 
 # SpecialPage referencing
-#$GLOBALS['wgSpecialPages']['ProteoWiki'] = 'SpecialProteowiki';
-#$GLOBALS['wgSpecialPages']['ProteoWikiCSV'] = 'SpecialProteowikiCSV';
+$GLOBALS['wgSpecialPages']['ProteoWiki'] = 'SpecialProteowiki';
 $GLOBALS['wgSpecialPages']['ProteoWikiUpload'] = 'SpecialProteowikiUpload';
 # SpecialPage category
-#$GLOBALS['wgSpecialPageGroups']['ProteoWiki'] = 'other';
-#$GLOBALS['wgSpecialPageGroups']['ProteoWikiCSV'] = 'other';
+$GLOBALS['wgSpecialPageGroups']['ProteoWiki'] = 'other';
 $GLOBALS['wgSpecialPageGroups']['ProteoWikiUpload'] = 'other';
 
 # ParserFunctions
