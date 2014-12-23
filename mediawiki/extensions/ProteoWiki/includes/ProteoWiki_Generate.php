@@ -74,41 +74,19 @@ class ProteoWikiGenerate {
 
 					if ( array_key_exists( "type", $content ) ) {
 						// TODO: Here we should put also generic form part ( e. g. for Sample or Proces )
+						if ( $content['title'] != $content['type'] ) {
+							$pagetext.= '{{{for template|'.$content['type'].'}}}';
+
+							$baseparams = getBaseParams( $content['type'] );
+							$pagetext.= self::iterateFormParams( $baseparams );
+
+							$pagetext.= "{{{end template}}}";
+						}
 					}
 
 					$pagetext.= '{{{for template|'.$content['title'].'}}}';
 					
-					foreach ( $content["parameters"] as $entry ) {
-
-						if ( array_key_exists( "parameter", $entry ) ) {
-
-							$pagetext.="\n* ";
-
-							if ( array_key_exists( "label", $entry ) ) {
-								$pagetext.= $entry['label'];
-							}
-
-							$extra = "";
-							if ( array_key_exists( "mandatory", $entry ) ) {
-								if ( $entry['mandatory'] === 1 ) {
-									$extra.= "|mandatory";
-								}
-							}
-							if ( array_key_exists( "default", $entry ) ) {
-								if ( !empty ( $entry['default'] ) ) {
-									$extra.= "|default=".$entry['default'];
-								}
-							}
-							if ( array_key_exists( "role", $entry ) ) {
-								if ( !empty ( $entry['restricted'] ) ) {
-									$extra.= "|restricted=".$entry['restricted'];
-								}
-							}
-
-							$pagetext .= " {{{field|".$entry['parameter'].$extra."}}}";
-						}
-
-					}
+					$pagetext.= self::iterateFormParams( $content['parameters'] );
 
 					$pagetext.= "{{{end template}}}";
 
@@ -121,7 +99,46 @@ class ProteoWikiGenerate {
 				}
 			}
 		}
+	}
 
+	/** Iterate for generating field entries **/
+
+	private static function iterateFormParams( $params ) {
+
+		$output = "";
+
+		foreach ( $params as $entry ) {
+
+			if ( array_key_exists( "parameter", $entry ) ) {
+
+				$pagetext.="\n* ";
+
+				if ( array_key_exists( "label", $entry ) ) {
+					$pagetext.= $entry['label'];
+				}
+
+				$extra = "";
+				if ( array_key_exists( "mandatory", $entry ) ) {
+					if ( $entry['mandatory'] === 1 ) {
+						$extra.= "|mandatory";
+					}
+				}
+				if ( array_key_exists( "default", $entry ) ) {
+					if ( !empty ( $entry['default'] ) ) {
+						$extra.= "|default=".$entry['default'];
+					}
+				}
+				if ( array_key_exists( "role", $entry ) ) {
+					if ( !empty ( $entry['restricted'] ) ) {
+						$extra.= "|restricted=".$entry['restricted'];
+					}
+				}
+
+				$pagetext .= " {{{field|".$entry['parameter'].$extra."}}}";
+			}
+		}
+
+		return $output;
 	}
 
 }
