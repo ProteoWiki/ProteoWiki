@@ -77,7 +77,8 @@ class ProteoWikiGenerate {
 						if ( $content['title'] != $content['type'] ) {
 							$pagetext.= '{{{for template|'.$content['type'].'}}}';
 
-							$baseparams = getBaseParams( $content['type'] );
+							$baseparams = array();
+							// $baseparams = getBaseParams( $content['type'] ); We need function for this!
 							$pagetext.= self::iterateFormParams( $baseparams );
 
 							$pagetext.= "{{{end template}}}";
