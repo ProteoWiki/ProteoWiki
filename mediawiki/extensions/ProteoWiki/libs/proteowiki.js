@@ -104,7 +104,7 @@ function convertData2str ( data, delimiter, enclosure ) {
 			var rowstr = data[i].join(delimiter);
 			newArr.push( rowstr );
 		}
-		str = newArr.join("\\n");
+		str = newArr.join("\n");
 	}
 
 	return str;
