@@ -39,6 +39,9 @@ $GLOBALS['wgAutoloadClasses']['ProteoWikiParserFunctions'] = $dir . 'includes/Pr
 $GLOBALS['wgAutoloadClasses']['ProteoWikiGenerate'] = $dir . 'includes/ProteoWiki_Generate.php';
 $GLOBALS['wgAutoloadClasses']['ProteoWikiImport'] = $dir . 'includes/ProteoWiki_Import.php';
 
+$GLOBALS['wgAutoloadClasses']['ApiProteoWikiConf'] = $dir . 'includes/ProteoWiki_APIConf.php';
+$GLOBALS['wgAPIModules']['proteowikiconf'] = 'ApiProteoWikiConf';
+
 //$GLOBALS['wgAutoloadClasses']['ProteoWikiJob'] = $dir . 'includes/ProteoWiki_Job.php';
 //$GLOBALS['wgAutoloadClasses']['DTImportJob'] = $dir . 'includes/DTImportJob.php';
 
