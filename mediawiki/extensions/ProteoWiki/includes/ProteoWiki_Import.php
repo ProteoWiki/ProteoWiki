@@ -14,7 +14,8 @@ class ProteoWikiImport {
 		$prefix = "<proteowikiconf data-delimiter='".$delimiter."' data-enclosure='".$enclosure."'>";
 		$sufix = "</proteowikiconf>";
 		
-		$status = $wikipage->doEditContent( $text, "Updating content" );
+		$content = new TextContent( $text );
+		$status = $wikipage->doEditContent( $content, "Updating content" );
 
 		return $status;
 		
