@@ -1,4 +1,4 @@
-#Template,Parameter,Property,Label,Type,Mandatory,Value,Operator
+#Template,Parameter,Property,Label,Type,Mandatory,Value,Restricted
 Process,ID,Has ID,ID,text,1,,Operator
 Process,Sample,Comes from Sample,Comes from Sample,text,1,,Operator
 Process,Operator,Has Operator,Operator,text,1,,Operator
