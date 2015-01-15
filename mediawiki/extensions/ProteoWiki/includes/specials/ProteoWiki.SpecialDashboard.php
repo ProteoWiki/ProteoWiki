@@ -75,6 +75,9 @@ class SpecialProteoWiki extends SpecialPage {
 			// Get the contents -> process
 			// API call?
 			$listParams = ProteoWikiImport::listFromPageConf( $title );
+			// var_dump( $listParams );
+			$listProps = ProteoWikiImport::propsFromList( $listParams );
+			// var_dump( $listProps );
 
 		}
 		

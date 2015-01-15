@@ -24,60 +24,73 @@ class ProteoWikiImport {
 	
 	public static function listFromPageConf( $title ) {
 		
+		$params = array();
+
 		$wikipage = WikiPage::factory( $title );
 		
-		// TODO: If wikipage exists
-		$content = $wikipage->getContent();
-		$text = $content->getNativeData(); // Native data
-				
-		$delimiter = ",";
-		$enclosure = '"';
-		
-		if ( preg_match( "<proteowikiconf>", $text ) ) {
+		if ( $wikipage->exists() ) {
+			$content = $wikipage->getContent();
+			$text = $content->getNativeData(); // Native data
 			
-			$xml = simplexml_load_string($text);
-			// var_dump( $xml );
-			$attrs = $xml->attributes();
-			foreach ( $attrs as $a => $b ) {
-				if ( $a == 'data-delimiter' ) {
-					$delimiter = $b;
-				}
-				if ( $a == 'data-enclosure' ) {
-					$enclosure = $b;
+			$delimiter = ",";
+			$enclosure = '"';
+			
+			if ( preg_match( "<proteowikiconf>", $text ) ) {
+				
+				$xml = simplexml_load_string($text);
+				// var_dump( $xml );
+				$attrs = $xml->attributes();
+				foreach ( $attrs as $a => $b ) {
+					if ( $a == 'data-delimiter' ) {
+						$delimiter = $b;
+					}
+					if ( $a == 'data-enclosure' ) {
+						$enclosure = $b;
+					}
 				}
 			}
+			
+			$final_text = trim( strip_tags( $text ) );
+			
+			//Process as CSV below
+			$params = self::getCSVData( $final_text, "utf8", $delimiter, $enclosure );
+		
 		}
 		
-		$final_text = trim( strip_tags( $text ) );
-		//Process as CSV below
-		$table = array();
+		return $params;
+	}
+	
+	/** Get props from list **/
+	public static function propsFromList( $list ) {
 		
-		// let's get a hash
-		$table = self::getCSVData( $final_text );
+		$props = array();
 		
-		return $final_text;
+		return $props;
 	}
 
 	// TODO: Here we import stuff from CreateFromFile https://github.com/ProteoWiki/CreateFromFile
 	// IMPORTANT: This must be fixed
 	private static function getCSVData( $text, $encoding, $delimiter=",", $enclosure='"' ) {
 
-		if ( empty( $JStext ) )
-			return "empty";
+		$outcome = array();
+		
+		if ( empty( $text ) ) {
+			return $outcome;
+		}
+
+		$linesCSV = explode ( "\n", $text );
+
 		$table = array();
-
-		$linesCSV = explode ( "\n", $JStext );
-
 		foreach ( $linesCSV as $lineCSV ) {
 			array_push( $table, str_getcsv( $lineCSV, $delimiter, $enclosure ) );
 		}
-
-		$numiter = (int)$start+1;
 		
+		// #Template,Parameter,Property,Label,Type,Mandatory,Default,Role
 		foreach ( $table as $line ) {
 
 			// Let's check if first line can be avoided
 			if ( substr( $line[0], 0, 1 ) === "#" ) {
+				// TODO; Consider if keys to make props -> Fix in more places
 				continue;
 			}
 
@@ -86,58 +99,37 @@ class ProteoWikiImport {
 				continue;
 			}
 
-			//if ( $i == 0 ) continue;
-			$page = new DTPage();
-
-			$title = $titlePage;
+			if ( ! array_key_exists( $line[0], $outcome ) ) {
+				$outcome[ $line[0] ] = array();
+			} else {
 			
-			//Avoid empty content
-			if (empty($title)) {
-				continue;
-			}
-
-			$resultmatch = preg_match_all("/(\#\d+)/" , $templateText, $subst);
-
-			$templateEnd = $templateText;
-
-			// We do in reverse order for avoiding substitution when more than 2 digits parameters
-			$iter = count($line);
-
-			foreach ( array_reverse($line) as $entry ) {
-				
-				$matchiter = "#".$iter;
-	
-				if (in_array($matchiter, array_values($subst[0]))) {
-					$templateEnd = str_replace($matchiter, $entry, $templateEnd);
-					$title = str_replace($matchiter, $entry, $title);
+				if ( ! array_key_exists( $line[1], $outcome[$line[0]] ) ) {
+					$outcome[ $line[0] ][ $line[1] ] = array();
 				}
-				
-				$iter--;
 			}
 			
-			// Other changes -> we should move to function or class maybe?
-			$title = str_replace("#I4", self::putZeroes($numiter, 4), $title); // We assing value
-			
-			
-			$title = str_replace("#Y", date("Y"), $title);
-
-			#Recover template
-			$templateEnd = str_replace("??", "{{", $templateEnd);
-			$templateEnd = str_replace("!!", "}}", $templateEnd);
-			#Remove any reference to #num left -> let's put back to blank
-			$templateEnd = preg_replace("/=\s*\#\d+/", "=", $templateEnd);
-			
-			#Userparam change
-			$templateEnd = preg_replace("/\#userparam/", $userparam, $templateEnd);
-
-			# Assign value
-			$page->setEntry( trim($templateEnd) );
-			$page->setName( trim($title) );
-			
-			$pages[] = $page;
-			
-			$numiter++; // Next
+			// TODO: Fix values, we should fix in more places
+			if ( !empty($line[2]) ) {
+				$outcome[ $line[0] ][ $line[1] ]["Property"] = $line[2];
+			}
+			if ( !empty($line[3]) ) {
+				$outcome[ $line[0] ][ $line[1] ]["Label"] = $line[3];
+			}
+			if ( !empty($line[4]) ) {
+				$outcome[ $line[0] ][ $line[1] ]["Type"] = $line[4];
+			}
+			if ( !empty($line[5]) ) {
+				$outcome[ $line[0] ][ $line[1] ]["Mandatory"] = $line[5];
+			}
+			if ( !empty($line[6]) ) {
+				$outcome[ $line[0] ][ $line[1] ]["Default"] = $line[6];
+			}
+			if ( !empty($line[7]) ) {
+				$outcome[ $line[0] ][ $line[1] ]["Role"] = $line[7];
+			}
 		}
+		
+		return $outcome;
 	}
 	
 }
