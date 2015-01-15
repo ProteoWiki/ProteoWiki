@@ -10,6 +10,8 @@ $(document).ready( function() {
 
 	$('.proteowikiconf').each( function() {
 
+		// TODO: Handle delimiter and enclosure
+		
 		var celldata = [];
 
 		var text = $(this).text();
@@ -55,7 +57,7 @@ $( document ).on( "click", ".commit", function() {
 	param.enclosure='"';
 	
 	//Let's get data from selector
-	param.text = convertData2str( $( selector ).handsontable( 'getData' ) );
+	param.text = convertData2str( $( selector ).handsontable( 'getData' ), param.delimiter, param.enclosure );
 
 	param.title = wgCanonicalNamespace + ":" + wgTitle;
 
@@ -92,13 +94,14 @@ $(document).ready( function() {
 /** @param Array
 * return string
 **/
-function convertData2str ( data ) {
+function convertData2str ( data, delimiter, enclosure ) {
 	var str = "";
 	var newArr = [];
 	if ( data.length > 0 ) {
 		// We put \\n or \\t for ensuring proper conversion afterwards
 		for ( var i = 0; i < data.length; i++ ) {
-			var rowstr = data[i].join("\\t");
+			// TODO: Handle enclosure
+			var rowstr = data[i].join(delimiter);
 			newArr.push( rowstr );
 		}
 		str = newArr.join("\\n");
