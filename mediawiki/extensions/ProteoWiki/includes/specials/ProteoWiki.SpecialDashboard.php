@@ -61,6 +61,24 @@ class SpecialProteoWiki extends SpecialPage {
 	# OnSubmit Callback, here we do all the logic we want to do...
 	static function processInput( $formData ) {
 
+		$groupselect = "";
+		if ( $formData['groupselect'] ) {
+			$groupselect =  $formData['groupselect'];
+		}
+		
+		if ( ! empty( $groupselect ) ) {
+			// Get the title
+			$title = Title::newFromText( $groupselect, NS_PROTEOWIKICONF );
+			
+			// TODO if if page exists
+			
+			// Get the contents -> process
+			// API call?
+			$listParams = ProteoWikiImport::listFromPageConf( $title );
+
+		}
+		
+	
 	}
 
 	function simpleArray( $hash ) {
