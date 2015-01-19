@@ -81,20 +81,20 @@ class SpecialProteoWiki extends SpecialPage {
 			foreach ( $listProps as $property => $type ) {
 				// TODO: Change NS of property for proper reference
 				$propertyTitle = "Property:".$property;
-				$propertyText = "[[Has Type::".$type."]]";
+				$propertyText = "[[Has type::".$type."]]";
 				
 				self::prepareJob( $propertyTitle, $propertyText, "Creating property", "yes" );
 			}
 			
 			// Process templates
 			
-			foreach ( $listparams as $template => $allparams ) {
+			foreach ( $listParams as $template => $allparams ) {
 				// TODO: Change NS of template for proper reference
 				$templateTitle = "Template:".$template;
 				$templateText = "";
 			
 				foreach ( $allparams as $param => $infoparam ) {
-					$templateText.= $infoparam["Label"].": ".$param."\n";
+					$templateText.= $infoparam["Label"].": {{{".$param."|}}}\n";
 				}
 				
 				self::prepareJob( $templateTitle, $templateText, "Creating template", "yes" );
