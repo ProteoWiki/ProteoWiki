@@ -175,7 +175,7 @@ class SpecialProteoWiki extends SpecialPage {
 					
 					$formText.="{{{end template}}}\n";
 					
-					self::prepareJob( $formTitle, self::formPre( $formTitle, $commonTemplates )."\n".$commonText."\n".$formText, "Creating form", "yes" );
+					self::prepareJob( $formTitle, self::formPre( $template, $commonTemplates )."\n".$commonText."\n".$formText."\n".self::formPost()."\n", "Creating form", "yes" );
 				}
 				
 
@@ -274,9 +274,15 @@ class SpecialProteoWiki extends SpecialPage {
 	// TODO: Here to much pre assumptions :/ params should be better
 	private static function formPre( $form, $common ) {
 
-		$output = "{{#forminput:form=".$form."|query string=namespace=".$common[0]."}}";
+		$output = "<noinclude>\n{{#forminput:form=".$form."|query string=namespace=".$common[0]."}}\n</noinclude>\n<includeonly>";
 		return $output;
 	
+	}
+	
+	private static function formPost( ) {
+		
+		$output = "{{{standard input|save}}}{{{standard input|cancel}}}</includeonly>";
+		return $output;
 	}
 	
 }
