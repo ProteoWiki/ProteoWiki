@@ -104,7 +104,7 @@ class SpecialProteoWiki extends SpecialPage {
 			
 			// TODO: Process FORM NS
 			
-			self::runJobs();
+			ProteoWikiImport::runJobs();
 		}
 		
 	

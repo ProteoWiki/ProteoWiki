@@ -150,7 +150,7 @@ class ProteoWikiImport {
 		return $props;
 	}
 	
-	private static function prepareJob( $pageName, $text, $summary, $overwrite ) {
+	public static function prepareJob( $pageName, $text, $summary, $overwrite ) {
 
 		global $wgUser;
 		#global $wgShowExceptionDetails;
@@ -178,7 +178,7 @@ class ProteoWikiImport {
 
 	}
 	
-	private static function runJobs() {
+	public static function runJobs() {
 
 		// MW 1.21+
 		if ( class_exists( 'JobQueueGroup' ) ) {
