@@ -59,14 +59,6 @@ class ProteoWikiImport {
 		
 		return $params;
 	}
-	
-	/** Get props from list **/
-	public static function propsFromList( $list ) {
-		
-		$props = array();
-		
-		return $props;
-	}
 
 	// TODO: Here we import stuff from CreateFromFile https://github.com/ProteoWiki/CreateFromFile
 	// IMPORTANT: This must be fixed
@@ -131,5 +123,89 @@ class ProteoWikiImport {
 		
 		return $outcome;
 	}
+	
+		
+	/** Get props from list **/
+	public static function propsFromList( $list ) {
+		
+		$props = array();
+		
+		foreach ( $list as $template => $allparams ) {
+	
+			foreach ( $allparams as $param => $infoparam ) {
+
+				if ( array_key_exists( "Property", $list[$template][$param] ) ) {
+				
+					$property = $list[$template][$param]["Property"];
+					if ( array_key_exists( "Type", $list[$template][$param] ) ) {
+						
+						$type = $list[$template][$param]["Type"];
+						$props[$property] = $type;
+					}
+				}
+			}
+		}
+		
+		
+		return $props;
+	}
+	
+	private static function prepareJob( $pageName, $text, $summary, $overwrite ) {
+
+		global $wgUser;
+		#global $wgShowExceptionDetails;
+		
+		#$wgShowExceptionDetails = true;
+		// Submit Job
+		#$jobs = array();
+		$jobParams = array();
+		$jobParams['user_id'] = $wgUser->getId();
+		$jobParams['edit_summary'] = $summary;
+		$jobParams['for_pages_that_exist'] = $overwrite;
+		$jobParams['text'] = $text;
+
+
+		$title = Title::newFromText( $pageName ); // Gene:GeneName
+
+		if ( is_null( $title ) ) {
+			return true;
+
+		} else {
+
+			self::$jobs[] = new DTImportJob( $title, $jobParams );
+			return true;
+		}
+
+	}
+	
+	private static function runJobs() {
+
+		// MW 1.21+
+		if ( class_exists( 'JobQueueGroup' ) ) {
+			#print "<pre>";
+			#print "</br>Number of jobs is ".count((self::$jobs))."</br>";
+			#$output = print_r( self::$jobs, true);
+			#file_put_contents($wgBioParserJobOut.'/listjobs.out', $output);
+
+			JobQueueGroup::singleton()->push( self::$jobs );
+		} else {
+			Job::batchInsert( $this->jobs );
+		}
+		
+		global $wgRunJobsPath;
+		global $wgProteoWikiJobOut;
+		global $wgRunJobsProcs;
+
+		# Should we trigger runJobs here?
+		$descriptorspec = array(
+				array('pipe', 'r'),               // stdin
+				array('file', $wgProteoWikiJobOut.'/samples.out', 'a'), // stdout
+				array('file', $wgProteoWikiJobOut.'/samples.err', 'a'),               // stderr -> Generate one temp?
+		);
+
+		$proc = proc_open("php $wgRunJobsPath --procs $wgRunJobsProcs &", $descriptorspec, $pipes);
+
+	}
+	
 	
 }

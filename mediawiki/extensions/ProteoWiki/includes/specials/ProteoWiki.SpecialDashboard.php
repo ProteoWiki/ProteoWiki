@@ -75,10 +75,36 @@ class SpecialProteoWiki extends SpecialPage {
 			// Get the contents -> process
 			// API call?
 			$listParams = ProteoWikiImport::listFromPageConf( $title );
-			// var_dump( $listParams );
+			//var_dump( $listParams );
 			$listProps = ProteoWikiImport::propsFromList( $listParams );
-			// var_dump( $listProps );
+			
 
+			// Process properties
+			foreach ( $listProps as $property => $type ) {
+				// TODO: Change NS of property for proper reference
+				$propertyTitle = "Property:".$property;
+				$propertyText = "[[Has Type::".$type."]]";
+				
+				ProteoWikiImport::prepareJob( $propertyTitle, $propertyText, "Creating property", "yes" );
+			}
+			
+			// Process templates
+			
+			foreach ( $listparams as $template => $allparams ) {
+				// TODO: Change NS of template for proper reference
+				$templateTitle = "Template:".$template;
+				$templateText = "";
+			
+				foreach ( $allparams as $param => $infoparam ) {
+					$templateText.= $infoparam["Label"].": ".$param."\n";
+				}
+				
+				ProteoWikiImport::prepareJob( $templateTitle, $templateText, "Creating template", "yes" );
+			}
+			
+			// TODO: Process FORM NS
+			
+			self::runJobs();
 		}
 		
 	

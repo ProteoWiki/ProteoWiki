@@ -93,7 +93,7 @@ $GLOBALS['smwgNamespacesWithSemanticLinks'] = array(
 );
 
 $GLOBALS['wgResourceModules']['ext.ProteoWiki'] = array(
-	'localBasePath' => dirname( __FILE__ ),
+	'localBasePath' => $dir,
 	'scripts' => array( 'libs/jquery-handsontable/jquery.handsontable.full.js', 'libs/proteowiki.js' ),
 	'styles' => array( 'libs/jquery-handsontable/jquery.handsontable.full.css', 'css/proteowiki.less' ),
 	'remoteExtPath' => 'ProteoWiki'
@@ -103,4 +103,14 @@ $GLOBALS['wgProteoWikiPages'] = array();
 $GLOBALS['wgProteoWikiPages']['Properties'] = array('Request Properties', 'Sample Properties', 'Process Properties');
 $GLOBALS['wgProteoWikiPages']['Associations'] = array('Associations');
 $GLOBALS['wgProteoWikiPages']['Generators'] = array('Generators');
+
+
+#RunJobs
+$GLOBALS['wgAutoloadClasses']['DTImportJob'] = $dir . '/includes/DT_ImportJob.php';
+$GLOBALS['wgJobClasses']['dtImport'] = 'DTImportJob';
+
+$GLOBALS['wgProteoWikiJobOut'] = "/tmp";
+$GLOBALS['wgRunJobsPath'] = $dir . '/../../maintenance/runJobs.php';
+$GLOBALS['wgRunJobsProcs'] = 2;
+
 
