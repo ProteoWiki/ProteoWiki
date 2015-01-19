@@ -130,7 +130,7 @@ class SpecialProteoWiki extends SpecialPage {
 							}
 							// Careful confusion default and values in SForms
 							if ( array_key_exists( 'Default', $infoparam ) && ( ! empty( $infoparam['Default'] ) ) ) {
-								$values = "|values=".$infoparam['Default'];
+								$values = "|values=".self::formatFormValues( $infoparam['Default'] );
 							}
 							
 							$commonText.="{{{field|".$param.$mandatory.$role.$values."}}}\n";
@@ -157,16 +157,16 @@ class SpecialProteoWiki extends SpecialPage {
 						$role = "";
 						$values = "";
 						
-						if ( $infoparam['Mandatory'] == 1 ) {
+						if ( array_key_exists( 'Mandatory', $infoparam ) && $infoparam['Mandatory'] == 1 ) {
 							$mandatory = "|mandatory";
 						}
 						
-						if ( ! empty( $infoparam['Role'] ) ) {
-							$role = "|".$infoparam['Role'];
+						if ( array_key_exists( 'Role', $infoparam ) && ( ! empty( $infoparam['Role'] ) ) ) {
+							$role = "|restricted=".$infoparam['Role'];
 						}
-
-						if ( ! empty( $infoparam['Default'] ) ) {
-							$values = "|".$infoparam['Default'];
+						// Careful confusion default and values in SForms
+						if ( array_key_exists( 'Default', $infoparam ) && ( ! empty( $infoparam['Default'] ) ) ) {
+							$values = "|values=".self::formatFormValues( $infoparam['Default'] );
 						}
 						
 						$formText.="{{{field|".$param.$mandatory.$role.$values."}}}\n";
@@ -175,7 +175,7 @@ class SpecialProteoWiki extends SpecialPage {
 					
 					$formText.="{{{end template}}}\n";
 					
-					self::prepareJob( $formTitle, $commonText."\n".$formText, "Creating form", "yes" );
+					self::prepareJob( $formTitle, self::formPre( $formTitle, $commonTemplates )."\n".$commonText."\n".$formText, "Creating form", "yes" );
 				}
 				
 
@@ -258,6 +258,27 @@ class SpecialProteoWiki extends SpecialPage {
 		return $array;
 	}
 
+	private static function formatFormValues( $values ) {
+		
+		$array = explode( ";", $values );
+		
+		$new_array = array();
+		
+		foreach ( $array as $arr ) {
+			array_push( $new_array, trim( $arr ) );
+		}
+		
+		return implode( ",", $new_array );
+	}
+	
+	// TODO: Here to much pre assumptions :/ params should be better
+	private static function formPre( $form, $common ) {
+
+		$output = "{{#forminput:form=".$form."|query string=namespace=".$common[0]."}}";
+		return $output;
+	
+	}
+	
 }
 
 # NO PHP Closing bracket "? >". This is pure code.
