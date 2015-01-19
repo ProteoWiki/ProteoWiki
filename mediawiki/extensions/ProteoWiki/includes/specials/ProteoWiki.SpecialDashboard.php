@@ -94,13 +94,84 @@ class SpecialProteoWiki extends SpecialPage {
 				$templateText = "";
 			
 				foreach ( $allparams as $param => $infoparam ) {
-					$templateText.= $infoparam["Label"].": {{{".$param."|}}}\n";
+					$templateText.= "*".$infoparam["Label"].": {{{".$param."|}}}\n"; // Optional visualization
 				}
 				
 				self::prepareJob( $templateTitle, $templateText, "Creating template", "yes" );
 			}
 			
-			// TODO: Process FORM NS
+			// Process FORM NS
+			global $wgProteoWikiForms;
+			
+			if ( array_key_exists( $groupselect, $wgProteoWikiForms ) ) {
+				
+				$commonTemplate = $wgProteoWikiForms[ $groupselect ];
+
+				if ( array_key_exists( $listParams, $commonTemplate ) ) {
+					
+					$commonText = "{{{for template|".$commonTemplate."}}}\n";
+
+					// First common Form
+					foreach ( $listParams[ $commonTemplate ] as $param => $infoparam ) {
+						
+						$mandatory = "";
+						$role = "";
+						$values = "";
+						
+						if ( $infoparam['Mandatory'] == 1 ) {
+							$mandatory = "|mandatory";
+						}
+						
+						if ( ! empty( $infoparam['Role'] ) ) {
+							$role = "|".$infoparam['Role'];
+						}
+
+						if ( ! empty( $infoparam['Default'] ) ) {
+							$values = "|".$infoparam['Default'];
+						}
+						
+						$commonText.="{{{field|".$param.$mandatory.$role.$values."}}}\n";
+					}
+					
+					$commonText.="{{{end template}}}\n";
+
+					
+					foreach ( $listParams as $template => $allparams ) {
+				
+						// TODO: Change NS of form for proper reference
+						$formTitle = "Form:".$template;
+						$formText = "{{{for template|".$template."}}}\n";
+
+						foreach ( $allparams as $param => $infoparam ) {
+							
+							$mandatory = "";
+							$role = "";
+							$values = "";
+							
+							if ( $infoparam['Mandatory'] == 1 ) {
+								$mandatory = "|mandatory";
+							}
+							
+							if ( ! empty( $infoparam['Role'] ) ) {
+								$role = "|".$infoparam['Role'];
+							}
+	
+							if ( ! empty( $infoparam['Default'] ) ) {
+								$values = "|".$infoparam['Default'];
+							}
+							
+							$formText.="{{{field|".$param.$mandatory.$role.$values."}}}\n";
+						
+						}
+						
+						$formText.="{{{end template}}}\n";
+						
+						self::prepareJob( $formTitle, $commonText."\n".$formText, "Creating form", "yes" );
+					}
+				}
+				
+
+			}
 			
 			self::runJobs();
 		}

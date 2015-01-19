@@ -99,10 +99,18 @@ $GLOBALS['wgResourceModules']['ext.ProteoWiki'] = array(
 	'remoteExtPath' => 'ProteoWiki'
 );
 
+
+// Consider whether this is too complex or not
 $GLOBALS['wgProteoWikiPages'] = array();
 $GLOBALS['wgProteoWikiPages']['Properties'] = array('Request Properties', 'Sample Properties', 'Process Properties');
 $GLOBALS['wgProteoWikiPages']['Associations'] = array('Associations');
 $GLOBALS['wgProteoWikiPages']['Generators'] = array('Generators');
+
+# Base templates for every group
+$GLOBALS['wgProteoWikiForms'] = array();
+$GLOBALS['wgProteoWikiForms']['Request Properties'] = array("Request");
+$GLOBALS['wgProteoWikiForms']['Sample Properties'] = array("Sample");
+$GLOBALS['wgProteoWikiForms']['Process Properties'] = array("Process");
 
 
 #RunJobs
