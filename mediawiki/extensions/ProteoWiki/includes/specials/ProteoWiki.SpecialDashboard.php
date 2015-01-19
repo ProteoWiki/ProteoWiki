@@ -105,14 +105,53 @@ class SpecialProteoWiki extends SpecialPage {
 			
 			if ( array_key_exists( $groupselect, $wgProteoWikiForms ) ) {
 				
-				$commonTemplate = $wgProteoWikiForms[ $groupselect ];
-
-				if ( array_key_exists( $listParams, $commonTemplate ) ) {
+				$commonTemplates = $wgProteoWikiForms[ $groupselect ];
+				$commonText = "";
+				
+				foreach ( $commonTemplates as $commonTemplate ) {
 					
-					$commonText = "{{{for template|".$commonTemplate."}}}\n";
+					if ( array_key_exists( $commonTemplate, $listParams ) ) {
+						
+						$commonText = "{{{for template|".$commonTemplate."}}}\n";
+	
+						// First common Form
+						foreach ( $listParams[ $commonTemplate ] as $param => $infoparam ) {
+							
+							$mandatory = "";
+							$role = "";
+							$values = "";
+							
+							if ( array_key_exists( 'Mandatory', $infoparam ) && $infoparam['Mandatory'] == 1 ) {
+								$mandatory = "|mandatory";
+							}
+							
+							if ( array_key_exists( 'Role', $infoparam ) && ( ! empty( $infoparam['Role'] ) ) ) {
+								$role = "|restricted=".$infoparam['Role'];
+							}
+							// Careful confusion default and values in SForms
+							if ( array_key_exists( 'Default', $infoparam ) && ( ! empty( $infoparam['Default'] ) ) ) {
+								$values = "|values=".$infoparam['Default'];
+							}
+							
+							$commonText.="{{{field|".$param.$mandatory.$role.$values."}}}\n";
+						}
+						
+						$commonText.="{{{end template}}}\n";
+					}
+				}
 
-					// First common Form
-					foreach ( $listParams[ $commonTemplate ] as $param => $infoparam ) {
+				foreach ( $listParams as $template => $allparams ) {
+					
+					if ( in_array( $template, $commonTemplates ) ) {
+						// Not consider common templates
+						continue;
+					}
+					
+					// TODO: Change NS of form for proper reference
+					$formTitle = "Form:".$template;
+					$formText = "{{{for template|".$template."}}}\n";
+
+					foreach ( $allparams as $param => $infoparam ) {
 						
 						$mandatory = "";
 						$role = "";
@@ -130,44 +169,13 @@ class SpecialProteoWiki extends SpecialPage {
 							$values = "|".$infoparam['Default'];
 						}
 						
-						$commonText.="{{{field|".$param.$mandatory.$role.$values."}}}\n";
+						$formText.="{{{field|".$param.$mandatory.$role.$values."}}}\n";
+					
 					}
 					
-					$commonText.="{{{end template}}}\n";
-
+					$formText.="{{{end template}}}\n";
 					
-					foreach ( $listParams as $template => $allparams ) {
-				
-						// TODO: Change NS of form for proper reference
-						$formTitle = "Form:".$template;
-						$formText = "{{{for template|".$template."}}}\n";
-
-						foreach ( $allparams as $param => $infoparam ) {
-							
-							$mandatory = "";
-							$role = "";
-							$values = "";
-							
-							if ( $infoparam['Mandatory'] == 1 ) {
-								$mandatory = "|mandatory";
-							}
-							
-							if ( ! empty( $infoparam['Role'] ) ) {
-								$role = "|".$infoparam['Role'];
-							}
-	
-							if ( ! empty( $infoparam['Default'] ) ) {
-								$values = "|".$infoparam['Default'];
-							}
-							
-							$formText.="{{{field|".$param.$mandatory.$role.$values."}}}\n";
-						
-						}
-						
-						$formText.="{{{end template}}}\n";
-						
-						self::prepareJob( $formTitle, $commonText."\n".$formText, "Creating form", "yes" );
-					}
+					self::prepareJob( $formTitle, $commonText."\n".$formText, "Creating form", "yes" );
 				}
 				
 
