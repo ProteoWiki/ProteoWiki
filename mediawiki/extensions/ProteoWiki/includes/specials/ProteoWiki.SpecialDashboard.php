@@ -3,10 +3,8 @@ if (!defined('MEDIAWIKI')) { die(-1); }
  
 # Upload SpecialPage
 class SpecialProteoWiki extends SpecialPage {
- 
- 	protected $input_form_fields =array();
- 	
- 	protected static $jobs =array();
+	
+	protected static $jobs =array();
 
 	/**
 	 * Constructor : initialise object
@@ -85,7 +83,7 @@ class SpecialProteoWiki extends SpecialPage {
 				$propertyTitle = "Property:".$property;
 				$propertyText = "[[Has Type::".$type."]]";
 				
-				ProteoWikiImport::prepareJob( $propertyTitle, $propertyText, "Creating property", "yes" );
+				self::prepareJob( $propertyTitle, $propertyText, "Creating property", "yes" );
 			}
 			
 			// Process templates
@@ -99,16 +97,74 @@ class SpecialProteoWiki extends SpecialPage {
 					$templateText.= $infoparam["Label"].": ".$param."\n";
 				}
 				
-				ProteoWikiImport::prepareJob( $templateTitle, $templateText, "Creating template", "yes" );
+				self::prepareJob( $templateTitle, $templateText, "Creating template", "yes" );
 			}
 			
 			// TODO: Process FORM NS
 			
-			ProteoWikiImport::runJobs();
+			self::runJobs();
 		}
 		
 	
 	}
+	
+	private static function prepareJob( $pageName, $text, $summary, $overwrite ) {
+
+		global $wgUser;
+		#global $wgShowExceptionDetails;
+		
+		#$wgShowExceptionDetails = true;
+		// Submit Job
+		#$jobs = array();
+		$jobParams = array();
+		$jobParams['user_id'] = $wgUser->getId();
+		$jobParams['edit_summary'] = $summary;
+		$jobParams['for_pages_that_exist'] = $overwrite;
+		$jobParams['text'] = $text;
+
+
+		$title = Title::newFromText( $pageName ); // Gene:GeneName
+
+		if ( is_null( $title ) ) {
+			return true;
+
+		} else {
+
+			self::$jobs[] = new DTImportJob( $title, $jobParams );
+			return true;
+		}
+
+	}
+	
+	private static function runJobs() {
+
+		// MW 1.21+
+		if ( class_exists( 'JobQueueGroup' ) ) {
+			#print "<pre>";
+			#print "</br>Number of jobs is ".count((self::$jobs))."</br>";
+			#$output = print_r( self::$jobs, true);
+			#file_put_contents($wgBioParserJobOut.'/listjobs.out', $output);
+
+			JobQueueGroup::singleton()->push( self::$jobs );
+		} else {
+			Job::batchInsert( self::jobs );
+		}
+		
+		global $wgRunJobsPath;
+		global $wgProteoWikiJobOut;
+		global $wgRunJobsProcs;
+
+		# Should we trigger runJobs here?
+		$descriptorspec = array(
+				array('pipe', 'r'),               // stdin
+				array('file', $wgProteoWikiJobOut.'/samples.out', 'a'), // stdout
+				array('file', $wgProteoWikiJobOut.'/samples.err', 'a'),               // stderr -> Generate one temp?
+		);
+
+		$proc = proc_open("php $wgRunJobsPath --procs $wgRunJobsProcs &", $descriptorspec, $pipes);
+
+	}
+	
 
 	function simpleArray( $hash ) {
 
