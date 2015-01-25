@@ -59,6 +59,7 @@ $GLOBALS['wgHooks']['ParserFirstCallInit'][] = 'registerHook';
 function registerHook( &$parser ) {
 	
 	$parser->setHook( 'proteowikiconf', 'ProteoWikiParserFunctions::wfProteoWikiConf_Parser' );
+	$parser->setFunctionHook( 'proteowikiformlinks', 'ProteoWikiParserFunctions::wfProteoWikiFormLinks', Parser::SFH_OBJECT_ARGS );
 
 	return true;
 }
