@@ -97,6 +97,7 @@ class SpecialProteoWiki extends SpecialPage {
 					$templateText.= "*".$infoparam["Label"].": {{{".$param."|}}}\n"; // Optional visualization
 				}
 				
+				$templateText = $templateText."[[Category:".$template."]]"; //TODO: Review if proper approach is category -> Handle with WikiPage in query
 				self::prepareJob( $templateTitle, $templateText, "Creating template", "yes" );
 			}
 			
@@ -133,7 +134,7 @@ class SpecialProteoWiki extends SpecialPage {
 								$values = "|values=".self::formatFormValues( $infoparam['Default'] );
 							}
 							
-							$commonText.="{{{field|".$param.$mandatory.$role.$values."}}}\n";
+							$commonText.= "*".$infoparam["Label"].": {{{field|".$param.$mandatory.$role.$values."}}}\n";
 						}
 						
 						$commonText.="{{{end template}}}\n";
@@ -169,7 +170,7 @@ class SpecialProteoWiki extends SpecialPage {
 							$values = "|values=".self::formatFormValues( $infoparam['Default'] );
 						}
 						
-						$formText.="{{{field|".$param.$mandatory.$role.$values."}}}\n";
+						$formText.= "*".$infoparam["Label"].": {{{field|".$param.$mandatory.$role.$values."}}}\n";
 					
 					}
 					
