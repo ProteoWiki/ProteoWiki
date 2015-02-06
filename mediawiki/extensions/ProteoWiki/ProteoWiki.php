@@ -103,7 +103,7 @@ $GLOBALS['wgResourceModules']['ext.ProteoWiki'] = array(
 
 // Consider whether this is too complex or not
 $GLOBALS['wgProteoWikiPages'] = array();
-$GLOBALS['wgProteoWikiPages']['Properties'] = array('Request Properties', 'Sample Properties', 'Process Properties');
+$GLOBALS['wgProteoWikiPages']['Properties'] = array('Request Properties', 'Sample Properties', 'Process Properties', 'Extra Properties');
 $GLOBALS['wgProteoWikiPages']['Associations'] = array('Associations');
 $GLOBALS['wgProteoWikiPages']['Generators'] = array('Generators');
 
