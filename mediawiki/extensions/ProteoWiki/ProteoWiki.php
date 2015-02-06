@@ -37,6 +37,11 @@ $GLOBALS['wgAutoloadClasses']['SpecialProteowiki'] = $dir . 'includes/specials/P
 $GLOBALS['wgAutoloadClasses']['SpecialProteowikiUpload'] = $dir . 'includes/specials/ProteoWiki.SpecialUpload.php';
 $GLOBALS['wgAutoloadClasses']['ProteoWikiParserFunctions'] = $dir . 'includes/ProteoWiki_ParserFunctions.php';
 $GLOBALS['wgAutoloadClasses']['ProteoWikiGenerate'] = $dir . 'includes/ProteoWiki_Generate.php';
+$GLOBALS['wgAutoloadClasses']['ProteoWikiImport'] = $dir . 'includes/ProteoWiki_Import.php';
+
+$GLOBALS['wgAutoloadClasses']['ApiProteoWikiConf'] = $dir . 'includes/ProteoWiki_APIConf.php';
+$GLOBALS['wgAPIModules']['proteowikiconf'] = 'ApiProteoWikiConf';
+
 //$GLOBALS['wgAutoloadClasses']['ProteoWikiJob'] = $dir . 'includes/ProteoWiki_Job.php';
 //$GLOBALS['wgAutoloadClasses']['DTImportJob'] = $dir . 'includes/DTImportJob.php';
 
@@ -54,6 +59,7 @@ $GLOBALS['wgHooks']['ParserFirstCallInit'][] = 'registerHook';
 function registerHook( &$parser ) {
 	
 	$parser->setHook( 'proteowikiconf', 'ProteoWikiParserFunctions::wfProteoWikiConf_Parser' );
+	$parser->setFunctionHook( 'proteowikiformlinks', 'ProteoWikiParserFunctions::wfProteoWikiFormLinks', Parser::SFH_OBJECT_ARGS );
 
 	return true;
 }
@@ -88,14 +94,32 @@ $GLOBALS['smwgNamespacesWithSemanticLinks'] = array(
 );
 
 $GLOBALS['wgResourceModules']['ext.ProteoWiki'] = array(
-	'localBasePath' => dirname( __FILE__ ),
+	'localBasePath' => $dir,
 	'scripts' => array( 'libs/jquery-handsontable/jquery.handsontable.full.js', 'libs/proteowiki.js' ),
 	'styles' => array( 'libs/jquery-handsontable/jquery.handsontable.full.css', 'css/proteowiki.less' ),
 	'remoteExtPath' => 'ProteoWiki'
 );
 
+
+// Consider whether this is too complex or not
 $GLOBALS['wgProteoWikiPages'] = array();
 $GLOBALS['wgProteoWikiPages']['Properties'] = array('Request Properties', 'Sample Properties', 'Process Properties');
 $GLOBALS['wgProteoWikiPages']['Associations'] = array('Associations');
 $GLOBALS['wgProteoWikiPages']['Generators'] = array('Generators');
+
+# Base templates for every group
+$GLOBALS['wgProteoWikiForms'] = array();
+$GLOBALS['wgProteoWikiForms']['Request Properties'] = array("Request");
+$GLOBALS['wgProteoWikiForms']['Sample Properties'] = array("Sample");
+$GLOBALS['wgProteoWikiForms']['Process Properties'] = array("Process");
+
+
+#RunJobs
+$GLOBALS['wgAutoloadClasses']['DTImportJob'] = $dir . '/includes/DT_ImportJob.php';
+$GLOBALS['wgJobClasses']['dtImport'] = 'DTImportJob';
+
+$GLOBALS['wgProteoWikiJobOut'] = "/tmp";
+$GLOBALS['wgRunJobsPath'] = $dir . '/../../maintenance/runJobs.php';
+$GLOBALS['wgRunJobsProcs'] = 2;
+
 

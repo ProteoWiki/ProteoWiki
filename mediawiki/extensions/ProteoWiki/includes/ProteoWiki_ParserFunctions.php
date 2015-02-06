@@ -23,5 +23,11 @@ class ProteoWikiParserFunctions {
 		return array( $output, 'noparse' => true, 'isHTML' => true );
 	}
 
+	static function wfProteoWikiFormLinks( &$parser, $frame, $args ) {
+		
+		// TODO: Handle form links
+		return '';
+	}
+	
 }
 
