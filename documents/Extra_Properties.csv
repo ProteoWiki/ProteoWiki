@@ -1,0 +1,16 @@
+Institute,ID,Has ID,ID,text,1,,SuperAdministrator
+Institute,Name,Has Name,Name,text,1,,SuperAdministrator
+Institute,Address,Has Address,Address,text,1,,SuperAdministrator
+Institute,NIF,Has NIF,NIF,text,0,,SuperAdministrator
+Institute,Type,Has Type,Type,text,0,,SuperAdministrator
+User,ID,Has ID,ID,text,1,,SuperAdministrator
+User,Name,Has Name,Name,text,1,,SuperAdministrator
+User,Surname,Has Surname,Surname,text,1,,SuperAdministrator
+User,Usercode,Has Usercode,Usercode,text,1,,SuperAdministrator
+User,Username,Has Username,Username,text,1,,SuperAdministrator
+User,Is Head,Is Head,IsHead,boolean,1,,SuperAdministrator
+User,Head,Has Head,Head,text,1,,SuperAdministrator
+User,Phone,Has Phone,Phone,text,1,,SuperAdministrator
+User,Email,Has Email,Email,text,1,,SuperAdministrator
+User,Active,Is Active,Active,boolean,1,,SuperAdministrator
+User,Institute,Has Institute,Institute,text,1,,SuperAdministrator
