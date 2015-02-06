@@ -31,7 +31,7 @@ $dir = dirname(__FILE__) . '/';
 # i18n file referencing
 $GLOBALS['wgMessagesDirs']['ProteoWiki'] = $dir . 'i18n';
 $GLOBALS['wgExtensionMessagesFiles']['ProteoWiki'] = $dir . 'ProteoWiki.i18n.php';
-$GLOBALS['wgExtensionMessagesFiles']['ProteoWikiMagic'] = $dir . 'ProteoWiki.magic.php';
+$GLOBALS['wgExtensionMessagesFiles']['ProteoWikiMagic'] = $dir . 'ProteoWiki.i18n.magic.php';
 
 $GLOBALS['wgAutoloadClasses']['SpecialProteowiki'] = $dir . 'includes/specials/ProteoWiki.SpecialDashboard.php';
 $GLOBALS['wgAutoloadClasses']['SpecialProteowikiUpload'] = $dir . 'includes/specials/ProteoWiki.SpecialUpload.php';
@@ -56,13 +56,6 @@ $GLOBALS['wgSpecialPageGroups']['ProteoWikiUpload'] = 'other';
 # ParserFunctions
 $GLOBALS['wgHooks']['ParserFirstCallInit'][] = 'registerHook';
 
-function registerHook( &$parser ) {
-	
-	$parser->setHook( 'proteowikiconf', 'ProteoWikiParserFunctions::wfProteoWikiConf_Parser' );
-	$parser->setFunctionHook( 'proteowikiformlinks', 'ProteoWikiParserFunctions::wfProteoWikiFormLinks', Parser::SFH_OBJECT_ARGS );
-
-	return true;
-}
 
 
 // Variables
@@ -121,5 +114,14 @@ $GLOBALS['wgJobClasses']['dtImport'] = 'DTImportJob';
 $GLOBALS['wgProteoWikiJobOut'] = "/tmp";
 $GLOBALS['wgRunJobsPath'] = $dir . '/../../maintenance/runJobs.php';
 $GLOBALS['wgRunJobsProcs'] = 2;
+
+
+function registerHook( &$parser ) {
+	
+	$parser->setHook( 'proteowikiconf', 'ProteoWikiParserFunctions::wfProteoWikiConf_Parser' );
+	// $parser->setFunctionHook( 'proteowikiformlinks', 'ProteoWikiParserFunctions::wfProteoWikiFormLinks', Parser::SFH_OBJECT_ARGS );
+
+	return true;
+}
 
 

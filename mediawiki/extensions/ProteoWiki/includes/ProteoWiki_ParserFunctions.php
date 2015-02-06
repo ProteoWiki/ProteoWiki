@@ -26,8 +26,12 @@ class ProteoWikiParserFunctions {
 	static function wfProteoWikiFormLinks( &$parser, $frame, $args ) {
 		
 		// TODO: Handle form links
+		// 1 -> Form -> 2 Page -> 3 NS -> 4 Link -> 5 Random$
+		return '{{FormLink|1|kk|Process|Process[Sample]|23233}}';
 		return '';
 	}
 	
+
+
 }
 

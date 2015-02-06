@@ -34,7 +34,7 @@ class SpecialProteoWiki extends SpecialPage {
 				'section' => 'process',
 				'class' => 'HTMLSelectField',
 				'label' => 'Content',
-				'options' => $this->simpleArray( $wgProteoWikiPages )
+				'options' => $this->simpleArray2( $wgProteoWikiPages['Properties'] )
 			)
 		);
 		
@@ -258,6 +258,18 @@ class SpecialProteoWiki extends SpecialPage {
 		
 		return $array;
 	}
+
+	function simpleArray2( $input ) {
+
+		$array = array();
+		
+		foreach ( $input as $in  ) {
+			$array[$in] = $in;
+		}
+		
+		return $array;
+	}
+
 
 	private static function formatFormValues( $values ) {
 		
