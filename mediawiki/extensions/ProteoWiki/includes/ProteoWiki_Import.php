@@ -117,7 +117,8 @@ class ProteoWikiImport {
 				$outcome[ $line[0] ][ $line[1] ]["Default"] = $line[6];
 			}
 			if ( !empty($line[7]) ) {
-				$outcome[ $line[0] ][ $line[1] ]["Role"] = $line[7];
+				$outcome[ $line[0] ][ $line[1] ]["Role"] = $line[7].",sysop";
+				// Adding sysop in the list -> Hack here
 			}
 		}
 		

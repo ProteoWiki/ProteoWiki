@@ -47,8 +47,10 @@ class ProteoWikiGenerate {
 
 					}
 
+					$pagetext .= "{{#proteowikiformlinks:}}";
+
 					$page = WikiPage::factory( $titlePage );
-					$page->doEdit( $pagetext, "Property added/modified" );
+					$page->doEdit( $pagetext, "Template added/modified" );
 					// TODO: Trigger system update is necessary
 
 					return true;
