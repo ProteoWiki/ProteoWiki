@@ -91,13 +91,13 @@ class SpecialProteoWiki extends SpecialPage {
 			foreach ( $listParams as $template => $allparams ) {
 				// TODO: Change NS of template for proper reference
 				$templateTitle = "Template:".$template;
-				$templateText = "";
+				$templateText = "<includeonly>";
 			
 				foreach ( $allparams as $param => $infoparam ) {
 					$templateText.= "*".$infoparam["Label"].": [[".$infoparam["Property"]."::{{{".$param."|}}}]]\n"; // Optional visualization
 				}
 				
-				$templateText = $templateText."[[Category:".$template."]]"; //TODO: Review if proper approach is category -> Handle with WikiPage in query
+				$templateText = $templateText."[[Category:".$template."]]</includeonly>"; //TODO: Review if proper approach is category -> Handle with WikiPage in query
 				self::prepareJob( $templateTitle, $templateText, "Creating template", "yes" );
 			}
 			

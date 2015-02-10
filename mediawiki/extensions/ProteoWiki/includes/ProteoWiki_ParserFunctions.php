@@ -12,7 +12,7 @@ class ProteoWikiParserFunctions {
 		$delimiter='"';
 
 		if ( !empty( $input ) ) {
-			global $wgOut;
+			$wgOut = $parser->getOutput();
 			$wgOut->addModules( 'ext.ProteoWiki' );
 			
 			$input = trim( strip_tags( $input ) );
@@ -27,8 +27,12 @@ class ProteoWikiParserFunctions {
 		
 		// TODO: Handle form links
 		// 1 -> Form -> 2 Page -> 3 NS -> 4 Link -> 5 Random$
+		
+		// Direct form link
+		// {{#formlink:form={{{1}}}|link text={{{1}}}|link type=button|query string=namespace={{{3}}}&{{{4}}}={{{2}}}|target={{{3}}}:{{{1}}}-{{Random Number|10000}} }}
+		
 		return '{{FormLink|1|kk|Process|Process[Sample]|23233}}';
-		return '';
+		//return '';
 	}
 	
 

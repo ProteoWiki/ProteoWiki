@@ -44,9 +44,13 @@ call_user_func( function() {
 	$GLOBALS['wgAutoloadClasses']['ProteoWikiParserFunctions'] = $dir . 'includes/ProteoWiki_ParserFunctions.php';
 	$GLOBALS['wgAutoloadClasses']['ProteoWikiGenerate'] = $dir . 'includes/ProteoWiki_Generate.php';
 	$GLOBALS['wgAutoloadClasses']['ProteoWikiImport'] = $dir . 'includes/ProteoWiki_Import.php';
+	$GLOBALS['wgAutoloadClasses']['ProteoWikiReadConf'] = $dir . 'includes/ProteoWiki_ReadConf.php';
 
 	$GLOBALS['wgAutoloadClasses']['ApiProteoWikiConf'] = $dir . 'includes/ProteoWiki_APIConf.php';
+	$GLOBALS['wgAutoloadClasses']['ApiProteoWikiStatus'] = $dir . 'includes/ProteoWiki_APIStatus.php';
+
 	$GLOBALS['wgAPIModules']['proteowikiconf'] = 'ApiProteoWikiConf';
+	$GLOBALS['wgAPIModules']['proteowikistatus'] = 'ApiProteoWikiStatus';
 
 	//$GLOBALS['wgAutoloadClasses']['ProteoWikiJob'] = $dir . 'includes/ProteoWiki_Job.php';
 	//$GLOBALS['wgAutoloadClasses']['DTImportJob'] = $dir . 'includes/DTImportJob.php';
