@@ -94,7 +94,7 @@ class SpecialProteoWiki extends SpecialPage {
 				$templateText = "";
 			
 				foreach ( $allparams as $param => $infoparam ) {
-					$templateText.= "*".$infoparam["Label"].": [[".$infoparam["Property"]."|{{{".$param."|}}}]]\n"; // Optional visualization
+					$templateText.= "*".$infoparam["Label"].": [[".$infoparam["Property"]."::{{{".$param."|}}}]]\n"; // Optional visualization
 				}
 				
 				$templateText = $templateText."[[Category:".$template."]]"; //TODO: Review if proper approach is category -> Handle with WikiPage in query
