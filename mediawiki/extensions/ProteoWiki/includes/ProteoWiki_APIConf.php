@@ -6,10 +6,10 @@ class ApiProteoWikiConf extends ApiBase {
 		$params = $this->extractRequestParams();
 
 		// For compatibility with GET method, we process JSON
-		$jsonresult = ProteoWikiImport::importConf( $params['text'], $params['title'], $params['delimiter'], $params['enclosure'] );
-		$output = json_decode( $jsonresult );
+		$output = ProteoWikiImport::importConf( $params['text'], $params['title'], $params['delimiter'], $params['enclosure'] );
+		// $output = json_decode( $jsonresult );
 
-		$this->getResult()->addValue( null, $this->getModuleName(), array ( 'status' => $output->status, 'msg' => $output->msg ) );
+		$this->getResult()->addValue( null, $this->getModuleName(), array ( 'status' => $output['status'], 'msg' => $output['msg'] ) );
 
 		return true;
 

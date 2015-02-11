@@ -22,7 +22,7 @@ class ProteoWikiImport {
 		
 	}
 	
-	public static function listFromPageConf( $title ) {
+	public static function listFromPageConf( $title, $method=null ) {
 		
 		$params = array();
 
@@ -53,8 +53,11 @@ class ProteoWikiImport {
 			$final_text = trim( strip_tags( $text ) );
 			
 			//Process as CSV below
-			$params = self::getCSVData( $final_text, "utf8", $delimiter, $enclosure );
-		
+			if ( $method && $method == 'Generators' ) {
+				$params = self::getSimpleCSVData( $final_text, "utf8", $delimiter, $enclosure );
+			} else {
+				$params = self::getCSVData( $final_text, "utf8", $delimiter, $enclosure );
+			}
 		}
 		
 		return $params;
