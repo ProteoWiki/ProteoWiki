@@ -127,7 +127,42 @@ class ProteoWikiImport {
 		
 		return $outcome;
 	}
-	
+
+	// Straight data from CSV . TODO: We might use headers as key
+	private static function getSimpleCSVData( $text, $encoding, $delimiter=",", $enclosure='"' ) {
+
+		$outcome = array();
+		
+		if ( empty( $text ) ) {
+			return $outcome;
+		}
+
+		$linesCSV = explode ( "\n", $text );
+
+		$table = array();
+		foreach ( $linesCSV as $lineCSV ) {
+			array_push( $table, str_getcsv( $lineCSV, $delimiter, $enclosure ) );
+		}
+		
+		foreach ( $table as $line ) {
+
+			// Let's check if first line can be avoided
+			if ( substr( $line[0], 0, 1 ) === "#" ) {
+				// TODO; Consider if keys to make props -> Fix in more places
+				continue;
+			}
+
+			// Let's avoid empty lines
+			if ( empty($line[0]) ) {
+				continue;
+			}
+			array_push( $outcome, $line ); 
+		}
+		
+		return $outcome;
+	}
+
+
 		
 	/** Get props from list **/
 	public static function propsFromList( $list ) {

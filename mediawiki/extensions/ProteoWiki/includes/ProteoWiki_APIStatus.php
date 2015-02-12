@@ -8,8 +8,12 @@ class ApiProteoWikiStatus extends ApiBase {
 		// TODO: finish
 		$jsonresult = ProteoWikiReadConf::readConf( $params['class'] );
 		#$output = json_decode( $jsonresult );
-		var_dump( $jsonresult );
-		#$this->getResult()->addValue( null, $this->getModuleName(), array ( 'status' => $output->status, 'msg' => $output->msg ) );
+		$outcome = array( 'status' => 'OK', 'result' => array() );
+		foreach ( $jsonresult as $key => $value ) {
+			$outcome['result'][ $key ] = $value;
+		}
+
+		$this->getResult()->addValue( null, $this->getModuleName(), $outcome );
 	
 		return true;
 	}
