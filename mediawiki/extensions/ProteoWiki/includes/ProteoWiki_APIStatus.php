@@ -5,14 +5,16 @@ class ApiProteoWikiStatus extends ApiBase {
 	
 		$params = $this->extractRequestParams();
 		
-		// TODO: finish
+		// TODO: Make it work in XML :O
 		$jsonresult = ProteoWikiReadConf::readConf( $params['class'] );
-		
-		#$output = json_decode( $jsonresult );
 
-		var_dump( $jsonresult );
-		// TODO: TO FIXXX!!!
-		$this->getResult()->addValue( null, $this->getModuleName(), array( "status" => "OK", "result" => $jsonresult["Generators"] ) );
+		$outcome =  array( "status" => "OK", "result" => array() );
+		foreach ( $jsonresult as $key => $value ) {
+			$outcome['result'][ $key ] = $value;
+		}
+
+		//var_dump( $outcome );
+		$this->getResult()->addValue( null, $this->getModuleName(), $outcome );
 	
 		return true;
 	}
